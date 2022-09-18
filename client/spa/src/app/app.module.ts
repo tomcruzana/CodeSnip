@@ -5,13 +5,15 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { JumbotronComponent } from './components/jumbotron/jumbotron.component';
 import { FeaturesComponent } from './components/features/features.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     JumbotronComponent,
-    FeaturesComponent
+    FeaturesComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule
