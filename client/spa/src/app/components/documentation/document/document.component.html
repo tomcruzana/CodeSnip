@@ -1,127 +1,45 @@
 <div class="container document-container">
-  <div id="1" class="content mt-5">
-    <h1 class="fs-1">asdasd</h1>
+  <div class="content-search">
+    <form class="d-flex" role="search">
+      <input
+        class="form-control me-2 bg-dark text-bg-dark"
+        type="search"
+        placeholder="Search Contents"
+        aria-label="Search"
+      />
+    </form>
+  </div>
+  <div
+    id="1"
+    class="content mt-5"
+    *ngFor="
+      let content of contents
+        | paginate
+          : {
+              itemsPerPage: contentSize,
+              currentPage: page,
+              totalItems: count
+            };
+      let i = index
+    "
+  >
+    <h1 class="fs-1">{{ content.title }}</h1>
     <h3 class="fs-3">
-      Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui.
-      Quisque velit nisi, pretium ut lacinia in, elementum id enim. Quisque
-      velit nisi, pretium ut lacinia in, elementum id enim.
+      {{ content.description }}
     </h3>
     <hr />
 
     <div class="text-center">
-      <img class="img-fluid" src="https://picsum.photos/640/480" alt="" />
+      <img class="img-fluid" [src]="content.img" alt="" />
     </div>
   </div>
-
-  <div id="2" class="content mt-5">
-    <h1 class="fs-1">asdasd</h1>
-    <h3 class="fs-3">
-      Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui.
-      Quisque velit nisi, pretium ut lacinia in, elementum id enim. Quisque
-      velit nisi, pretium ut lacinia in, elementum id enim.
-    </h3>
-    <hr />
-
-    <div class="text-center">
-      <img class="img-fluid" src="https://picsum.photos/640/480" alt="" />
-    </div>
-  </div>
-
-  <div id="3" class="content mt-5">
-    <h1 class="fs-1">asdasd</h1>
-    <h3 class="fs-3">
-      Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui.
-      Quisque velit nisi, pretium ut lacinia in, elementum id enim. Quisque
-      velit nisi, pretium ut lacinia in, elementum id enim.
-    </h3>
-    <hr />
-
-    <div class="text-center">
-      <img class="img-fluid" src="https://picsum.photos/640/480" alt="" />
-    </div>
-  </div>
-
-  <div id="4" class="content mt-5">
-    <h1 class="fs-1">asdasd</h1>
-    <h3 class="fs-3">
-      Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui.
-      Quisque velit nisi, pretium ut lacinia in, elementum id enim. Quisque
-      velit nisi, pretium ut lacinia in, elementum id enim.
-    </h3>
-    <hr />
-
-    <div class="text-center">
-      <img class="img-fluid" src="https://picsum.photos/640/480" alt="" />
-    </div>
-  </div>
-
-  <div id="5" class="content mt-5">
-    <h1 class="fs-1">asdasd</h1>
-    <h3 class="fs-3">
-      Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui.
-      Quisque velit nisi, pretium ut lacinia in, elementum id enim. Quisque
-      velit nisi, pretium ut lacinia in, elementum id enim.
-    </h3>
-    <hr />
-
-    <div class="text-center">
-      <img class="img-fluid" src="https://picsum.photos/640/480" alt="" />
-    </div>
-  </div>
-
-  <div id="6" class="content mt-5">
-    <h1 class="fs-1">asdasd</h1>
-    <h3 class="fs-3">
-      Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui.
-      Quisque velit nisi, pretium ut lacinia in, elementum id enim. Quisque
-      velit nisi, pretium ut lacinia in, elementum id enim.
-    </h3>
-    <hr />
-
-    <div class="text-center">
-      <img class="img-fluid" src="https://picsum.photos/640/480" alt="" />
-    </div>
-  </div>
-
-  <div id="7" class="content mt-5">
-    <h1 class="fs-1">asdasd</h1>
-    <h3 class="fs-3">
-      Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui.
-      Quisque velit nisi, pretium ut lacinia in, elementum id enim. Quisque
-      velit nisi, pretium ut lacinia in, elementum id enim.
-    </h3>
-    <hr />
-
-    <div class="text-center">
-      <img class="img-fluid" src="https://picsum.photos/640/480" alt="" />
-    </div>
-  </div>
-
-  <div id="8" class="content mt-5">
-    <h1 class="fs-1">asdasd</h1>
-    <h3 class="fs-3">
-      Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui.
-      Quisque velit nisi, pretium ut lacinia in, elementum id enim. Quisque
-      velit nisi, pretium ut lacinia in, elementum id enim.
-    </h3>
-    <hr />
-
-    <div class="text-center">
-      <img class="img-fluid" src="https://picsum.photos/640/480" alt="" />
-    </div>
-  </div>
-
-  <div id="9" class="content mt-5">
-    <h1 class="fs-1">asdasd</h1>
-    <h3 class="fs-3">
-      Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui.
-      Quisque velit nisi, pretium ut lacinia in, elementum id enim. Quisque
-      velit nisi, pretium ut lacinia in, elementum id enim.
-    </h3>
-    <hr />
-
-    <div class="text-center">
-      <img class="img-fluid" src="https://picsum.photos/640/480" alt="" />
-    </div>
+  <div class="d-flex mt-5 justify-content-end">
+    <pagination-controls
+      [responsive]="true"
+      previousLabel="Prev"
+      nextLabel="Next"
+      (pageChange)="onContentDataChange($event)"
+    >
+    </pagination-controls>
   </div>
 </div>

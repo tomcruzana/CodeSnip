@@ -14,6 +14,7 @@ import { RouterModule } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { SidebarComponent } from './components/documentation/sidebar/sidebar.component';
 import { DocumentComponent } from './components/documentation/document/document.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { DocumentComponent } from './components/documentation/document/document.
   ],
   imports: [
     BrowserModule,
+    NgxPaginationModule,
     RouterModule.forRoot([
       { path: 'home', component: HomeComponent },
       { path: 'documentation', component: DocumentationComponent },
