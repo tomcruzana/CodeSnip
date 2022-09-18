@@ -4,6 +4,9 @@
 /* Google Font Link */
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
 
+/* animate.css */
+@import "~animate.css/animate.min";
+
 body {
   background-color: #212529;
   font-family: "Poppins", sans-serif;
