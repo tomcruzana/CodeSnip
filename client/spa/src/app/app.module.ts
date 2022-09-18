@@ -12,6 +12,8 @@ import { DocumentationComponent } from './components/documentation/documentation
 import { PricingComponent } from './components/pricing/pricing.component';
 import { RouterModule } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
+import { SidebarComponent } from './components/documentation/sidebar/sidebar.component';
+import { DocumentComponent } from './components/documentation/document/document.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,8 @@ import { HomeComponent } from './components/home/home.component';
     DocumentationComponent,
     PricingComponent,
     HomeComponent,
+    SidebarComponent,
+    DocumentComponent,
   ],
   imports: [
     BrowserModule,

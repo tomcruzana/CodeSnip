@@ -17,6 +17,11 @@ export class FeaturesComponent implements OnInit {
         'Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Donec rutrum congue leo eget malesuada.',
     },
     {
+      title: 'Responsive',
+      description:
+        'Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Donec rutrum congue leo eget malesuada.',
+    },
+    {
       title: 'Editor',
       description:
         'Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Donec rutrum congue leo eget malesuada.',
