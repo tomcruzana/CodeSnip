@@ -1,0 +1,66 @@
+<section class="pricing-offers bg-dark">
+  <div
+    class="container d-flex align-items-center justify-content-center flex-nowrap my-5"
+  >
+    <div class="row">
+      <div class="col-md-6 col-sm-12 my-3" *ngFor="let plan of plansTemp">
+        <div class="card h-100 bg-white hvr-grow">
+          <div class="card-body">
+            <div *ngIf="plan.type == 'pro'; else notRecommended">
+              <h5 class="card-title fw-bold fs-2 d-inline-block">
+                {{ plan.type | titlecase }}
+              </h5>
+              <sup class="badge rounded-pill text-bg-primary ms-1">Recommended</sup>
+            </div>
+            <ng-template #notRecommended>
+              <h5 class="card-title fw-bold fs-2">
+                {{ plan.type | titlecase }}
+              </h5>
+            </ng-template>
+
+            <p class="card-text plan-price fw-bold">
+              <span
+                class="fs-3 text-capitalize"
+                *ngIf="plan.price == 0; else addUsdCurrency"
+              >
+                free
+              </span>
+              <ng-template #addUsdCurrency
+                ><span class="fs-3">{{
+                  plan.price | currency
+                }}</span></ng-template
+              >
+            </p>
+            <p class="card-text plan-description">
+              {{ plan.description | titlecase }}
+            </p>
+            <div class="plan-features border-top">
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                  <i class="fa-solid fa-check green-check"></i> An item
+                </li>
+                <li class="list-group-item">
+                  <i class="fa-solid fa-check green-check"></i> A second item
+                </li>
+                <li class="list-group-item">
+                  <i class="fa-solid fa-check green-check"></i> A third item
+                </li>
+                <li class="list-group-item">
+                  <i class="fa-solid fa-check green-check"></i> A fourth item
+                </li>
+                <li class="list-group-item">
+                  <i class="fa-solid fa-xmark red-x"></i> And a fifth one
+                </li>
+              </ul>
+            </div>
+            <div class="d-grid">
+              <button class="btn btn-primary my-2" type="button">
+                Get Started
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

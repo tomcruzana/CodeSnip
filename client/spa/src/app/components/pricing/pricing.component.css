@@ -1,0 +1,11 @@
+.green-check {
+  color: #30a473;
+}
+
+.red-x {
+  color: red;
+}
+
+.card {
+  min-width: 20em;
+}

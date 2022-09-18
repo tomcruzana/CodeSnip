@@ -8,6 +8,8 @@ import { FeaturesComponent } from './components/features/features.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { ThemeSwitcherComponent } from './components/theme-switcher/theme-switcher.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { DocumentationComponent } from './components/documentation/documentation.component';
+import { PricingComponent } from './components/pricing/pricing.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +20,8 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
     FooterComponent,
     ThemeSwitcherComponent,
     NotFoundComponent,
+    DocumentationComponent,
+    PricingComponent,
   ],
   imports: [BrowserModule],
   providers: [],
