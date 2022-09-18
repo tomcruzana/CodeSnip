@@ -1,17 +1,7 @@
 <div class="container document-container">
-  <div class="content-search">
-    <form class="d-flex" role="search">
-      <input
-        class="form-control me-2 bg-dark text-bg-dark"
-        type="search"
-        placeholder="Search Contents"
-        aria-label="Search"
-      />
-    </form>
-  </div>
   <div
     id="1"
-    class="content mt-5"
+    class="content"
     *ngFor="
       let content of contents
         | paginate
@@ -23,6 +13,7 @@
       let i = index
     "
   >
+  <h6 class="fs-6 fst-italic">Date Modified: {{ content.date }}</h6>
     <h1 class="fs-1">{{ content.title }}</h1>
     <h3 class="fs-3">
       {{ content.description }}

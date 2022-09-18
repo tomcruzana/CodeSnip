@@ -15,6 +15,7 @@ import { HomeComponent } from './components/home/home.component';
 import { SidebarComponent } from './components/documentation/sidebar/sidebar.component';
 import { DocumentComponent } from './components/documentation/document/document.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
   imports: [
     BrowserModule,
     NgxPaginationModule,
+    Ng2SearchPipeModule,
     RouterModule.forRoot([
       { path: 'home', component: HomeComponent },
       { path: 'documentation', component: DocumentationComponent },
