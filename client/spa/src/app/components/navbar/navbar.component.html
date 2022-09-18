@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
   <div class="container-fluid mx-4">
-    <a class="navbar-brand hvr-underline-from-left" href="#">
+    <a class="navbar-brand hvr-underline-from-left" routerLink="/home">
       <i class="fa-brands fa-codepen d-inline-block text-primary"></i>
       CodeSnip</a
     >
@@ -18,19 +18,19 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a class="nav-link" href="#"
             ><app-theme-switcher></app-theme-switcher
           ></a>
+        </li> -->
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/documentation">Documentation</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Documentation</a>
+          <a class="nav-link" routerLink="/pricing">Pricing</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Pricing</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#"
+          <a class="nav-link" routerLink="/pricing"
             ><i class="fa-solid fa-right-from-bracket"></i> Login</a
           >
         </li>

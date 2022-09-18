@@ -10,6 +10,8 @@ import { ThemeSwitcherComponent } from './components/theme-switcher/theme-switch
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { DocumentationComponent } from './components/documentation/documentation.component';
 import { PricingComponent } from './components/pricing/pricing.component';
+import { RouterModule } from '@angular/router';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
@@ -22,8 +24,19 @@ import { PricingComponent } from './components/pricing/pricing.component';
     NotFoundComponent,
     DocumentationComponent,
     PricingComponent,
+    HomeComponent,
   ],
-  imports: [BrowserModule],
+  imports: [
+    BrowserModule,
+    RouterModule.forRoot([
+      { path: 'home', component: HomeComponent },
+      { path: 'documentation', component: DocumentationComponent },
+      { path: 'pricing', component: PricingComponent },
+      { path: 'login', component: PricingComponent },
+      { path: '', redirectTo: '/home', pathMatch: 'full' },
+      { path: '**', component: NotFoundComponent },
+    ]),
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
