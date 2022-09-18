@@ -16,6 +16,7 @@ import { SidebarComponent } from './components/documentation/sidebar/sidebar.com
 import { DocumentComponent } from './components/documentation/document/document.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     HomeComponent,
     SidebarComponent,
     DocumentComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -40,7 +42,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
       { path: 'home', component: HomeComponent },
       { path: 'documentation', component: DocumentationComponent },
       { path: 'pricing', component: PricingComponent },
-      { path: 'login', component: PricingComponent },
+      { path: 'login', component: LoginComponent },
       { path: '', redirectTo: '/home', pathMatch: 'full' },
       { path: '**', component: NotFoundComponent },
     ]),
