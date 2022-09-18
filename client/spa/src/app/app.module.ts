@@ -6,6 +6,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { JumbotronComponent } from './components/jumbotron/jumbotron.component';
 import { FeaturesComponent } from './components/features/features.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { ThemeSwitcherComponent } from './components/theme-switcher/theme-switcher.component';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { FooterComponent } from './components/footer/footer.component';
     NavbarComponent,
     JumbotronComponent,
     FeaturesComponent,
-    FooterComponent
+    FooterComponent,
+    ThemeSwitcherComponent
   ],
   imports: [
     BrowserModule
