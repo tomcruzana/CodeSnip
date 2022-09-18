@@ -9,3 +9,8 @@
 .card {
   min-width: 20em;
 }
+
+.pricing-offers {
+  height: 80vh !important;
+}
+

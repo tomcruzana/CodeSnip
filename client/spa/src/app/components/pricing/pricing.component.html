@@ -1,7 +1,12 @@
 <section class="pricing-offers bg-dark">
-  <div
-    class="container d-flex align-items-center justify-content-center flex-nowrap my-5"
-  >
+  <header>
+    <h1 class="fs-1 text-bg-dark text-center">We've got a plan for you</h1>
+    <h3 class="fs-3 text-bg-dark text-center mt-5">
+      30-day money back guarantee. If CodeSnip isn't for you, we'll refund your
+      cash in a flash.
+    </h3>
+  </header>
+  <div class="container d-flex justify-content-center flex-nowrap my-5">
     <div class="row">
       <div class="col-md-6 col-sm-12 my-3" *ngFor="let plan of plansTemp">
         <div class="card h-100 bg-white hvr-grow">
@@ -10,7 +15,9 @@
               <h5 class="card-title fw-bold fs-2 d-inline-block">
                 {{ plan.type | titlecase }}
               </h5>
-              <sup class="badge rounded-pill text-bg-primary ms-1">Recommended</sup>
+              <sup class="badge rounded-pill text-bg-primary ms-1"
+                >Recommended</sup
+              >
             </div>
             <ng-template #notRecommended>
               <h5 class="card-title fw-bold fs-2">
@@ -62,5 +69,8 @@
         </div>
       </div>
     </div>
+  </div>
+  <div class="footer-statement">
+    <h1 class="fs-1 text-bg-dark text-center">Unlock more power of CodeSnip</h1>
   </div>
 </section>
