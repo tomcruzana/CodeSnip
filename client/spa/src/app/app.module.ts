@@ -7,6 +7,7 @@ import { JumbotronComponent } from './components/jumbotron/jumbotron.component';
 import { FeaturesComponent } from './components/features/features.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { ThemeSwitcherComponent } from './components/theme-switcher/theme-switcher.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -15,12 +16,11 @@ import { ThemeSwitcherComponent } from './components/theme-switcher/theme-switch
     JumbotronComponent,
     FeaturesComponent,
     FooterComponent,
-    ThemeSwitcherComponent
+    ThemeSwitcherComponent,
+    NotFoundComponent,
   ],
-  imports: [
-    BrowserModule
-  ],
+  imports: [BrowserModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
