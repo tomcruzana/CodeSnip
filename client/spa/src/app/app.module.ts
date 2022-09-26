@@ -21,6 +21,7 @@ import { SnippetMgrComponent } from './components/snippet-mgr/snippet-mgr.compon
 import { SmgrSidebarComponent } from './components/snippet-mgr/smgr-sidebar/smgr-sidebar.component';
 import { SmgrCategoryPanelComponent } from './components/snippet-mgr/smgr-category-panel/smgr-category-panel.component';
 import { NgxCodejarModule } from 'ngx-codejar';
+import { SmgrEditorPanelComponent } from './components/snippet-mgr/smgr-editor-panel/smgr-editor-panel.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { NgxCodejarModule } from 'ngx-codejar';
     SnippetMgrComponent,
     SmgrSidebarComponent,
     SmgrCategoryPanelComponent,
+    SmgrEditorPanelComponent,
   ],
   imports: [
     BrowserModule,
