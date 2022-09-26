@@ -9,8 +9,4 @@ export class SnippetMgrComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
-
-  now = new Date().toLocaleDateString();
-
-  tags: string[] = ['java', 'spring boot', 'hibernate', 'custom tag'];
 }

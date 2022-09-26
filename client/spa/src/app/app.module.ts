@@ -18,6 +18,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { LoginComponent } from './components/login/login.component';
 import { SnippetMgrComponent } from './components/snippet-mgr/snippet-mgr.component';
+import { SmgrSidebarComponent } from './components/snippet-mgr/smgr-sidebar/smgr-sidebar.component';
+import { SmgrCategoryPanelComponent } from './components/snippet-mgr/smgr-category-panel/smgr-category-panel.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +37,8 @@ import { SnippetMgrComponent } from './components/snippet-mgr/snippet-mgr.compon
     DocumentComponent,
     LoginComponent,
     SnippetMgrComponent,
+    SmgrSidebarComponent,
+    SmgrCategoryPanelComponent,
   ],
   imports: [
     BrowserModule,
