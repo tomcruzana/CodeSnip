@@ -17,6 +17,7 @@ import { DocumentComponent } from './components/documentation/document/document.
 import { NgxPaginationModule } from 'ngx-pagination';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { LoginComponent } from './components/login/login.component';
+import { SnippetMgrComponent } from './components/snippet-mgr/snippet-mgr.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { LoginComponent } from './components/login/login.component';
     SidebarComponent,
     DocumentComponent,
     LoginComponent,
+    SnippetMgrComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,6 +45,7 @@ import { LoginComponent } from './components/login/login.component';
       { path: 'documentation', component: DocumentationComponent },
       { path: 'pricing', component: PricingComponent },
       { path: 'login', component: LoginComponent },
+      { path: 'user', component: SnippetMgrComponent },
       { path: '', redirectTo: '/home', pathMatch: 'full' },
       { path: '**', component: NotFoundComponent },
     ]),
