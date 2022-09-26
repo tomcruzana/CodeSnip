@@ -20,6 +20,7 @@ import { LoginComponent } from './components/login/login.component';
 import { SnippetMgrComponent } from './components/snippet-mgr/snippet-mgr.component';
 import { SmgrSidebarComponent } from './components/snippet-mgr/smgr-sidebar/smgr-sidebar.component';
 import { SmgrCategoryPanelComponent } from './components/snippet-mgr/smgr-category-panel/smgr-category-panel.component';
+import { NgxCodejarModule } from 'ngx-codejar';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { SmgrCategoryPanelComponent } from './components/snippet-mgr/smgr-catego
   ],
   imports: [
     BrowserModule,
+    NgxCodejarModule,
     NgxPaginationModule,
     Ng2SearchPipeModule,
     RouterModule.forRoot([

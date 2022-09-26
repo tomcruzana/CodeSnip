@@ -9,8 +9,6 @@
 
   <!-- snippet editos section start -->
   <section class="d-flex flex-column bg-white" style="width: 100%">
-    <!-- align-items-stretch flex-shrink-0 -->
-
     <div
       class="border-bottom d-flex p-3 justify-content-between align-items-center"
     >
@@ -35,6 +33,14 @@
           <i class="fa-solid fa-circle-plus"></i>
         </button>
       </div>
+    </div>
+
+    <div class="container my-4">
+      <ngx-codejar
+        [highlightMethod]="highlightMethod"
+        [(code)]="code"
+        [showLineNumbers]="true"
+      ></ngx-codejar>
     </div>
   </section>
 
