@@ -12,7 +12,7 @@ export class SmgrEditorPanelComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  tempNumberOfSnippetEditors: number[] = [1, 2, 3, 4];
+  tempNumberOfSnippetEditors: number[] = new Array(12);
 
   code = `public class Main {
     public static void main(String[] args) {
