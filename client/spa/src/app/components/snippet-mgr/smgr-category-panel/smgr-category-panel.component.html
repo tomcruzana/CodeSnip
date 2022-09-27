@@ -31,8 +31,7 @@
     </div>
     <div class="list-group list-group-flush border-bottom scrollarea">
       <a
-        href="#"
-        class="list-group-item list-group-item-action py-3 lh-tight"
+        class="list-group-item list-group-item-action py-3 lh-tight category-collection-item"
         aria-current="true"
         *ngFor="let item of tempTotallist"
       >
@@ -54,11 +53,15 @@
           </div>
           <span>
             <button type="button" class="btn btn-sm category-controls-btn">
-              <i class="fa-solid fa-pen-to-square me-2"></i>
+              <i
+                class="edit-category-btn fa-solid fa-pen-to-square me-2"
+                data-bs-toggle="modal"
+                data-bs-target="#editCategoryModal"
+              ></i>
             </button>
 
             <button type="button" class="btn btn-sm category-controls-btn">
-              <i class="fa-solid fa-trash"></i>
+              <i class="delete-category-btn fa-solid fa-trash"></i>
             </button>
           </span>
         </div>
@@ -66,3 +69,33 @@
     </div>
   </div>
 </aside>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="list-group-item list-group-item-action "
+  tabindex="-1"
+  aria-labelledby="editCategoryModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editCategoryModalLabel">Modal title</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">...</div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Close
+        </button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
