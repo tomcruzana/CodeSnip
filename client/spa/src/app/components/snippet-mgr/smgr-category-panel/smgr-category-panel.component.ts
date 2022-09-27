@@ -13,4 +13,6 @@ export class SmgrCategoryPanelComponent implements OnInit {
   now = new Date().toLocaleDateString();
 
   tags: string[] = ['java', 'spring boot', 'hibernate', 'custom tag'];
+
+  tempTotallist: string[] = new Array(8);
 }
