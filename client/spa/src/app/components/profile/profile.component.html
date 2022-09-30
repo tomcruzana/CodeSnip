@@ -1,11 +1,39 @@
 <section class="bg-dark text-bg-dark">
   <div class="container my-5 col-12">
-    <p>Welcome, <span class="username">??????</span></p>
-    <p>Username <span class="username">??????</span></p>
-    <p>Email <span class="email">??????</span></p>
-    <p>Password <span class="email">??????</span></p>
-    <p>Payment info <span class="email">??????</span></p>
-    <a routerLink="/user">back to your snippets</a>
+    <p class="fs-3 me-1">Welcome, <span class="username">??????</span></p>
+    <p class="fs-5 me-1">
+      Plan type:
+      <span class="plan-type text-capitalize text-warning">free</span>
+    </p>
     <hr />
+    <form [formGroup]="updateUserProfile">
+      <label class="fs-6 me-1 mb-3" for="username">Username:</label>
+      <input id="username" type="text" formControlName="username" /><br />
+
+      <label class="fs-6 me-1 mb-3" for="email">Email address:</label>
+      <input id="email" type="text" formControlName="email" /><br />
+
+      <label class="fs-6 me-1 mb-3" for="Password">Password</label>
+      <input id="password" type="password" formControlName="password" /><br />
+
+      <hr />
+      <p class="fs-3 me-1">Payment Information</p>
+      <p class="fs-6 me-1">
+        Payment Method: <span class="payment-method text-primary">Card</span>
+      </p>
+      <label class="fs-6 me-1 mb-3" for="ccnumber">Card number:</label>
+      <input
+        id="ccnumber"
+        type="tel"
+        inputmode="numeric"
+        pattern="[0-9\s]{13,19}"
+        formControlName="ccnumber"
+      /><br />
+      <hr />
+      <button type="submit" class="btn btn-primary">
+        <i class="fa-solid fa-floppy-disk"></i>
+        Save
+      </button>
+    </form>
   </div>
 </section>

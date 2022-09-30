@@ -24,6 +24,7 @@ import { NgxCodejarModule } from 'ngx-codejar';
 import { SmgrEditorPanelComponent } from './components/snippet-mgr/smgr-editor-panel/smgr-editor-panel.component';
 import { RegisterComponent } from './components/register/register.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { ProfileComponent } from './components/profile/profile.component';
   ],
   imports: [
     BrowserModule,
+    ReactiveFormsModule,
     NgxCodejarModule,
     NgxPaginationModule,
     Ng2SearchPipeModule,
