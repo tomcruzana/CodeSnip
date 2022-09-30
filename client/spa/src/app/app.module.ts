@@ -58,11 +58,8 @@ import { ProfileComponent } from './components/profile/profile.component';
       { path: 'pricing', component: PricingComponent },
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
-      {
-        path: 'user',
-        component: SnippetMgrComponent,
-        children: [{ path: 'profile', component: ProfileComponent }],
-      },
+      { path: 'user', component: SnippetMgrComponent },
+      { path: 'profile', component: ProfileComponent },
       { path: '', redirectTo: '/home', pathMatch: 'full' },
       { path: '**', component: NotFoundComponent },
     ]),
