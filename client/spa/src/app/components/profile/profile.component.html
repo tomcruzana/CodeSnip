@@ -67,7 +67,6 @@
         id="ccnumber"
         type="tel"
         inputmode="numeric"
-        pattern="[0-9\s]{13,19}"
         formControlName="ccnumber"
         required
       />
@@ -78,6 +77,14 @@
         "
       >
         <small class="text-danger"> card number required</small></span
+      >
+      <span
+        *ngIf="
+          updateUserProfileForm.controls.ccnumber.hasError('pattern') &&
+          updateUserProfileForm.controls.ccnumber.dirty
+        "
+      >
+        <small class="text-danger"> invalid card number</small></span
       >
       <br />
       <br />

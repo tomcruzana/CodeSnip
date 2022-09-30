@@ -15,12 +15,13 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.updateUserProfileForm = new FormGroup({
-      username: new FormControl('thomas', [
-        Validators.required
+      username: new FormControl('thomas', [Validators.required]),
+      email: new FormControl('thomas@email.com', [Validators.required]),
+      password: new FormControl('password123', [Validators.required]),
+      ccnumber: new FormControl('000000000000', [
+        Validators.required,
+        Validators.pattern('[0-9]{13,19}'),
       ]),
-      email: new FormControl('thomas@email.com'),
-      password: new FormControl('password123'),
-      ccnumber: new FormControl('000000000000'),
     });
   }
 }
