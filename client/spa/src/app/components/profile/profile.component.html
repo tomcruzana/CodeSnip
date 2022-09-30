@@ -3,8 +3,18 @@
     <p class="fs-3 me-1">Welcome, <span class="username">??????</span></p>
     <p class="fs-5 me-1">
       Plan type:
-      <span class="plan-type text-capitalize text-warning">free</span>
+      <span
+        class="plan-type text-capitalize text-warning"
+        *ngIf="planType === 'pro'; else updatePlan"
+        >{{ planType }}</span
+      >
     </p>
+    <ng-template #updatePlan>
+      <span class="plan-type text-capitalize text-warning"
+        >{{ planType }}
+      </span>
+      <a class="fs-6" routerLink="/pricing">change plan</a>
+    </ng-template>
     <hr />
     <form [formGroup]="updateUserProfile">
       <label class="fs-6 me-1 mb-3" for="username">Username:</label>

@@ -9,6 +9,8 @@ import { FormControl, FormGroup } from '@angular/forms';
 export class ProfileComponent implements OnInit {
   constructor() {}
 
+  planType: string = 'free';
+
   updateUserProfile: any;
 
   ngOnInit(): void {
