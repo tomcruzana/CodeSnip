@@ -16,15 +16,46 @@
       <a class="fs-6" routerLink="/pricing">change plan</a>
     </ng-template>
     <hr />
-    <form [formGroup]="updateUserProfile">
+    <form [formGroup]="updateUserProfileForm">
       <label class="fs-6 me-1 mb-3" for="username">Username:</label>
-      <input id="username" type="text" formControlName="username" /><br />
+      <input id="username" type="text" formControlName="username" required />
+      <span
+        *ngIf="
+          updateUserProfileForm.controls.username.hasError('required') &&
+          updateUserProfileForm.controls.username.dirty
+        "
+      >
+        <small class="text-danger"> username required</small></span
+      >
+      <br />
 
       <label class="fs-6 me-1 mb-3" for="email">Email address:</label>
-      <input id="email" type="text" formControlName="email" /><br />
+      <input id="email" type="text" formControlName="email" required />
+      <span
+        *ngIf="
+          updateUserProfileForm.controls.email.hasError('required') &&
+          updateUserProfileForm.controls.email.dirty
+        "
+      >
+        <small class="text-danger"> email required</small></span
+      >
+      <br />
 
       <label class="fs-6 me-1 mb-3" for="Password">Password</label>
-      <input id="password" type="password" formControlName="password" /><br />
+      <input
+        id="password"
+        type="password"
+        formControlName="password"
+        required
+      /><span
+        *ngIf="
+          updateUserProfileForm.controls.password.hasError('required') &&
+          updateUserProfileForm.controls.password.dirty
+        "
+      >
+        <small class="text-danger"> password required</small></span
+      >
+      <br />
 
       <hr />
       <p class="fs-3 me-1">Payment Information</p>
@@ -38,7 +69,18 @@
         inputmode="numeric"
         pattern="[0-9\s]{13,19}"
         formControlName="ccnumber"
-      /><br />
+        required
+      />
+      <span
+        *ngIf="
+          updateUserProfileForm.controls.ccnumber.hasError('required') &&
+          updateUserProfileForm.controls.ccnumber.dirty
+        "
+      >
+        <small class="text-danger"> card number required</small></span
+      >
+      <br />
+      <br />
       <hr />
       <button type="submit" class="btn btn-primary">
         <i class="fa-solid fa-floppy-disk"></i>

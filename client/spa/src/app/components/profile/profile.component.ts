@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-profile',
@@ -11,11 +11,13 @@ export class ProfileComponent implements OnInit {
 
   planType: string = 'free';
 
-  updateUserProfile: any;
+  updateUserProfileForm: any;
 
   ngOnInit(): void {
-    this.updateUserProfile = new FormGroup({
-      username: new FormControl('thomas'),
+    this.updateUserProfileForm = new FormGroup({
+      username: new FormControl('thomas', [
+        Validators.required
+      ]),
       email: new FormControl('thomas@email.com'),
       password: new FormControl('password123'),
       ccnumber: new FormControl('000000000000'),
