@@ -22,6 +22,8 @@ import { SmgrSidebarComponent } from './components/snippet-mgr/smgr-sidebar/smgr
 import { SmgrCategoryPanelComponent } from './components/snippet-mgr/smgr-category-panel/smgr-category-panel.component';
 import { NgxCodejarModule } from 'ngx-codejar';
 import { SmgrEditorPanelComponent } from './components/snippet-mgr/smgr-editor-panel/smgr-editor-panel.component';
+import { RegisterComponent } from './components/register/register.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +44,8 @@ import { SmgrEditorPanelComponent } from './components/snippet-mgr/smgr-editor-p
     SmgrSidebarComponent,
     SmgrCategoryPanelComponent,
     SmgrEditorPanelComponent,
+    RegisterComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,
@@ -53,7 +57,12 @@ import { SmgrEditorPanelComponent } from './components/snippet-mgr/smgr-editor-p
       { path: 'documentation', component: DocumentationComponent },
       { path: 'pricing', component: PricingComponent },
       { path: 'login', component: LoginComponent },
-      { path: 'user', component: SnippetMgrComponent },
+      { path: 'register', component: RegisterComponent },
+      {
+        path: 'user',
+        component: SnippetMgrComponent,
+        children: [{ path: 'profile', component: ProfileComponent }],
+      },
       { path: '', redirectTo: '/home', pathMatch: 'full' },
       { path: '**', component: NotFoundComponent },
     ]),
