@@ -37,14 +37,28 @@
       class="code-snipet-editor px-4"
       *ngFor="let item of tempNumberOfSnippetEditors"
     >
-      <div class="m-0 p-0">TItle</div>
+      <div
+        class="ngx-codejar-wrapper p-1 d-flex justify-content-between align-items-end border-top"
+      >
+        <div class="ngx-codejar-title">
+          <p class="m-0 p-0 fw-bold"><i class="fa-solid fa-code"></i> Title</p>
+        </div>
+
+        <div class="ngx-codejar-controls">
+          <button type="button" class="btn btn-secondary me-1 btn-sm">
+            <i class="fa-solid fa-tag"></i>
+          </button>
+          <button type="button" class="btn btn-warning btn-sm">
+            <i class="fa-solid fa-copy"></i>
+          </button>
+        </div>
+      </div>
+
       <ngx-codejar
         [highlightMethod]="highlightMethod"
         [(code)]="code"
         [showLineNumbers]="true"
       ></ngx-codejar>
-      <i class="fa-solid fa-tag"></i>
-      <i class="fa-solid fa-copy"></i>
     </div>
   </div>
   <!-- snippet code editors end-->
