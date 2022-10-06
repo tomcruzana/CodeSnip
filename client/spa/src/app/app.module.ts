@@ -25,6 +25,7 @@ import { SmgrEditorPanelComponent } from './components/snippet-mgr/smgr-editor-p
 import { RegisterComponent } from './components/register/register.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ShareComponent } from './components/share/share.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     SmgrEditorPanelComponent,
     RegisterComponent,
     ProfileComponent,
+    ShareComponent,
   ],
   imports: [
     BrowserModule,
@@ -62,6 +64,7 @@ import { ReactiveFormsModule } from '@angular/forms';
       { path: 'register', component: RegisterComponent },
       { path: 'user', component: SnippetMgrComponent },
       { path: 'profile', component: ProfileComponent },
+      { path: 'share', component: ShareComponent },
       { path: '', redirectTo: '/home', pathMatch: 'full' },
       { path: '**', component: NotFoundComponent },
     ]),

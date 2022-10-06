@@ -1,98 +1,88 @@
+<!-- todo: move to a modal box - https://getbootstrap.com/docs/5.0/components/modal/  -->
+
 <section class="bg-dark text-bg-dark">
-  <div class="container my-5 col-12">
-    <p class="fs-3 me-1">Welcome, <span class="username">??????</span></p>
-    <p class="fs-5 me-1">
-      Plan type:
-      <span
-        class="plan-type text-capitalize text-warning"
-        *ngIf="planType === 'pro'; else updatePlan"
-        >{{ planType }}</span
-      >
-    </p>
-    <ng-template #updatePlan>
-      <span class="plan-type text-capitalize text-warning"
-        >{{ planType }}
-      </span>
-      <a class="fs-6" routerLink="/pricing">change plan</a>
-    </ng-template>
-    <hr />
-    <form [formGroup]="updateUserProfileForm">
-      <label class="fs-6 me-1 mb-3" for="username">Username:</label>
-      <input id="username" type="text" formControlName="username" required />
-      <span
-        *ngIf="
-          updateUserProfileForm.controls.username.hasError('required') &&
-          updateUserProfileForm.controls.username.dirty
-        "
-      >
-        <small class="text-danger"> username required</small></span
-      >
-      <br />
+  <div class="container my-5">
+    <div class="profile-header-info">
+      <div class="profile-header-container">
+        <img
+          src="https://picsum.photos/id/237/150/150"
+          class="rounded-circle d-block img-thumbnail mx-auto"
+          height="200"
+          width="200"
+          alt="profile picture"
+        />
+        <h4 class="fs-4 my-4 text-center">$John $Doe</h4>
+        <hr />
+      </div>
 
-      <label class="fs-6 me-1 mb-3" for="email">Email address:</label>
-      <input id="email" type="text" formControlName="email" required />
-      <span
-        *ngIf="
-          updateUserProfileForm.controls.email.hasError('required') &&
-          updateUserProfileForm.controls.email.dirty
-        "
-      >
-        <small class="text-danger"> email required</small></span
-      >
-      <br />
+      <div class="ny-1 plan-container">
+        <div *ngIf="planType === 'pro'; else updatePlan">
+          <p class="fs-6 m-0 d-inline fs-bold">Plan Type |&nbsp;</p>
+          <span class="d-inline text-warning">{{ planType | uppercase }}</span>
+        </div>
 
-      <label class="fs-6 me-1 mb-3" for="Password">Password</label>
-      <input
-        id="password"
-        type="password"
-        formControlName="password"
-        required
-      /><span
-        *ngIf="
-          updateUserProfileForm.controls.password.hasError('required') &&
-          updateUserProfileForm.controls.password.dirty
-        "
-      >
-        <small class="text-danger"> password required</small></span
-      >
-      <br />
+        <ng-template #updatePlan>
+          <p class="fs-6 m-0 d-inline fs-bold">Plan Type |&nbsp;</p>
+          <span class="d-inline text-warning">{{ planType | uppercase }}</span>
+          <button
+            type="button"
+            class="btn btn-warning btn-sm rounded-pill my-2 d-block"
+            routerLink="/pricing"
+          >
+            Change Plan
+          </button>
+        </ng-template>
+      </div>
 
       <hr />
-      <p class="fs-3 me-1">Payment Information</p>
-      <p class="fs-6 me-1">
-        Payment Method: <span class="payment-method text-primary">Card</span>
-      </p>
-      <label class="fs-6 me-1 mb-3" for="ccnumber">Card number:</label>
-      <input
-        id="ccnumber"
-        type="tel"
-        inputmode="numeric"
-        formControlName="ccnumber"
-        required
-      />
-      <span
-        *ngIf="
-          updateUserProfileForm.controls.ccnumber.hasError('required') &&
-          updateUserProfileForm.controls.ccnumber.dirty
-        "
-      >
-        <small class="text-danger"> card number required</small></span
-      >
-      <span
-        *ngIf="
-          updateUserProfileForm.controls.ccnumber.hasError('pattern') &&
-          updateUserProfileForm.controls.ccnumber.dirty
-        "
-      >
-        <small class="text-danger"> invalid card number</small></span
-      >
-      <br />
-      <br />
+
+      <div class="my-1 username-container">
+        <p class="fs-6 fw-bold m-0">Username</p>
+        <p class="fs-6">$Username</p>
+      </div>
+
+      <div class="my-1 password-container">
+        <p class="fs-6 fw-bold m-0">Password</p>
+        <p class="fs-6">$Password</p>
+      </div>
+
+      <div class="my-1 email-container">
+        <p class="fs-6 fw-bold m-0">Email Address</p>
+        <p class="fs-6">$Email</p>
+      </div>
+
+      <div class="my-1 dob-container">
+        <p class="fs-6 fw-bold m-0">Date of Birth</p>
+        <p class="fs-6">$01/01/1972</p>
+      </div>
+
+      <div class="my-1 bio-container">
+        <p class="fs-6 fw-bold m-0">Bio</p>
+        <p class="fs-6">
+          $Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.
+          Curabitur aliquet quam id dui posuere blandit. Proin eget tortor
+          risus. Cras ultricies ligula sed magna dictum porta. Sed porttitor
+          lectus nibh. Sed porttitor lectus nibh. Lorem ipsum dolor sit amet,
+          consectetur adipiscing elit. Quisque velit nisi, pretium ut lacinia
+          in, elementum id enim. Pellentesque in ipsum id orci porta dapibus.
+          Donec sollicitudin molestie malesuada.
+        </p>
+        <button type="button" class="btn btn-primary btn-sm rounded-pill">
+          Edit Profile Info
+        </button>
+      </div>
+
       <hr />
-      <button type="submit" class="btn btn-primary">
-        <i class="fa-solid fa-floppy-disk"></i>
-        Save
-      </button>
-    </form>
+
+      <div class="my-1 payment-info-container">
+        <p class="fs-6 fw-bold m-0">Card Type</p>
+        <p class="fs-6">$Visa</p>
+        <p class="fs-6 fw-bold m-0">Card Number</p>
+        <p class="fs-6">Ending in 1101</p>
+        <button type="button" class="btn btn-primary btn-sm rounded-pill">
+          Change Payment Info
+        </button>
+      </div>
+    </div>
   </div>
 </section>
