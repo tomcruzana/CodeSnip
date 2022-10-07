@@ -159,13 +159,13 @@
       <!-- contents go here start -->
       <div class="modal-body" [ngSwitch]="contentId">
         <div *ngSwitchCase="'changePlan'">
-          <p>changePlanId</p>
+          <app-changeplan-form></app-changeplan-form>
         </div>
         <div *ngSwitchCase="'editProfile'">
           <app-editprofile-form></app-editprofile-form>
         </div>
         <div *ngSwitchCase="'changePayment'">
-          <p>changePaymentInfoId</p>
+          <app-changepayment-form></app-changepayment-form>
         </div>
         <div *ngSwitchDefault>
           <p class="fs-5">

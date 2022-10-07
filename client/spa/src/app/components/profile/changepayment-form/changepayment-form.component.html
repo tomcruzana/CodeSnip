@@ -1,0 +1,80 @@
+<form [formGroup]="changePayment">
+  <div class="payment-card-logos mb-2">
+    <img
+      src="https://img.icons8.com/color/48/000000/mastercard-logo.png"
+      alt="master card"
+    />
+    <img
+      src="https://img.icons8.com/color/48/000000/visa.png"
+      alt="master card"
+    />
+    <img
+      src="https://img.icons8.com/color/48/000000/amex.png"
+      alt="master card"
+    />
+    <img
+      src="https://img.icons8.com/color/48/000000/discover.png"
+      alt="master card"
+    />
+  </div>
+  <div class="my-2">
+    <label for="ccard" class="form-label"
+      ><small>Card Number - Last 4 Digits</small></label
+    >
+    <input type="text" class="form-control" id="ccard" name="ccard" disabled />
+    <span class="form-text input-error text-danger">
+      You don't have a card on file. Please add one.</span
+    >
+  </div>
+
+  <hr />
+
+  <p class="fw-bold text-center">Change Card</p>
+  <div class="mb-2">
+    <label for="ccardholder" class="form-label"
+      ><small>Cardholder's Name</small></label
+    >
+    <input
+      type="text"
+      class="form-control"
+      id="ccardholder"
+      name="ccardholder"
+    />
+    <span class="form-text input-error text-danger"> Error.</span>
+  </div>
+
+  <div class="row mb-2">
+    <div class="col-7">
+      <label for="ccardnumber" class="form-label"
+        ><small>Card Number</small></label
+      >
+      <input
+        type="text"
+        id="formControlLgXM"
+        class="form-control"
+        value="1234 5678 1234 5678"
+      />
+      <span class="form-text input-error text-danger"> Error.</span>
+    </div>
+    <div class="col-3">
+      <label for="ccardnumber" class="form-label"><small>Expire</small></label>
+      <input
+        type="password"
+        id="formControlLgExpk"
+        class="form-control"
+        placeholder="MM/YYYY"
+      />
+      <span class="form-text input-error text-danger"> Error.</span>
+    </div>
+    <div class="col-2">
+      <label for="ccardnumber" class="form-label"><small>Cvv</small></label>
+      <input
+        type="password"
+        id="formControlLgcvv"
+        class="form-control"
+        placeholder="Cvv"
+      />
+      <span class="form-text input-error text-danger"> Error.</span>
+    </div>
+  </div>
+</form>

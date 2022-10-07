@@ -1,0 +1,32 @@
+<form [formGroup]="changePlanForm">
+  <div class="form-check mb-2">
+    <input
+      class="form-check-input"
+      type="radio"
+      name="flexRadioDefault"
+      id="flexRadioDefault2"
+      checked
+    />
+    <label class="form-check-label" for="flexRadioDefault2">
+      Upgrade Plan to <span class="fw-bold">PRO</span>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+          <i class="fa-solid fa-check green-check"></i> An item
+        </li>
+        <li class="list-group-item">
+          <i class="fa-solid fa-check green-check"></i> A second item
+        </li>
+        <li class="list-group-item">
+          <i class="fa-solid fa-check green-check"></i> A third item
+        </li>
+        <li class="list-group-item">
+          <i class="fa-solid fa-check green-check"></i> A fourth item
+        </li>
+        <li class="list-group-item">
+          <i class="fa-solid fa-xmark red-x"></i> And a fifth one
+        </li>
+      </ul>
+    </label>
+    <span class="form-text input-error d-block"> Error. </span>
+  </div>
+</form>

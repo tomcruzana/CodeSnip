@@ -27,6 +27,8 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ShareComponent } from './components/share/share.component';
 import { EditprofileFormComponent } from './components/profile/editprofile-form/editprofile-form.component';
+import { ChangeplanFormComponent } from './components/profile/changeplan-form/changeplan-form.component';
+import { ChangepaymentFormComponent } from './components/profile/changepayment-form/changepayment-form.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +53,8 @@ import { EditprofileFormComponent } from './components/profile/editprofile-form/
     ProfileComponent,
     ShareComponent,
     EditprofileFormComponent,
+    ChangeplanFormComponent,
+    ChangepaymentFormComponent,
   ],
   imports: [
     BrowserModule,
