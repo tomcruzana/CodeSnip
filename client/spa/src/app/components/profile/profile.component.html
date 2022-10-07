@@ -147,7 +147,16 @@
   <div class="modal-dialog modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropModalLabel">Title</h5>
+        <h5
+          class="modal-title"
+          id="staticBackdropModalLabel"
+          [ngSwitch]="contentId"
+        >
+          <span *ngSwitchCase="'changePlan'">Change Plan</span>
+          <span *ngSwitchCase="'editProfile'">Edit Profile Info</span>
+          <span *ngSwitchCase="'changePayment'">Change Payment Info</span>
+          <span *ngSwitchDefault>Error</span>
+        </h5>
         <button
           type="button"
           class="btn-close"
@@ -177,9 +186,13 @@
       </div>
       <!-- contents go here end -->
 
-      <div class="modal-footer">
+      <div class="modal-footer" [ngSwitch]="contentId">
         <button type="button" class="btn btn-primary">
-          <i class="fa-solid fa-floppy-disk"></i> Update
+          <i class="fa-solid fa-floppy-disk"></i>&nbsp;
+          <span *ngSwitchCase="'changePlan'">Proceed</span>
+          <span *ngSwitchCase="'editProfile'">Update</span>
+          <span *ngSwitchCase="'changePayment'">Update</span>
+          <span *ngSwitchDefault>Error</span>
         </button>
       </div>
     </div>
