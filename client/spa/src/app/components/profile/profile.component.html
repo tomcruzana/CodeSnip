@@ -51,9 +51,12 @@
           <p class="fs-6 m-0 d-inline fs-bold">Plan Type |&nbsp;</p>
           <span class="d-inline text-warning">{{ planType | uppercase }}</span>
           <button
+            id="changePlan"
             type="button"
             class="btn btn-warning btn-sm rounded-pill my-2 d-block"
-            routerLink="/pricing"
+            data-bs-toggle="modal"
+            data-bs-target="#staticBackdropModal"
+            (click)="loadModalOnClick('changePlan')"
           >
             Change Plan
           </button>
@@ -99,6 +102,7 @@
           class="btn btn-primary btn-sm rounded-pill"
           data-bs-toggle="modal"
           data-bs-target="#staticBackdropModal"
+          (click)="loadModalOnClick('editProfile')"
         >
           Edit Profile Info
         </button>
@@ -110,12 +114,16 @@
         <p class="fs-6 fw-bold m-0">Card Type</p>
         <p class="fs-6">$Visa</p>
         <p class="fs-6 fw-bold m-0">Card Number</p>
-        <p class="fs-6">Ending in 1101</p>
+        <p class="fs-6">
+          Ending in <span class="card-last-4-digits">$1101</span>
+        </p>
         <button
+          id="changePayment"
           type="button"
           class="btn btn-primary btn-sm rounded-pill"
           data-bs-toggle="modal"
           data-bs-target="#staticBackdropModal"
+          (click)="loadModalOnClick('changePayment')"
         >
           Change Payment Info
         </button>
@@ -147,13 +155,18 @@
           aria-label="Close"
         ></button>
       </div>
+
+      <!-- contents go here start -->
       <div class="modal-body" [ngSwitch]="contentId">
-        <!-- contents go here -->
-        <div *ngSwitchCase="'updateProfile'">
+        <div *ngSwitchCase="'changePlan'">
+          <p>changePlanId</p>
+        </div>
+        <div *ngSwitchCase="'editProfile'">
           <app-editprofile-form></app-editprofile-form>
         </div>
-        <div *ngSwitchCase="'2'"></div>
-        <div *ngSwitchCase="'3'"></div>
+        <div *ngSwitchCase="'changePayment'">
+          <p>changePaymentInfoId</p>
+        </div>
         <div *ngSwitchDefault>
           <p class="fs-5">
             <i class="fa-solid text-danger fa-circle-exclamation"></i> An error
@@ -162,6 +175,8 @@
           <p class="fs-5">Please try again later.</p>
         </div>
       </div>
+      <!-- contents go here end -->
+
       <div class="modal-footer">
         <button type="button" class="btn btn-primary">
           <i class="fa-solid fa-floppy-disk"></i> Update
