@@ -30,6 +30,9 @@ import { EditprofileFormComponent } from './components/profile/editprofile-form/
 import { ChangeplanFormComponent } from './components/profile/changeplan-form/changeplan-form.component';
 import { ChangepaymentFormComponent } from './components/profile/changepayment-form/changepayment-form.component';
 import { ScrollToTopComponent } from './components/scroll-to-top/scroll-to-top.component';
+import { TagsComponent } from './components/snippet-mgr/smgr-sidebar/tags/tags.component';
+import { SharedComponent } from './components/snippet-mgr/smgr-sidebar/shared/shared.component';
+import { SnippetMgrSettingsComponent } from './components/snippet-mgr/smgr-sidebar/snippet-mgr-settings/snippet-mgr-settings.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +60,9 @@ import { ScrollToTopComponent } from './components/scroll-to-top/scroll-to-top.c
     ChangeplanFormComponent,
     ChangepaymentFormComponent,
     ScrollToTopComponent,
+    TagsComponent,
+    SharedComponent,
+    SnippetMgrSettingsComponent,
   ],
   imports: [
     BrowserModule,
