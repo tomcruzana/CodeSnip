@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { EditprofileFormComponent } from './editprofile-form/editprofile-form.component';
 
 @Component({
   selector: 'app-profile',
@@ -10,7 +11,7 @@ export class ProfileComponent implements OnInit {
 
   planType: string = 'free';
 
-  contentId: string = 'updatePsrofile';
+  contentId: string = 'updateProfile';
 
   ngOnInit(): void {}
 }

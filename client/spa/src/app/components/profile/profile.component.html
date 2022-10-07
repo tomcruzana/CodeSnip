@@ -1,15 +1,41 @@
 <section class="bg-dark text-bg-dark">
   <div class="container my-5">
-    <div class="profile-header-info">
-      <div class="profile-header-container">
-        <img
-          src="https://picsum.photos/id/237/150/150"
-          class="rounded-circle d-block img-thumbnail mx-auto"
-          height="200"
-          width="200"
-          alt="profile picture"
-        />
-        <h4 class="fs-4 my-4 text-center">$John $Doe</h4>
+    <!-- breadcrumb start -->
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a routerLink="/dashboard">Dashboard</a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">Profile</li>
+      </ol>
+    </nav>
+    <!-- breadcrumb end -->
+
+    <!-- profile info start -->
+    <div class="profile-info-container">
+      <div class="profile-header-container d-flex flex-column">
+        <!-- profile img -->
+        <label
+          for="formFile"
+          class="form-label align-self-center profile-img-label"
+        >
+          <input
+            class="form-control d-none"
+            type="file"
+            id="formFile"
+            accept="image/png, image/jpeg"
+          />
+          <img
+            src="https://picsum.photos/id/237/150/150"
+            class="rounded-circle d-block img-thumbnail profile-img hvr-grow"
+            height="200"
+            width="200"
+            alt="profile picture"
+          />
+          <div class="overlay">Upload image</div>
+        </label>
+
+        <h4 class="fs-4 my-2 align-self-center">$John $Doe</h4>
         <hr />
       </div>
 
@@ -93,6 +119,7 @@
         </button>
       </div>
     </div>
+    <!-- profile info end -->
   </div>
 </section>
 
@@ -123,8 +150,8 @@
         <div *ngSwitchCase="'updateProfile'">
           <app-editprofile-form></app-editprofile-form>
         </div>
-        <div *ngSwitchCase="'updateProfile'"></div>
-        <div *ngSwitchCase="'updateProfile'"></div>
+        <div *ngSwitchCase="'2'"></div>
+        <div *ngSwitchCase="'3'"></div>
         <div *ngSwitchDefault>
           <p class="fs-5">
             <i class="fa-solid text-danger fa-circle-exclamation"></i> An error

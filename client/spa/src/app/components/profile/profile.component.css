@@ -1,10 +1,23 @@
-input[type="text"],
-input[type="email"],
-input[type="password"],
-input[type="tel"] {
-  margin-bottom: 1.5em;
+.profile-img-label {
+  position: relative;
 }
 
-span {
-  display: block;
+.profile-img-label:hover .overlay,
+.profile-img:hover {
+  cursor: pointer;
+  opacity: 0.75;
+}
+
+/* The overlay effect - lays on top of the container and over the image */
+.overlay {
+  position: absolute;
+  bottom: 0;
+  color: #f1f1f1;
+  width: 100%;
+  transition: 0.5s ease;
+  opacity: 0;
+  color: white;
+  font-size: 20px;
+  padding: 20px;
+  text-align: center;
 }
