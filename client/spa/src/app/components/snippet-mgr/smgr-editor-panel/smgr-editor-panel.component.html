@@ -32,7 +32,7 @@
   </div>
 
   <!-- snippet code editors start-->
-  <div class="container code-snipet-editor-container my-4">
+  <div id="" class="container code-snipet-editor-container my-4">
     <div
       class="code-snipet-editor px-4"
       *ngFor="let item of tempNumberOfSnippetEditors"
@@ -45,10 +45,13 @@
         </div>
 
         <div class="ngx-codejar-controls">
-          <button type="button" class="btn btn-warning btn-sm">
+          <button type="button" class="btn btn-secondary btn-sm">
+            <i class="fa-solid fa-share"></i>
+          </button>
+          <button type="button" class="btn btn-warning btn-sm mx-2">
             <i class="fa-solid fa-copy"></i>
           </button>
-          <button type="button" class="btn btn-danger btn-sm ms-2">
+          <button type="button" class="btn btn-danger btn-sm">
             <i class="fa-solid fa-trash"></i>
           </button>
         </div>
