@@ -29,6 +29,7 @@ import { ShareComponent } from './components/share/share.component';
 import { EditprofileFormComponent } from './components/profile/editprofile-form/editprofile-form.component';
 import { ChangeplanFormComponent } from './components/profile/changeplan-form/changeplan-form.component';
 import { ChangepaymentFormComponent } from './components/profile/changepayment-form/changepayment-form.component';
+import { ScrollToTopComponent } from './components/scroll-to-top/scroll-to-top.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import { ChangepaymentFormComponent } from './components/profile/changepayment-f
     EditprofileFormComponent,
     ChangeplanFormComponent,
     ChangepaymentFormComponent,
+    ScrollToTopComponent,
   ],
   imports: [
     BrowserModule,

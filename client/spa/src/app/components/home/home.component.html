@@ -1,2 +1,5 @@
 <app-jumbotron></app-jumbotron>
 <app-features></app-features>
+<ng-container *ngIf="showScroll$ | async">
+  <app-scroll-to-top (scrollToTop)="onScrollToTop()"></app-scroll-to-top>
+</ng-container>

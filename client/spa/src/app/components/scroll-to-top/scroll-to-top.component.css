@@ -1,0 +1,6 @@
+#scrollToTopBtn {
+  position: fixed !important;
+  bottom: 20px !important;
+  right: 30px !important;
+  z-index: 99 !important;
+}
