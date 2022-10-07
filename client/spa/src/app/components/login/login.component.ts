@@ -12,7 +12,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {}
 
   signin($myParam: string = ''): void {
-    const navigationDetails: string[] = ['/user'];
+    const navigationDetails: string[] = ['/dashboard'];
     if ($myParam.length) {
       navigationDetails.push($myParam);
     }

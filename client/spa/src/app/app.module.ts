@@ -64,7 +64,7 @@ import { EditprofileFormComponent } from './components/profile/editprofile-form/
       { path: 'pricing', component: PricingComponent },
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
-      { path: 'user', component: SnippetMgrComponent },
+      { path: 'dashboard', component: SnippetMgrComponent },
       { path: 'profile', component: ProfileComponent },
       { path: 'share', component: ShareComponent },
       { path: '', redirectTo: '/home', pathMatch: 'full' },
