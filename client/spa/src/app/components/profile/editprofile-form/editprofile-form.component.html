@@ -1,0 +1,62 @@
+<form [formGroup]="updateProfileForm">
+  <div class="mb-2">
+    <label for="firstName" class="form-label">First Name</label>
+    <input id="firstName" type="text" class="form-control" name="firstname" />
+    <span class="form-text input-error"> Error. </span>
+  </div>
+
+  <div class="mb-2">
+    <label for="lastName" class="form-label">Last Name</label>
+    <input id="lastName" type="text" class="form-control" name="lastname" />
+    <span class="form-text input-error"> Error. </span>
+  </div>
+
+  <div class="mb-2">
+    <label for="password1" class="form-label">Password</label>
+    <input
+      id="password1"
+      type="password"
+      class="form-control"
+      name="password1"
+    />
+    <span class="form-text input-error"> Error. </span>
+  </div>
+
+  <div class="mb-2">
+    <label for="password2" class="form-label">Confirm Password</label>
+    <input
+      id="password2"
+      type="password"
+      class="form-control"
+      name="confirmpassword1"
+    />
+    <span class="form-text input-error"> Error. </span>
+  </div>
+
+  <div class="mb-2">
+    <label for="emailAddress" class="form-label">Email address</label>
+    <input
+      id="emailAddress"
+      type="email"
+      class="form-control"
+      name="emailaddress"
+    />
+    <span class="form-text input-error"> Error. </span>
+  </div>
+
+  <div class="mb-2">
+    <label for="dob" class="form-label">Date of Birth</label>
+    <input type="date" class="form-control" id="dob" name="dob" />
+    <span class="form-text input-error"> Error. </span>
+  </div>
+
+  <div class="mb-2">
+    <label for="bio" class="form-label">Bio</label>
+    <textarea
+      name="bio"
+      id="bio"
+      class="form-control"
+    ></textarea>
+    <span class="form-text input-error"> Error. </span>
+  </div>
+</form>

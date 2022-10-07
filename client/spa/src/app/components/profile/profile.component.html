@@ -67,6 +67,7 @@
         </p>
         <button
           type="button"
+          id="editProfile"
           class="btn btn-primary btn-sm rounded-pill"
           data-bs-toggle="modal"
           data-bs-target="#staticBackdropModal"
@@ -109,7 +110,7 @@
   <div class="modal-dialog modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropModalLabel">Reactive Form</h5>
+        <h5 class="modal-title" id="staticBackdropModalLabel">Title</h5>
         <button
           type="button"
           class="btn-close"
@@ -117,7 +118,21 @@
           aria-label="Close"
         ></button>
       </div>
-      <div class="modal-body">Reactive Form Here...</div>
+      <div class="modal-body" [ngSwitch]="contentId">
+        <!-- contents go here -->
+        <div *ngSwitchCase="'updateProfile'">
+          <app-editprofile-form></app-editprofile-form>
+        </div>
+        <div *ngSwitchCase="'updateProfile'"></div>
+        <div *ngSwitchCase="'updateProfile'"></div>
+        <div *ngSwitchDefault>
+          <p class="fs-5">
+            <i class="fa-solid text-danger fa-circle-exclamation"></i> An error
+            occured!
+          </p>
+          <p class="fs-5">Please try again later.</p>
+        </div>
+      </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary">
           <i class="fa-solid fa-floppy-disk"></i> Update

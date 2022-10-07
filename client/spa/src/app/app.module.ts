@@ -26,6 +26,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ShareComponent } from './components/share/share.component';
+import { EditprofileFormComponent } from './components/profile/editprofile-form/editprofile-form.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { ShareComponent } from './components/share/share.component';
     RegisterComponent,
     ProfileComponent,
     ShareComponent,
+    EditprofileFormComponent,
   ],
   imports: [
     BrowserModule,
