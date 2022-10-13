@@ -10,13 +10,15 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 public class SecurityConfig {
 
+	// route security configurations
 	@Bean
 	SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
-		http.csrf().disable().authorizeRequests().antMatchers("/profile").authenticated().and().formLogin().and()
-				.httpBasic();
+		http.csrf().disable().authorizeRequests().antMatchers("/profile").authenticated().antMatchers("/register")
+				.permitAll().and().formLogin().and().httpBasic();
 		return http.build();
 	}
 
+	// bcrypt encoder
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();

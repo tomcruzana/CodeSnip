@@ -11,6 +11,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import com.codesnip.app.dto.CustomerDto;
 import com.codesnip.app.entity.Customer;
 import com.codesnip.app.repository.CustomerRepository;
 
@@ -43,6 +44,20 @@ public class CustomerServiceImpl implements CustomerService {
 
 		// return new user w/ details from the db
 		return new User(username, password, authorities);
+	}
+
+	@Override
+	public CustomerDto createCustomer(CustomerDto customerDto) {
+		// persist new customer data
+		Customer newCustomer = new Customer();
+		newCustomer.setUsername(customerDto.getUsername());
+		newCustomer.setEmail(customerDto.getEmail());
+		newCustomer.setPassword(customerDto.getPassword());
+		// todo: make enum roles
+		newCustomer.setRole("user");
+		newCustomer.setEnabled(true);
+		customerRepository.save(newCustomer);
+		return customerDto;
 	}
 
 }

@@ -1,54 +1,35 @@
-package com.codesnip.app.entity;
+package com.codesnip.app.dto;
 
 import java.sql.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
-@Entity
-@Table(name = "customer")
-public class Customer {
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+public class CustomerDto {
 	private int id;
 
-	@Column(name = "fname")
 	private String firstName;
 
-	@Column(name = "lname")
 	private String lastName;
 
-	@Column(name = "username")
 	private String username;
 
-	@Column(name = "email")
 	private String email;
 
-	@Column(name = "password")
 	private String password;
 
-	@Column(name = "role")
 	private String role;
 
-	@Column(name = "enabled")
 	private boolean isEnabled;
 
-	@Column(name = "date_of_brith")
 	private Date dob;
 
-	@Column(name = "bio")
 	private String bio;
 
-	@Column(name = "image")
 	private String image;
 
-	public Customer() {
-
+	public CustomerDto(String username, String email, String password) {
+		super();
+		this.username = username;
+		this.email = email;
+		this.password = password;
 	}
 
 	public int getId() {
