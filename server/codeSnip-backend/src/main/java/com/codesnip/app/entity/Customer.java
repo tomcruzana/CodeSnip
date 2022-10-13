@@ -1,6 +1,6 @@
 package com.codesnip.app.entity;
 
-import java.sql.Date;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "customer")
@@ -38,8 +40,13 @@ public class Customer {
 	@Column(name = "enabled")
 	private boolean isEnabled;
 
+	@Temporal(TemporalType.DATE)
 	@Column(name = "date_of_brith")
 	private Date dob;
+
+	@Temporal(TemporalType.DATE)
+	@Column(name = "date_created")
+	private Date dateCreated;
 
 	@Column(name = "bio")
 	private String bio;
@@ -81,6 +88,14 @@ public class Customer {
 
 	public void setUsername(String username) {
 		this.username = username;
+	}
+
+	public Date getDateCreated() {
+		return dateCreated;
+	}
+
+	public void setDateCreated(Date dateCreated) {
+		this.dateCreated = dateCreated;
 	}
 
 	public String getEmail() {

@@ -1,6 +1,7 @@
 package com.codesnip.app.service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.codesnip.app.dto.CustomerDto;
@@ -19,7 +21,10 @@ import com.codesnip.app.repository.CustomerRepository;
 public class CustomerServiceImpl implements CustomerService {
 
 	@Autowired
-	CustomerRepository customerRepository;
+	private CustomerRepository customerRepository;
+
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -50,13 +55,26 @@ public class CustomerServiceImpl implements CustomerService {
 	public CustomerDto createCustomer(CustomerDto customerDto) {
 		// persist new customer data
 		Customer newCustomer = new Customer();
+
+		// hash the password using bcrypt!
+		String hashedPassword = passwordEncoder.encode(customerDto.getPassword());
+		customerDto.setPassword(hashedPassword);
+		// log
+
+		// register current date
+		customerDto.setDateCreated(new Date(System.currentTimeMillis()));
+		// log
+
+		//transfer customer data
 		newCustomer.setUsername(customerDto.getUsername());
 		newCustomer.setEmail(customerDto.getEmail());
 		newCustomer.setPassword(customerDto.getPassword());
-		// todo: make enum roles
-		newCustomer.setRole("user");
+		newCustomer.setDateCreated(customerDto.getDateCreated());
+		newCustomer.setRole(Role.ROLE_FREE_USER.name());
 		newCustomer.setEnabled(true);
 		customerRepository.save(newCustomer);
+		// log
+
 		return customerDto;
 	}
 

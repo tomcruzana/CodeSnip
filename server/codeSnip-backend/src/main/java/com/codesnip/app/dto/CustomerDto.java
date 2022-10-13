@@ -1,6 +1,6 @@
 package com.codesnip.app.dto;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class CustomerDto {
 	private int id;
@@ -20,6 +20,8 @@ public class CustomerDto {
 	private boolean isEnabled;
 
 	private Date dob;
+
+	private Date dateCreated;
 
 	private String bio;
 
@@ -102,6 +104,14 @@ public class CustomerDto {
 
 	public void setDob(Date dob) {
 		this.dob = dob;
+	}
+
+	public Date getDateCreated() {
+		return dateCreated;
+	}
+
+	public void setDateCreated(Date dateCreated) {
+		this.dateCreated = dateCreated;
 	}
 
 	public String getBio() {
