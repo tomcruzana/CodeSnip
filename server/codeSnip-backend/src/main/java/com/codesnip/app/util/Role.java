@@ -1,4 +1,4 @@
-package com.codesnip.app.service;
+package com.codesnip.app.util;
 
 public enum Role {
 	ROLE_ADMIN_USER,

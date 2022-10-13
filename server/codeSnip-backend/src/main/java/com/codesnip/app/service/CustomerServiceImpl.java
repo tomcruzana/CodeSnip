@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import com.codesnip.app.dto.CustomerDto;
 import com.codesnip.app.entity.Customer;
 import com.codesnip.app.repository.CustomerRepository;
+import com.codesnip.app.util.Role;
 
 @Service
 public class CustomerServiceImpl implements CustomerService {
