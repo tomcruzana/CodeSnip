@@ -2,6 +2,8 @@ package com.codesnip.app.dto;
 
 import java.util.Date;
 
+import com.codesnip.app.entity.Customer;
+
 public class CustomerDto {
 	private int id;
 
@@ -27,11 +29,29 @@ public class CustomerDto {
 
 	private String image;
 
+	public CustomerDto() {
+
+	}
+
 	public CustomerDto(String username, String email, String password) {
-		super();
 		this.username = username;
 		this.email = email;
 		this.password = password;
+	}
+
+	public CustomerDto(Customer customer) {
+		this.id = customer.getId();
+		this.firstName = customer.getFirstName();
+		this.lastName = customer.getLastName();
+		this.username = customer.getUsername();
+		this.email = customer.getEmail();
+		this.password = customer.getPassword();
+		this.role = customer.getRole();
+		this.isEnabled = customer.isEnabled();
+		this.dob = customer.getDob();
+		this.dateCreated = customer.getDateCreated();
+		this.bio = customer.getBio();
+		this.image = customer.getImage();
 	}
 
 	public int getId() {

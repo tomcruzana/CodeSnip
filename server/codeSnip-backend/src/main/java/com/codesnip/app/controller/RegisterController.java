@@ -18,7 +18,7 @@ public class RegisterController {
 	private Environment environment;
 
 	@Autowired
-	CustomerService customerService;
+	private CustomerService customerService;
 
 	@PostMapping("/register")
 	public ResponseEntity<?> registerCustomer(@RequestBody CustomerDto customerDto) {

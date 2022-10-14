@@ -18,7 +18,7 @@ import org.springframework.web.cors.CorsConfigurationSource;
 public class SecurityConfig {
 
 	@Bean
-	SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
+	public SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
 		// CORS configuration
 		// CSRF configuration
 		// route security configurations
