@@ -16,7 +16,6 @@ import org.springframework.web.cors.CorsConfigurationSource;
 @Configuration
 public class SecurityConfig {
 
-	
 	@Bean
 	SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
 		// CORS configuration
@@ -32,8 +31,9 @@ public class SecurityConfig {
 				config.setMaxAge(3600L);
 				return config;
 			}
-		}).and().csrf().disable().authorizeRequests().antMatchers("/profile").authenticated().antMatchers("/register")
-				.permitAll().and().formLogin().and().httpBasic();
+		}).and().csrf().disable().authorizeRequests().antMatchers("/login", "/dashboard", "/profile").authenticated()
+				.antMatchers("/home", "/documentation", "/pricing", "/register", "/share").permitAll().and().formLogin()
+				.and().httpBasic();
 		return http.build();
 	}
 
