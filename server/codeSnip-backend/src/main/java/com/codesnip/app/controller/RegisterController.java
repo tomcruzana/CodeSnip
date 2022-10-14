@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.codesnip.app.dto.CustomerDto;
-import com.codesnip.app.service.CustomerService;
+import com.codesnip.app.dto.UserDto;
+import com.codesnip.app.service.UserService;
 
 @RestController
 public class RegisterController {
@@ -18,16 +18,16 @@ public class RegisterController {
 	private Environment environment;
 
 	@Autowired
-	private CustomerService customerService;
+	private UserService userService;
 
 	@PostMapping("/register")
-	public ResponseEntity<?> registerCustomer(@RequestBody CustomerDto customerDto) {
-		CustomerDto newCustomerDto = null;
+	public ResponseEntity<?> registerUser(@RequestBody UserDto userDto) {
+		UserDto newUserDto = null;
 		ResponseEntity<?> response = null;
 		try {
-			newCustomerDto = customerService.createCustomer(customerDto);
+			newUserDto = userService.createUser(userDto);
 
-			if (newCustomerDto != null) {
+			if (newUserDto != null) {
 				response = new ResponseEntity<>(environment.getProperty("success.registration"), HttpStatus.CREATED);
 				// log
 			}

@@ -1,61 +1,57 @@
-package com.codesnip.app.entity;
+package com.codesnip.app.dto;
 
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import com.codesnip.app.entity.User;
 
-@Entity
-@Table(name = "customer")
-public class Customer {
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+public class UserDto {
 	private int id;
 
-	@Column(name = "fname")
 	private String firstName;
 
-	@Column(name = "lname")
 	private String lastName;
 
-	@Column(name = "username")
 	private String username;
 
-	@Column(name = "email")
 	private String email;
 
-	@Column(name = "password")
 	private String password;
 
-	@Column(name = "role")
 	private String role;
 
-	@Column(name = "enabled")
 	private boolean isEnabled;
 
-	@Temporal(TemporalType.DATE)
-	@Column(name = "date_of_brith")
 	private Date dob;
 
-	@Temporal(TemporalType.DATE)
-	@Column(name = "date_created")
 	private Date dateCreated;
 
-	@Column(name = "bio")
 	private String bio;
 
-	@Column(name = "image")
 	private String image;
 
-	public Customer() {
+	public UserDto() {
 
+	}
+
+	public UserDto(String username, String email, String password) {
+		this.username = username;
+		this.email = email;
+		this.password = password;
+	}
+
+	public UserDto(User user) {
+		this.id = user.getId();
+		this.firstName = user.getFirstName();
+		this.lastName = user.getLastName();
+		this.username = user.getUsername();
+		this.email = user.getEmail();
+		this.password = user.getPassword();
+		this.role = user.getRole();
+		this.isEnabled = user.isEnabled();
+		this.dob = user.getDob();
+		this.dateCreated = user.getDateCreated();
+		this.bio = user.getBio();
+		this.image = user.getImage();
 	}
 
 	public int getId() {
@@ -88,14 +84,6 @@ public class Customer {
 
 	public void setUsername(String username) {
 		this.username = username;
-	}
-
-	public Date getDateCreated() {
-		return dateCreated;
-	}
-
-	public void setDateCreated(Date dateCreated) {
-		this.dateCreated = dateCreated;
 	}
 
 	public String getEmail() {
@@ -136,6 +124,14 @@ public class Customer {
 
 	public void setDob(Date dob) {
 		this.dob = dob;
+	}
+
+	public Date getDateCreated() {
+		return dateCreated;
+	}
+
+	public void setDateCreated(Date dateCreated) {
+		this.dateCreated = dateCreated;
 	}
 
 	public String getBio() {

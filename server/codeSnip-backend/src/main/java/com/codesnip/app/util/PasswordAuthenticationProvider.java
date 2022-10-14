@@ -14,34 +14,34 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
-import com.codesnip.app.entity.Customer;
-import com.codesnip.app.repository.CustomerRepository;
+import com.codesnip.app.entity.User;
+import com.codesnip.app.repository.UserRepository;
 
 @Component
 public class PasswordAuthenticationProvider implements AuthenticationProvider {
 
 	@Autowired
-	private CustomerRepository customerRepository;
+	private UserRepository userRepository;
 
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
 	@Override
 	public Authentication authenticate(Authentication authentication) throws AuthenticationException {
-		String username = authentication.getName();
+		String email = authentication.getName();
 		String pwd = authentication.getCredentials().toString();
-		List<Customer> customer = customerRepository.findByUsername(username);
-		if (customer.size() > 0) {
-			if (passwordEncoder.matches(pwd, customer.get(0).getPassword())) {
+		List<User> user = userRepository.findByEmail(email);
+		if (user.size() > 0) {
+			if (passwordEncoder.matches(pwd, user.get(0).getPassword())) {
 				List<GrantedAuthority> authorities = new ArrayList<>();
-				authorities.add(new SimpleGrantedAuthority(customer.get(0).getRole()));
-				return new UsernamePasswordAuthenticationToken(username, pwd, authorities);
+				authorities.add(new SimpleGrantedAuthority(user.get(0).getRole()));
+				return new UsernamePasswordAuthenticationToken(email, pwd, authorities);
 			} else {
-				throw new BadCredentialsException("The username or password is incorrect.");
+				throw new BadCredentialsException("The email or password is incorrect.");
 			}
 		} else {
 			throw new BadCredentialsException(
-					"This username does not belong to an account. Please check your username and try again");
+					"This email does not belong to an account. Please check your email and try again");
 		}
 	}
 
