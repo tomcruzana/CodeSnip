@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import {
   ActivatedRouteSnapshot,
   CanActivate,
-  CanActivateChild,
   Router,
   RouterStateSnapshot,
   UrlTree,
@@ -13,7 +12,7 @@ import { User } from '../models/user.model';
 @Injectable({
   providedIn: 'root',
 })
-export class UserauthGuard implements CanActivate, CanActivateChild {
+export class UserAuthGuard implements CanActivate {
   user = new User();
 
   constructor(private router: Router) {}
@@ -26,27 +25,25 @@ export class UserauthGuard implements CanActivate, CanActivateChild {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    // if userdetails exists then parse
-    if (sessionStorage.getItem('userdetails')) {
-      this.user = JSON.parse(sessionStorage.getItem('userdetails')!);
-    }
-
-    // if userdetails doesn't exists then reroute to login page
-    if (!this.user) {
+    // if userdetails session obj doesn't exist, reroute to loginpge
+    if (sessionStorage.getItem('userdetails') === null) {
       this.router.navigate(['/login']);
+      return false;
     }
 
-    return this.user ? true : false;
-  }
-
-  canActivateChild(
-    childRoute: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
-  ):
-    | Observable<boolean | UrlTree>
-    | Promise<boolean | UrlTree>
-    | boolean
-    | UrlTree {
+    // if userdetails session obj exists, map to user model
+    this.user = JSON.parse(sessionStorage.getItem('userdetails')!);
     return true;
   }
+
+  // canActivateChild(
+  //   childRoute: ActivatedRouteSnapshot,
+  //   state: RouterStateSnapshot
+  // ):
+  //   | Observable<boolean | UrlTree>
+  //   | Promise<boolean | UrlTree>
+  //   | boolean
+  //   | UrlTree {
+  //   return true;
+  // }
 }

@@ -10,7 +10,6 @@ import { ThemeSwitcherComponent } from './components/theme-switcher/theme-switch
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { DocumentationComponent } from './components/documentation/documentation.component';
 import { PricingComponent } from './components/pricing/pricing.component';
-import { RouterModule } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { SidebarComponent } from './components/documentation/sidebar/sidebar.component';
 import { DocumentComponent } from './components/documentation/document/document.component';
@@ -39,8 +38,9 @@ import {
   HttpClientXsrfModule,
   HTTP_INTERCEPTORS,
 } from '@angular/common/http';
-import { UserauthGuard } from './routeguards/userauth.guard';
+import { UserAuthGuard } from './routeguards/userauth.guard';
 import { AjaxhttpInterceptor } from './interceptors/ajaxhttpinterceptor';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -84,30 +84,7 @@ import { AjaxhttpInterceptor } from './interceptors/ajaxhttpinterceptor';
       cookieName: 'XSRF-TOKEN',
       headerName: 'X-XSRF-TOKEN',
     }),
-    RouterModule.forRoot([
-      { path: 'home', component: HomeComponent },
-      { path: 'documentation', component: DocumentationComponent },
-      { path: 'pricing', component: PricingComponent },
-      { path: 'login', component: LoginComponent },
-      { path: 'register', component: RegisterComponent },
-      {
-        path: 'dashboard',
-        component: SnippetMgrComponent,
-        canActivate: [UserauthGuard],
-      },
-      {
-        path: 'profile',
-        component: ProfileComponent,
-        canActivate: [UserauthGuard],
-      },
-      {
-        path: 'share',
-        component: ShareComponent,
-        canActivate: [UserauthGuard],
-      },
-      { path: '', redirectTo: '/home', pathMatch: 'full' },
-      { path: '**', component: NotFoundComponent },
-    ]),
+    AppRoutingModule,
   ],
   providers: [
     {
@@ -115,7 +92,7 @@ import { AjaxhttpInterceptor } from './interceptors/ajaxhttpinterceptor';
       useClass: AjaxhttpInterceptor,
       multi: true,
     },
-    UserauthGuard,
+    UserAuthGuard,
   ],
   bootstrap: [AppComponent],
 })
