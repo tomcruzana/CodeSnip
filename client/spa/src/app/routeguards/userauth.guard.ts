@@ -33,7 +33,7 @@ export class UserauthGuard implements CanActivate, CanActivateChild {
 
     // if userdetails doesn't exists then reroute to login page
     if (!this.user) {
-      this.router.navigate(['login']);
+      this.router.navigate(['/login']);
     }
 
     return this.user ? true : false;

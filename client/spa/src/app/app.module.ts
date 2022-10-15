@@ -34,7 +34,13 @@ import { ScrollToTopComponent } from './components/scroll-to-top/scroll-to-top.c
 import { TagsComponent } from './components/snippet-mgr/smgr-sidebar/tags/tags.component';
 import { SharedComponent } from './components/snippet-mgr/smgr-sidebar/shared/shared.component';
 import { SnippetMgrSettingsComponent } from './components/snippet-mgr/smgr-sidebar/snippet-mgr-settings/snippet-mgr-settings.component';
-import { HttpClientModule } from '@angular/common/http';
+import {
+  HttpClientModule,
+  HttpClientXsrfModule,
+  HTTP_INTERCEPTORS,
+} from '@angular/common/http';
+import { UserauthGuard } from './routeguards/userauth.guard';
+import { AjaxhttpInterceptor } from './interceptors/ajaxhttpinterceptor';
 
 @NgModule({
   declarations: [
@@ -74,20 +80,43 @@ import { HttpClientModule } from '@angular/common/http';
     NgxCodejarModule,
     NgxPaginationModule,
     Ng2SearchPipeModule,
+    HttpClientXsrfModule.withOptions({
+      cookieName: 'XSRF-TOKEN',
+      headerName: 'X-XSRF-TOKEN',
+    }),
     RouterModule.forRoot([
       { path: 'home', component: HomeComponent },
       { path: 'documentation', component: DocumentationComponent },
       { path: 'pricing', component: PricingComponent },
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
-      { path: 'dashboard', component: SnippetMgrComponent },
-      { path: 'profile', component: ProfileComponent },
-      { path: 'share', component: ShareComponent },
+      {
+        path: 'dashboard',
+        component: SnippetMgrComponent,
+        canActivate: [UserauthGuard],
+      },
+      {
+        path: 'profile',
+        component: ProfileComponent,
+        canActivate: [UserauthGuard],
+      },
+      {
+        path: 'share',
+        component: ShareComponent,
+        canActivate: [UserauthGuard],
+      },
       { path: '', redirectTo: '/home', pathMatch: 'full' },
       { path: '**', component: NotFoundComponent },
     ]),
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AjaxhttpInterceptor,
+      multi: true,
+    },
+    UserauthGuard,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -1,4 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { User } from 'src/app/models/user.model';
 
 @Component({
   selector: 'app-profile',
@@ -8,13 +9,20 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 export class ProfileComponent implements OnInit {
   constructor() {}
 
+  user = new User();
+
   planType: string = 'free';
 
   contentId: string = 'none';
 
-  ngOnInit(): void {}
-
   loadModalOnClick(id: string): void {
     this.contentId = id;
+  }
+
+  ngOnInit(): void {
+    // if userdetails exists then parse
+    if (sessionStorage.getItem('userdetails')) {
+      this.user = JSON.parse(sessionStorage.getItem('userdetails') || '');
+    }
   }
 }

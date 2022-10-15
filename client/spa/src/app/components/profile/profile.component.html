@@ -11,6 +11,8 @@
     </nav>
     <!-- breadcrumb end -->
 
+    {{ user | json }}
+
     <!-- profile info start -->
     <div class="profile-info-container">
       <div class="profile-header-container d-flex flex-column">
@@ -37,7 +39,9 @@
           </div>
         </label>
 
-        <h4 class="fs-4 my-2 align-self-center">$John $Doe</h4>
+        <h4 class="fs-4 my-2 align-self-center">
+          {{ user.firstName }} {{ user.lastName }}
+        </h4>
         <hr />
       </div>
 
@@ -67,34 +71,28 @@
 
       <div class="my-1 username-container">
         <p class="fs-6 fw-bold m-0">Username</p>
-        <p class="fs-6">$Username</p>
+        <p class="fs-6">{{ user.username }}</p>
       </div>
 
       <div class="my-1 password-container">
         <p class="fs-6 fw-bold m-0">Password</p>
-        <p class="fs-6">$Password</p>
+        <p class="fs-6">{{ user.password }}</p>
       </div>
 
       <div class="my-1 email-container">
         <p class="fs-6 fw-bold m-0">Email Address</p>
-        <p class="fs-6">$Email</p>
+        <p class="fs-6">{{ user.email }}</p>
       </div>
 
       <div class="my-1 dob-container">
         <p class="fs-6 fw-bold m-0">Date of Birth</p>
-        <p class="fs-6">$01/01/1972</p>
+        <p class="fs-6">{{ user.dob }}</p>
       </div>
 
       <div class="my-1 bio-container">
         <p class="fs-6 fw-bold m-0">Bio</p>
         <p class="fs-6">
-          $Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.
-          Curabitur aliquet quam id dui posuere blandit. Proin eget tortor
-          risus. Cras ultricies ligula sed magna dictum porta. Sed porttitor
-          lectus nibh. Sed porttitor lectus nibh. Lorem ipsum dolor sit amet,
-          consectetur adipiscing elit. Quisque velit nisi, pretium ut lacinia
-          in, elementum id enim. Pellentesque in ipsum id orci porta dapibus.
-          Donec sollicitudin molestie malesuada.
+          {{ user.bio }}
         </p>
         <button
           type="button"

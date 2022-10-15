@@ -5,7 +5,6 @@ import {
   HttpHandler,
   HttpErrorResponse,
   HttpHeaders,
-  HttpEvent,
 } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { tap } from 'rxjs/operators';
@@ -37,18 +36,15 @@ export class AjaxhttpInterceptor implements HttpInterceptor {
       );
     }
 
-
     let xsrf = sessionStorage.getItem('XSRF-TOKEN');
     if (xsrf) {
       httpHeaders = httpHeaders.append('X-XSRF-TOKEN', xsrf);
     }
 
-
     httpHeaders = httpHeaders.append('X-Requested-With', 'XMLHttpRequest');
     const xhr = req.clone({
       headers: httpHeaders,
     });
-
 
     return next.handle(xhr).pipe(
       tap((err: any) => {
@@ -57,7 +53,7 @@ export class AjaxhttpInterceptor implements HttpInterceptor {
             return;
           }
           // if success, navigate to user dashboard
-          this.router.navigate(['dashboard']);
+          this.router.navigate(['/dashboard']);
         }
       })
     );

@@ -22,6 +22,8 @@ export class LoginComponent implements OnInit {
     this.loginService
       .validateLoginDetails(this.model)
       .subscribe((responseData) => {
+        // test log
+        console.log(responseData.body);
         this.model = <any>responseData.body;
 
         this.model.authStatus = 'AUTH';
@@ -31,7 +33,8 @@ export class LoginComponent implements OnInit {
         );
         let xsrf = getCookie('XSRF-TOKEN')!;
         window.sessionStorage.setItem('XSRF-TOKEN', xsrf);
-        this.router.navigate(['dashboard']);
+        this.router.navigate(['/dashboard']);
+
       });
   }
 }
