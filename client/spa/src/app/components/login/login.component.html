@@ -1,13 +1,21 @@
 <section class="login-form bg-dark text-bg-dark">
   <div class="container my-5 col col-md-5 col-lg-3 mx-auto">
+    <div
+      class="alert alert-danger error"
+      role="alert"
+      *ngIf="errorMessage.length > 0"
+    >
+      {{ errorMessage }}
+    </div>
+
     <form
       class="w-100"
       (ngSubmit)="loginForm.valid && validateUser(loginForm)"
       #loginForm="ngForm"
     >
-      <div class="mb-3">
+      <!-- todo: set focus -->
+      <div class="mb-3" data-validate="Please enter your email address">
         <label for="email" class="form-label">Email address</label>
-        <!-- TO-DO change to email -->
         <input
           type="email"
           class="form-control"
@@ -18,19 +26,44 @@
           [(ngModel)]="model.email"
           #email="ngModel"
         />
+        <!-- email error start -->
+        <span
+          class="text-danger"
+          *ngIf="(email.touched || loginForm.submitted) &&
+          email.errors?.['required']"
+          >An email address is required</span
+        >
+        <!-- email error end -->
       </div>
-      <div class="mb-3">
+
+      <div class="mb-3" data-validate="Please enter your password">
         <label for="password" class="form-label">Password</label>
         <input
           type="password"
           class="form-control"
           id="password"
           name="password"
+          minlength="8"
           required
           [(ngModel)]="model.password"
           #password="ngModel"
         />
         <!-- TO-DO add show password -->
+
+        <!-- password error start -->
+        <span
+          class="text-danger"
+          *ngIf="(password.touched || loginForm.submitted) &&
+          password.errors?.['required']"
+          >A Password is required</span
+        >
+        <span
+          class="text-danger"
+          *ngIf="(password.touched || loginForm.submitted) &&
+          password.errors?.['minlength']"
+          >The password must be at least 5 in length</span
+        >
+        <!-- password error end -->
       </div>
       <div class="mb-3 form-check">
         <input type="checkbox" class="form-check-input" id="rememberMeCheck" />

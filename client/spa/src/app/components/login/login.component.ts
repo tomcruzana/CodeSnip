@@ -12,6 +12,7 @@ import { getCookie } from 'typescript-cookie';
 })
 export class LoginComponent implements OnInit {
   authStatus: string = '';
+  errorMessage: string = '';
   model = new User();
 
   constructor(private loginService: LoginService, private router: Router) {}
@@ -19,9 +20,8 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {}
 
   validateUser(loginForm: NgForm) {
-    this.loginService
-      .validateLoginDetails(this.model)
-      .subscribe((responseData) => {
+    this.loginService.validateLoginDetails(this.model).subscribe({
+      next: (responseData) => {
         // test log
         console.log(responseData.body);
         this.model = <any>responseData.body;
@@ -34,7 +34,19 @@ export class LoginComponent implements OnInit {
         let xsrf = getCookie('XSRF-TOKEN')!;
         window.sessionStorage.setItem('XSRF-TOKEN', xsrf);
         this.router.navigate(['/dashboard']);
+      },
+      error: (errorData) => {
+        console.log(errorData.status);
+        // return this error
+        if (errorData.status == 401) {
+          this.errorMessage = 'The email or password is incorrect.';
+        }
 
-      });
+        // delete session item if exist
+        if (window.sessionStorage.getItem('userdetails') !== null) {
+          sessionStorage.removeItem('userdetails');
+        }
+      },
+    });
   }
 }

@@ -21,9 +21,13 @@ export class SmgrSidebarComponent implements OnInit {
 
   // redirect to homepage after logout
   signout(): void {
-    // destroy session storage items
-    window.sessionStorage.setItem('userdetails', '');
-    window.sessionStorage.setItem('XSRF-TOKEN', '');
+    // delete session item if exist
+    if (window.sessionStorage.getItem('userdetails') !== null) {
+      sessionStorage.removeItem('userdetails');
+    }
+    if (window.sessionStorage.getItem('XSRF-TOKEN') !== null) {
+      sessionStorage.removeItem('XSRF-TOKEN');
+    }
     this.router.navigate(['/home']);
   }
 }
