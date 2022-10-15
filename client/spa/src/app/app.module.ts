@@ -25,6 +25,7 @@ import { SmgrEditorPanelComponent } from './components/snippet-mgr/smgr-editor-p
 import { RegisterComponent } from './components/register/register.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { ShareComponent } from './components/share/share.component';
 import { EditprofileFormComponent } from './components/profile/editprofile-form/editprofile-form.component';
 import { ChangeplanFormComponent } from './components/profile/changeplan-form/changeplan-form.component';
@@ -33,6 +34,7 @@ import { ScrollToTopComponent } from './components/scroll-to-top/scroll-to-top.c
 import { TagsComponent } from './components/snippet-mgr/smgr-sidebar/tags/tags.component';
 import { SharedComponent } from './components/snippet-mgr/smgr-sidebar/shared/shared.component';
 import { SnippetMgrSettingsComponent } from './components/snippet-mgr/smgr-sidebar/snippet-mgr-settings/snippet-mgr-settings.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -66,7 +68,9 @@ import { SnippetMgrSettingsComponent } from './components/snippet-mgr/smgr-sideb
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     ReactiveFormsModule,
+    FormsModule,
     NgxCodejarModule,
     NgxPaginationModule,
     Ng2SearchPipeModule,
