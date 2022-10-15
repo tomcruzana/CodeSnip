@@ -1,7 +1,9 @@
 package com.codesnip.app.dto;
 
 import java.util.Date;
+import java.util.Set;
 
+import com.codesnip.app.entity.Authority;
 import com.codesnip.app.entity.User;
 
 public class UserDto {
@@ -17,8 +19,6 @@ public class UserDto {
 
 	private String password;
 
-	private String role;
-
 	private boolean isEnabled;
 
 	private Date dob;
@@ -28,6 +28,8 @@ public class UserDto {
 	private String bio;
 
 	private String image;
+
+	private Set<Authority> authorities;
 
 	public UserDto() {
 
@@ -46,7 +48,6 @@ public class UserDto {
 		this.username = user.getUsername();
 		this.email = user.getEmail();
 		this.password = user.getPassword();
-		this.role = user.getRole();
 		this.isEnabled = user.isEnabled();
 		this.dob = user.getDob();
 		this.dateCreated = user.getDateCreated();
@@ -102,14 +103,6 @@ public class UserDto {
 		this.password = password;
 	}
 
-	public String getRole() {
-		return role;
-	}
-
-	public void setRole(String role) {
-		this.role = role;
-	}
-
 	public boolean isEnabled() {
 		return isEnabled;
 	}
@@ -148,6 +141,14 @@ public class UserDto {
 
 	public void setImage(String image) {
 		this.image = image;
+	}
+
+	public Set<Authority> getAuthorities() {
+		return authorities;
+	}
+
+	public void setAuthorities(Set<Authority> authorities) {
+		this.authorities = authorities;
 	}
 
 }

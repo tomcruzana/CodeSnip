@@ -8,15 +8,19 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.codesnip.app.dto.UserDto;
+import com.codesnip.app.entity.Authority;
 import com.codesnip.app.entity.User;
+import com.codesnip.app.repository.AuthorityRepository;
 import com.codesnip.app.repository.UserRepository;
-import com.codesnip.app.util.Role;
 
 @Service
 public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private UserRepository userRepository;
+	
+	@Autowired
+	private AuthorityRepository authorityRepository;
 
 	@Autowired
 	private PasswordEncoder passwordEncoder;
@@ -40,9 +44,15 @@ public class UserServiceImpl implements UserService {
 		newUser.setEmail(userDto.getEmail());
 		newUser.setPassword(userDto.getPassword());
 		newUser.setDateCreated(userDto.getDateCreated());
-		newUser.setRole(Role.FREE_USER.name());
 		newUser.setEnabled(true);
 		userRepository.save(newUser);
+		// log
+
+		// initialize and save default role
+		Authority authority = new Authority();
+		authority.setName("ROLE_FREE_USER");
+		authority.setUser(newUser);
+		authorityRepository.save(authority);
 		// log
 
 		return userDto;
