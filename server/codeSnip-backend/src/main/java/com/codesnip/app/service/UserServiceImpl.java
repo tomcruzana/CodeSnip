@@ -40,7 +40,7 @@ public class UserServiceImpl implements UserService {
 		newUser.setEmail(userDto.getEmail());
 		newUser.setPassword(userDto.getPassword());
 		newUser.setDateCreated(userDto.getDateCreated());
-		newUser.setRole(Role.ROLE_FREE_USER.name());
+		newUser.setRole(Role.FREE_USER.name());
 		newUser.setEnabled(true);
 		userRepository.save(newUser);
 		// log
