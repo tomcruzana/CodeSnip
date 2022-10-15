@@ -2,6 +2,7 @@ package com.codesnip.app.util;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -14,6 +15,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import com.codesnip.app.entity.Authority;
 import com.codesnip.app.entity.User;
 import com.codesnip.app.repository.UserRepository;
 
@@ -33,9 +35,8 @@ public class PasswordAuthenticationProvider implements AuthenticationProvider {
 		List<User> user = userRepository.findByEmail(email);
 		if (user.size() > 0) {
 			if (passwordEncoder.matches(pwd, user.get(0).getPassword())) {
-				List<GrantedAuthority> authorities = new ArrayList<>();
-				authorities.add(new SimpleGrantedAuthority(user.get(0).getRole()));
-				return new UsernamePasswordAuthenticationToken(email, pwd, authorities);
+				return new UsernamePasswordAuthenticationToken(email, pwd,
+						getGrantedAuthorities(user.get(0).getAuthorities()));
 			} else {
 				throw new BadCredentialsException("The email or password is incorrect.");
 			}
@@ -43,6 +44,14 @@ public class PasswordAuthenticationProvider implements AuthenticationProvider {
 			throw new BadCredentialsException(
 					"This email does not belong to an account. Please check your email and try again");
 		}
+	}
+
+	private List<GrantedAuthority> getGrantedAuthorities(Set<Authority> authorities) {
+		List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
+		for (Authority authority : authorities) {
+			grantedAuthorities.add(new SimpleGrantedAuthority(authority.getName()));
+		}
+		return grantedAuthorities;
 	}
 
 	@Override
