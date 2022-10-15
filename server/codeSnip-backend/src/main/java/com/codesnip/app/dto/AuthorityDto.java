@@ -9,10 +9,6 @@ public class AuthorityDto {
 
 	private User user;
 
-	public AuthorityDto() {
-
-	}
-
 	public int getId() {
 		return id;
 	}

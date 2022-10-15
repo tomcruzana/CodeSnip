@@ -44,9 +44,8 @@ public class SecurityConfig {
 				.antMatchers("/tags").hasAnyRole(Role.FREE_USER.name(), Role.PRO_USER.name())
 				.antMatchers("/shared").hasRole(Role.PRO_USER.name())
 				.antMatchers("/settings").hasAnyRole(Role.FREE_USER.name(), Role.PRO_USER.name())
-				.antMatchers("/dashboard").authenticated()
+				.antMatchers("/user").authenticated()
 				.antMatchers("/home", "/documentation", "/pricing", "/register", "/share", "/login").permitAll()
-				.and().formLogin()
 				.and().httpBasic();
 		
 		return http.build();

@@ -9,16 +9,15 @@ import com.codesnip.app.dto.UserDto;
 import com.codesnip.app.service.UserService;
 
 @RestController
-public class ProfileController {
+public class UserLoginController {
 
 	@Autowired
 	private UserService userService;
 
-	@GetMapping("/profile")
+	@GetMapping("/user")
 	public UserDto getUserProfile(Authentication authentication) {
-
 		UserDto userDto = userService.readByEmail(authentication.getName());
 		return userDto;
-
+		// todo convert to response entity
 	}
 }
