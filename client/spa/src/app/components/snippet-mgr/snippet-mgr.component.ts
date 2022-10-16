@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from 'src/app/models/user.model';
 
 @Component({
   selector: 'app-snippet-mgr',
@@ -7,6 +8,5 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SnippetMgrComponent implements OnInit {
   constructor() {}
-
   ngOnInit(): void {}
 }

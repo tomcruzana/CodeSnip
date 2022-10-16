@@ -27,6 +27,7 @@ export class LoginComponent implements OnInit {
         console.log(responseData.body);
         this.model = <any>responseData.body;
 
+        // asiign AUTH value once user is logged in!
         this.model.authStatus = 'AUTH';
         window.sessionStorage.setItem(
           'userdetails',

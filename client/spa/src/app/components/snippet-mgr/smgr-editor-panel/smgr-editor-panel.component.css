@@ -1,1 +1,11 @@
+.ngx-codejar-control:hover {
+  border: 1px solid #dee2e6 !important;
+}
 
+.copy-control:hover {
+  color: #0d6efd !important;
+}
+
+.trash-control:hover {
+  color: red !important ;
+}

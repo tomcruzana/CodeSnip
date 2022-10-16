@@ -8,10 +8,20 @@
     <!-- total snippets -->
     <div class="d-flex align-items-center">
       <h6 class="fs-6 m-0">
-        <span class="total-snippets">{{
-          tempNumberOfSnippetEditors.length
-        }}</span
-        ><span> snippets</span>
+        <span
+          ><button type="button" class="btn btn-sm category-controls-btn">
+            <i
+              class="edit-category-btn fa-solid fa-gear me-0"
+              data-bs-toggle="modal"
+              data-bs-target="#editCategoryModal"
+            ></i></button
+        ></span>
+        <span class="collection-name fw-bold"> List group item heading </span>
+        <span class="total-snippets small">
+          <div class="vr me-1"></div>
+          <small>{{ tempNumberOfSnippetEditors.length }}</small>
+          <span> snippets</span>
+        </span>
       </h6>
     </div>
 
@@ -45,13 +55,22 @@
         </div>
 
         <div class="ngx-codejar-controls">
-          <button type="button" class="btn btn-secondary btn-sm">
+          <button
+            type="button"
+            class="btn btn-sm ngx-codejar-control share-control"
+          >
             <i class="fa-solid fa-share"></i>
           </button>
-          <button type="button" class="btn btn-warning btn-sm mx-2">
+          <button
+            type="button"
+            class="btn btn-sm mx-2 ngx-codejar-control copy-control"
+          >
             <i class="fa-solid fa-copy"></i>
           </button>
-          <button type="button" class="btn btn-danger btn-sm">
+          <button
+            type="button"
+            class="btn btn-sm ngx-codejar-control trash-control"
+          >
             <i class="fa-solid fa-trash"></i>
           </button>
         </div>

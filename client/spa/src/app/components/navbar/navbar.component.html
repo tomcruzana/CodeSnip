@@ -23,15 +23,30 @@
             ><app-theme-switcher></app-theme-switcher
           ></a>
         </li> -->
-        <li class="nav-item">
+        <li class="nav-item" routerLinkActive="active">
           <a class="nav-link" routerLink="/documentation">Documentation</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" routerLinkActive="active">
           <a class="nav-link" routerLink="/pricing">Pricing</a>
         </li>
-        <li class="nav-item">
+        <li
+          class="nav-item"
+          *ngIf="user.authStatus != 'AUTH'"
+          routerLinkActive="active"
+        >
           <a class="nav-link" routerLink="/login"
-            ><i class="fa-solid fa-user"></i> Login</a
+            ><i class="fa-solid fa-user"></i> Sign in</a
+          >
+        </li>
+
+        <!-- logout & profile navlinks will show if user is AUTH -->
+        <li
+          class="nav-item"
+          *ngIf="user.authStatus == 'AUTH'"
+          routerLinkActive="active"
+        >
+          <a class="nav-link" routerLink="/home" (click)="signout()"
+            ><i class="fa-solid fa-right-from-bracket"></i> Sing out</a
           >
         </li>
       </ul>

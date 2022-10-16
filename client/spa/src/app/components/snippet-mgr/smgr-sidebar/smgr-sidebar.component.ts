@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/user.model';
+import { LogoutService } from 'src/app/services/logout.service';
 
 @Component({
   selector: 'app-smgr-sidebar',
@@ -10,7 +11,7 @@ import { User } from 'src/app/models/user.model';
 export class SmgrSidebarComponent implements OnInit {
   user = new User();
 
-  constructor(private router: Router) {}
+  constructor(private logoutService: LogoutService) {}
 
   ngOnInit(): void {
     // if userdetails exists then parse
@@ -21,13 +22,6 @@ export class SmgrSidebarComponent implements OnInit {
 
   // redirect to homepage after logout
   signout(): void {
-    // delete session item if exist
-    if (window.sessionStorage.getItem('userdetails') !== null) {
-      sessionStorage.removeItem('userdetails');
-    }
-    if (window.sessionStorage.getItem('XSRF-TOKEN') !== null) {
-      sessionStorage.removeItem('XSRF-TOKEN');
-    }
-    this.router.navigate(['/home']);
+    this.logoutService.signout();
   }
 }
