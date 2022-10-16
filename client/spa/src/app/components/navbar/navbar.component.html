@@ -39,7 +39,14 @@
           >
         </li>
 
-        <!-- logout & profile navlinks will show if user is AUTH -->
+        <!-- logout & dashboard navlinks will show if user is AUTH -->
+        <li
+          class="nav-item"
+          *ngIf="user.authStatus == 'AUTH'"
+          routerLinkActive="active"
+        >
+          <a class="nav-link" routerLink="/dashboard"> Dashboard</a>
+        </li>
         <li
           class="nav-item"
           *ngIf="user.authStatus == 'AUTH'"
