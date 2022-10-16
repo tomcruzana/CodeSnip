@@ -7,6 +7,25 @@
 /* animate.css */
 @import "~animate.css/animate.min";
 
+/* loader animation */
+.loader {
+  color: #fff;
+  animation: rotation 1s linear infinite;
+}
+
+.disable-loader {
+  display: none;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 body {
   background-color: #212529;
   font-family: "Poppins", sans-serif;

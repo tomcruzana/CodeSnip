@@ -11,6 +11,7 @@ import { getCookie } from 'typescript-cookie';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
+  isLoading: boolean = false;
   authStatus: string = '';
   errorMessage: string = '';
   model = new User();
@@ -20,9 +21,9 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {}
 
   validateUser(loginForm: NgForm) {
+    this.isLoading = true;
     this.loginService.validateLoginDetails(this.model).subscribe({
       next: (responseData) => {
-        // test log
         console.log(responseData.body);
         this.model = <any>responseData.body;
 
@@ -46,6 +47,11 @@ export class LoginComponent implements OnInit {
         if (window.sessionStorage.getItem('userdetails') !== null) {
           sessionStorage.removeItem('userdetails');
         }
+
+        this.isLoading = false;
+      },
+      complete: () => {
+        this.isLoading = false;
       },
     });
   }
