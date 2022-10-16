@@ -1,3 +1,25 @@
+/* search box */
+.search-input-box {
+  background-image: url("../../../../assets/magnifying-glass-ico.png");
+  background-position: 8px 4px;
+  background-size: 20px 20px;
+  background-repeat: no-repeat;
+  width: 30px;
+  padding-left: 32px;
+  transition: width 0.5s;
+}
+
+.search-input-box:hover {
+  background-color: #f8f9fa;
+  cursor: pointer;
+}
+
+.search-input-box:focus {
+  background-color: #f8f9fa;
+  width: 220px;
+}
+
+/* snippet collections  */
 .collections-controls-btn:hover {
   background-color: #f8f9fa !important;
 }

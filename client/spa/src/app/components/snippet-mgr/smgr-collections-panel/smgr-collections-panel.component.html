@@ -14,25 +14,50 @@
         </h6>
       </div>
 
-      <div class="collections-controls">
-        <button type="button" class="btn btn-sm collections-controls-btn">
+      <div class="collections-controls d-flex">
+        <!-- <button type="button" class="btn btn-sm collections-controls-btn">
           <i class="fa-solid fa-magnifying-glass"></i>
-        </button>
-        <button type="button" class="btn btn-sm collections-controls-btn">
-          <i class="fa-solid fa-arrow-down-wide-short"></i>
-        </button>
-        <button type="button" class="btn btn-sm collections-controls-btn">
-          <i class="fa-solid fa-filter"></i>
-        </button>
-        <button type="button" class="btn btn-sm collections-controls-btn">
+        </button> -->
+        <div class="collections-search input-group input-group-sm">
+          <input
+            type="text"
+            placeholder="search title"
+            class="form-control search-input-box"
+            aria-label="Sizing example input"
+            aria-describedby="inputGroup-sizing-sm"
+          />
+        </div>
+
+        <div class="dropdown btn-group">
+          <button
+            type="button"
+            class="btn btn-sm collections-controls-btn dropdown-toggle"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            <i class="fa-solid fa-arrow-down-wide-short"></i>
+          </button>
+          <ul class="dropdown-menu dropdown-menu-dark">
+            <li><a class="dropdown-item active">Title</a></li>
+            <li><a class="dropdown-item">Date Created</a></li>
+            <li><a class="dropdown-item">Date Updated</a></li>
+          </ul>
+        </div>
+
+        <button
+          type="button"
+          class="btn btn-sm collections-controls-btn add-snippet-collection-control text-primary"
+        >
           <i class="fa-solid fa-circle-plus"></i>
         </button>
       </div>
     </div>
+
+    <!-- scroll area start -->
     <div class="list-group list-group-flush border-bottom scrollarea">
+      <!-- snippet collections start -->
       <a
         class="list-group-item list-group-item-action py-3 lh-tight collections-item"
-        aria-current="true"
         *ngFor="let item of tempTotallist"
       >
         <div class="d-flex w-100 align-items-center justify-content-between">
@@ -66,6 +91,7 @@
           </span>
         </div>
       </a>
+      <!-- snippet collections end -->
     </div>
   </div>
 </aside>
