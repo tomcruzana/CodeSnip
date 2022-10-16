@@ -18,6 +18,10 @@
   background-color: #f8f9fa;
   width: 220px;
 }
+/* drop down items */
+.dropdown-item {
+  cursor: pointer;
+}
 
 /* snippet collections  */
 .collections-controls-btn:hover {
