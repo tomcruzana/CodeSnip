@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-smgr-category-panel',
-  templateUrl: './smgr-category-panel.component.html',
-  styleUrls: ['./smgr-category-panel.component.css'],
+  selector: 'app-smgr-collections-panel',
+  templateUrl: './smgr-collections-panel.component.html',
+  styleUrls: ['./smgr-collections-panel.component.css'],
 })
-export class SmgrCategoryPanelComponent implements OnInit {
+export class SmgrCollectionsPanelComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}

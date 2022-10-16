@@ -1,4 +1,4 @@
-.category-controls-btn:hover {
+.collections-controls-btn:hover {
   background-color: #f8f9fa !important;
 }
 
@@ -10,13 +10,13 @@
   color: #0d6efd;
 }
 
-.category-collection-item {
+.collections-item {
   background-color: #f8f9fa !important;
   color: #495057 !important;
   cursor: pointer;
 }
 
-.category-collection-item:hover {
+.collections-item:hover {
   background-color: #fff !important;
   color: #495057 !important;
   cursor: pointer;

@@ -18,7 +18,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { LoginComponent } from './components/login/login.component';
 import { SnippetMgrComponent } from './components/snippet-mgr/snippet-mgr.component';
 import { SmgrSidebarComponent } from './components/snippet-mgr/smgr-sidebar/smgr-sidebar.component';
-import { SmgrCategoryPanelComponent } from './components/snippet-mgr/smgr-category-panel/smgr-category-panel.component';
+import { SmgrCollectionsPanelComponent } from './components/snippet-mgr/smgr-collections-panel/smgr-collections-panel.component';
 import { NgxCodejarModule } from 'ngx-codejar';
 import { SmgrEditorPanelComponent } from './components/snippet-mgr/smgr-editor-panel/smgr-editor-panel.component';
 import { RegisterComponent } from './components/register/register.component';
@@ -59,7 +59,7 @@ import { AppRoutingModule } from './app-routing.module';
     LoginComponent,
     SnippetMgrComponent,
     SmgrSidebarComponent,
-    SmgrCategoryPanelComponent,
+    SmgrCollectionsPanelComponent,
     SmgrEditorPanelComponent,
     RegisterComponent,
     ProfileComponent,
