@@ -38,7 +38,6 @@ export class NewCollectionFormComponent implements OnInit {
         validators: [Validators.required],
         updateOn: 'change',
       }),
-      tag: new FormControl(''),
     });
 
     // this is a built-in lifecycle hook that will update the emitted SnippetCollectionFormJSON

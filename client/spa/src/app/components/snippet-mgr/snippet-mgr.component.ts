@@ -19,7 +19,7 @@ export class SnippetMgrComponent implements OnInit {
 
   getsnippetCollectionFormJSON(json: string) {
     this.snippetCollectionFormJSON = json;
-    // console.log('log: from parent component snippet-mgr : ' + json);
+    console.log('log: from parent component snippet-mgr : ' + json);
   }
 
   // process request btn
