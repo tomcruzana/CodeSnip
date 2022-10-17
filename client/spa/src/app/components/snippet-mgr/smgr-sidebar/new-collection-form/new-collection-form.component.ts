@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
@@ -7,9 +7,13 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   styleUrls: ['./new-collection-form.component.css'],
 })
 export class NewCollectionFormComponent implements OnInit {
-
-
+  // reactive form varialble
   createNewSnippetCollectionForm: any;
+
+  // event emitters
+  @Output()
+  snippetCollectionEvent = new EventEmitter<string>();
+  snippetCollectionFormJSON: string = '';
 
   // array varaible that holds the tags from the db
   tags = new Array<string>();
@@ -19,16 +23,7 @@ export class NewCollectionFormComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    this.tags.push('asdasdasd');
-    this.tags.push('asdasdasd');
-    this.tags.push('asdasdasd');
-    this.tags.push('asdasdasd');
-    this.tags.push('asdasdasd');
-    this.tags.push('asdasdasd');
-    this.tags.push('asdasdasd');
-    this.tags.push('asdasdasd');
-    this.tags.push('asdasdasd');
-
+    // initialize reactive form
     this.createNewSnippetCollectionForm = new FormGroup({
       title: new FormControl('', {
         validators: [Validators.required, Validators.maxLength(34)],
@@ -44,5 +39,17 @@ export class NewCollectionFormComponent implements OnInit {
       }),
       tag: new FormControl(''),
     });
+
+    // this is a built-in lifecycle hook that will update the emitted SnippetCollectionFormJSON
+    this.onChanges();
+  }
+
+  onChanges(): void {
+    this.createNewSnippetCollectionForm.valueChanges.subscribe(
+      (values: string) => {
+        this.snippetCollectionFormJSON = JSON.stringify(values);
+        this.snippetCollectionEvent.emit(this.snippetCollectionFormJSON);
+      }
+    );
   }
 }

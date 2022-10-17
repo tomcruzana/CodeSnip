@@ -62,7 +62,9 @@
       <!-- contents go here start -->
       <div class="modal-body" [ngSwitch]="contentId">
         <div *ngSwitchCase="'createNewSnippetCollection'">
-          <app-new-collection-form></app-new-collection-form>
+          <app-new-collection-form
+            (snippetCollectionEvent)="getsnippetCollectionFormJSON($event)"
+          ></app-new-collection-form>
         </div>
         <div *ngSwitchCase="'snippetTags'">
           <app-tags></app-tags>
@@ -84,7 +86,11 @@
       <!-- contents go here end -->
 
       <div class="modal-footer" [ngSwitch]="contentId">
-        <button type="submit" class="btn btn-primary">
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="processRequest()"
+        >
           <span *ngSwitchCase="'createNewSnippetCollection'"
             ><i class="fa-solid fa-plus"></i> Create</span
           >

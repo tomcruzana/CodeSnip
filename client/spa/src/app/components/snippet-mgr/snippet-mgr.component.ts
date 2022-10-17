@@ -10,9 +10,30 @@ export class SnippetMgrComponent implements OnInit {
   ngOnInit(): void {}
 
   contentId: string = 'none';
+  snippetCollectionFormJSON: String = '';
 
-  // child to parent event emitter receiver
+  // children to parent event emitter receivers
   getContentIdFromSmgrSidebar(id: string) {
     this.contentId = id;
+  }
+
+  getsnippetCollectionFormJSON(json: string) {
+    this.snippetCollectionFormJSON = json;
+    // console.log('log: from parent component snippet-mgr : ' + json);
+  }
+
+  // process request btn
+  processRequest(): void {
+    if (this.contentId == 'createNewSnippetCollection') {
+      alert('createNewSnippetCollection');
+    } else if (this.contentId == 'snippetTags') {
+      alert('snippetTags');
+    } else if (this.contentId == 'sharedSnippet') {
+      alert('sharedSnippet');
+    } else if (this.contentId == 'smgrSettings') {
+      alert('smgrSettings');
+    } else {
+      alert('error');
+    }
   }
 }
