@@ -81,7 +81,7 @@
     </span>
   </div>
 
-  <!-- tags control -->
+  <!-- tags control start-->
   <div class="mb-3">
     <label for="tagSearch" class="form-label">Add Tags (max 4)</label>
     <div class="input-group">
@@ -93,7 +93,16 @@
         placeholder="tag"
         formControlName="tag"
         aria-describedby="basic-addon1"
+        #inputTag
       />
+      <button
+        class="btn btn-outline-primary"
+        type="button"
+        id="addTag"
+        (click)="addTag(inputTag.value)"
+      >
+        <i class="fa-solid fa-plus"></i>
+      </button>
     </div>
     <!-- tag suggestion start -->
     <div
@@ -111,8 +120,9 @@
 
 <div class="tags my-3">
   <span
-    *ngFor="let mtag of maxTags"
+    *ngFor="let tag of collectionTags"
     class="badge rounded-pill text-bg-light collections-item-tags me-1"
-    >{{ "#" + mtag }}</span
+    >{{ "#" + tag }}</span
   >
 </div>
+<!-- tags control end-->

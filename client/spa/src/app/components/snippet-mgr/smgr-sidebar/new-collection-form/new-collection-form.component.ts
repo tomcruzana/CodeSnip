@@ -18,7 +18,7 @@ export class NewCollectionFormComponent implements OnInit {
   // array varaible that holds the tags from the db
   tags = new Array<string>();
 
-  maxTags = new Array<string>('java', 'springboot', 'ds', 'algorithms');
+  collectionTags: Array<string> = [];
 
   constructor() {}
 
@@ -51,5 +51,26 @@ export class NewCollectionFormComponent implements OnInit {
         this.snippetCollectionEvent.emit(this.snippetCollectionFormJSON);
       }
     );
+  }
+
+  ctr: number = 0;
+  addTag(tagName: string) {
+    const LIMIT = 4;
+    let regex = new RegExp('^[a-zA-Z0-9]+$');
+
+    console.log(regex.test(tagName));
+    if (this.ctr != LIMIT) {
+      if (
+        regex.test(tagName) &&
+        !this.collectionTags.includes(tagName) &&
+        !this.tags.includes(tagName)
+      ) {
+        this.collectionTags.push(JSON.stringify(tagName));
+        this.ctr++;
+      }
+    } else {
+      alert('LIMIT REACHED!');
+    }
+    console.log(this.collectionTags);
   }
 }
