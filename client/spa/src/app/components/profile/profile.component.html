@@ -185,11 +185,18 @@
 
       <div class="modal-footer" [ngSwitch]="contentId">
         <button type="button" class="btn btn-primary">
-          <i class="fa-solid fa-floppy-disk"></i>&nbsp;
-          <span *ngSwitchCase="'changePlan'">Proceed</span>
-          <span *ngSwitchCase="'editProfile'">Update</span>
-          <span *ngSwitchCase="'changePayment'">Update</span>
-          <span *ngSwitchDefault>Error</span>
+          <span *ngSwitchCase="'changePlan'"
+            ><i class="fa-solid fa-check"></i> Proceed</span
+          >
+          <span *ngSwitchCase="'editProfile'"
+            ><i class="fa-solid fa-floppy-disk"></i> Update</span
+          >
+          <span *ngSwitchCase="'changePayment'"
+            ><i class="fa-solid fa-floppy-disk"></i> Update</span
+          >
+          <span *ngSwitchDefault
+            ><i class="fa-solid fa-circle-exclamation"></i> Error</span
+          >
         </button>
       </div>
     </div>

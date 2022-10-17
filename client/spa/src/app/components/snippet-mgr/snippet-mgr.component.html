@@ -85,12 +85,21 @@
 
       <div class="modal-footer" [ngSwitch]="contentId">
         <button type="button" class="btn btn-primary">
-          <i class="fa-solid fa-floppy-disk"></i>&nbsp;
-          <span *ngSwitchCase="'createNewSnippetCollection'">Create</span>
-          <span *ngSwitchCase="'snippetTags'">Save</span>
-          <span *ngSwitchCase="'sharedSnippet'">Ok</span>
-          <span *ngSwitchCase="'smgrSettings'">Save</span>
-          <span *ngSwitchDefault>Error</span>
+          <span *ngSwitchCase="'createNewSnippetCollection'"
+            ><i class="fa-solid fa-plus"></i> Create</span
+          >
+          <span *ngSwitchCase="'snippetTags'"
+            ><i class="fa-solid fa-floppy-disk"></i> Save</span
+          >
+          <span *ngSwitchCase="'sharedSnippet'"
+            ><i class="fa-solid fa-check"></i> Ok</span
+          >
+          <span *ngSwitchCase="'smgrSettings'"
+            ><i class="fa-solid fa-floppy-disk"></i> Save</span
+          >
+          <span *ngSwitchDefault
+            ><i class="fa-solid fa-circle-exclamation"></i> Error</span
+          >
         </button>
       </div>
     </div>
