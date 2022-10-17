@@ -91,15 +91,15 @@
         type="text"
         class="form-control"
         placeholder="tag"
-        formControlName="tag"
         aria-describedby="basic-addon1"
+        maxlength="32"
         #inputTag
       />
       <button
         class="btn btn-outline-primary"
         type="button"
         id="addTag"
-        (click)="addTag(inputTag.value)"
+        (click)="processTag(inputTag.value)"
       >
         <i class="fa-solid fa-plus"></i>
       </button>
@@ -120,9 +120,10 @@
 
 <div class="tags my-3">
   <span
-    *ngFor="let tag of collectionTags"
+    *ngFor="let tagName of collectionTagNames"
+    [ngStyle]="{ cursor: 'pointer' }"
     class="badge rounded-pill text-bg-light collections-item-tags me-1"
-    >{{ "#" + tag }}</span
+    >{{ "#" + tagName }}</span
   >
 </div>
 <!-- tags control end-->

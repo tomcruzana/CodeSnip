@@ -1,5 +1,8 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Tag } from 'src/app/models/tag.model';
+import { TagService } from 'src/app/services/tag.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-new-collection-form',
@@ -7,6 +10,9 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   styleUrls: ['./new-collection-form.component.css'],
 })
 export class NewCollectionFormComponent implements OnInit {
+  //models
+  newTag = new Tag();
+
   // reactive form varialble
   createNewSnippetCollectionForm: any;
 
@@ -15,12 +21,7 @@ export class NewCollectionFormComponent implements OnInit {
   snippetCollectionEvent = new EventEmitter<string>();
   snippetCollectionFormJSON: string = '';
 
-  // array varaible that holds the tags from the db
-  tags = new Array<string>();
-
-  collectionTags: Array<string> = [];
-
-  constructor() {}
+  constructor(private tagService: TagService) {}
 
   ngOnInit(): void {
     // initialize reactive form
@@ -53,24 +54,16 @@ export class NewCollectionFormComponent implements OnInit {
     );
   }
 
-  ctr: number = 0;
-  addTag(tagName: string) {
-    const LIMIT = 4;
-    let regex = new RegExp('^[a-zA-Z0-9]+$');
+  // tags service
+  tags: Array<string> = [];
+  collectionTagNames: Array<string> = [];
+  processTag(tagName: string): void {
+    // add and validate tag name
+    this.tagService.addTag(tagName);
 
-    console.log(regex.test(tagName));
-    if (this.ctr != LIMIT) {
-      if (
-        regex.test(tagName) &&
-        !this.collectionTags.includes(tagName) &&
-        !this.tags.includes(tagName)
-      ) {
-        this.collectionTags.push(JSON.stringify(tagName));
-        this.ctr++;
-      }
-    } else {
-      alert('LIMIT REACHED!');
-    }
-    console.log(this.collectionTags);
+    // validated collection tags
+    this.collectionTagNames = this.tagService.collectionTagNames;
+    this.tags = this.tagService.tags;
+    console.log(this.collectionTagNames);
   }
 }
