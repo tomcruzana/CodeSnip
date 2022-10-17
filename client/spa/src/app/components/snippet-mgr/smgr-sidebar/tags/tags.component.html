@@ -1,1 +1,21 @@
-<p>tags works!</p>
+<div class="mb-3">
+  <label for="tagSearch" class="form-label">Search or Add Tags</label>
+  <div class="input-group">
+    <span class="input-group-text" id="basic-addon1">#</span>
+    <input
+      id="tagSearch"
+      type="text"
+      class="form-control"
+      placeholder="tag"
+      aria-describedby="basic-addon1"
+    />
+  </div>
+</div>
+
+<div class="tags my-3">
+  <span
+    *ngFor="let tag of tags"
+    class="badge rounded-pill text-bg-light collections-item-tags me-1"
+    >{{ "#" + tag }}</span
+  >
+</div>
