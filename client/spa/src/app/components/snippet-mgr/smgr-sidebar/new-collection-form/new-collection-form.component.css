@@ -1,0 +1,11 @@
+.list-group-item-hl:hover {
+  color: #fff;
+  cursor: pointer;
+  text-decoration: none;
+  background-color: #0d6efd;
+}
+
+.tag-suggestion {
+  max-height: 150px;
+  overflow-y: scroll;
+}

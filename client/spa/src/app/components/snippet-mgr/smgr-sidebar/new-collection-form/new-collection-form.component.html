@@ -1,1 +1,117 @@
-<p>new-collection-form works!</p>
+<form [formGroup]="createNewSnippetCollectionForm">
+  <div class="mb-3">
+    <label for="title" class="form-label">Title</label>
+    <input
+      formControlName="title"
+      id="title"
+      type="text"
+      class="form-control"
+      name="title"
+      required
+      maxlength="34"
+    />
+    <span
+      class="form-text input-error text-danger"
+      *ngIf="createNewSnippetCollectionForm.controls.title.hasError('required')"
+    >
+      A title is required (max of 34 character).
+    </span>
+    <span
+      class="form-text input-error text-danger"
+      *ngIf="
+        createNewSnippetCollectionForm.controls.title.hasError('maxlength')
+      "
+    >
+      Tile is maximum of 34 characters only.
+    </span>
+  </div>
+
+  <div class="mb-3">
+    <label for="description" class="form-label">Description</label>
+    <textarea
+      formControlName="description"
+      id="description"
+      class="form-control"
+      required
+      maxlength="125"
+    ></textarea>
+    <span
+      class="form-text input-error text-danger"
+      *ngIf="
+        createNewSnippetCollectionForm.controls.description.hasError('required')
+      "
+    >
+      A description is required (max of 125 character).
+    </span>
+    <span
+      class="form-text input-error text-danger"
+      *ngIf="
+        createNewSnippetCollectionForm.controls.description.hasError(
+          'maxlength'
+        )
+      "
+    >
+      Description is maximum of 125 characters only.
+    </span>
+  </div>
+
+  <div class="mb-3">
+    <label for="programmingLanguage" class="form-label"
+      >Programming Language</label
+    >
+    <select
+      class="form-select"
+      formControlName="programmingLanguage"
+      id="programmingLanguage"
+      required
+    >
+      <option value="java" selected>Java</option>
+      <option value="JavaScript">JavaScript</option>
+      <option value="Csharp">C#</option>
+    </select>
+    <span
+      class="form-text input-error text-danger"
+      *ngIf="
+        createNewSnippetCollectionForm.controls.programmingLanguage.hasError(
+          'required'
+        )
+      "
+    >
+      A language is required.
+    </span>
+  </div>
+
+  <div class="mb-3">
+    <label for="tagSearch" class="form-label">Add Tags (max 4)</label>
+    <div class="input-group">
+      <span class="input-group-text" id="basic-addon1">#</span>
+      <input
+        id="tagSearch"
+        type="text"
+        class="form-control"
+        placeholder="tag"
+        formControlName="tag"
+        aria-describedby="basic-addon1"
+      />
+    </div>
+    <!-- tag suggestion start -->
+    <div
+      class="list-group rounded-0 border shadow tag-suggestion position-relative"
+    >
+      <a
+        *ngFor="let tag of tags"
+        class="list-group-item border-0 list-group-item-hl"
+        >{{ "#" + tag }}</a
+      >
+    </div>
+    <!-- tag suggestion end -->
+  </div>
+</form>
+
+<div class="tags my-3">
+  <span
+    *ngFor="let mtag of maxTags"
+    class="badge rounded-pill text-bg-light collections-item-tags me-1"
+    >{{ "#" + mtag }}</span
+  >
+</div>
