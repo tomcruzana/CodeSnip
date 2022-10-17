@@ -7,6 +7,8 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   styleUrls: ['./new-collection-form.component.css'],
 })
 export class NewCollectionFormComponent implements OnInit {
+
+
   createNewSnippetCollectionForm: any;
 
   // array varaible that holds the tags from the db
