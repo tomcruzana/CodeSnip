@@ -3,7 +3,9 @@
   <div class="row m-0">
     <!-- side bar start -->
     <div class="col-2 p-0">
-      <app-smgr-sidebar></app-smgr-sidebar>
+      <app-smgr-sidebar
+        (contendIdEvent)="getContentIdFromSmgrSidebar($event)"
+      ></app-smgr-sidebar>
     </div>
     <!-- side bar end -->
 
@@ -20,3 +22,75 @@
     <!-- snippet editors section end -->
   </div>
 </main>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="staticBackdrop"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="staticBackdropModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5
+          class="modal-title"
+          id="staticBackdropModalLabel"
+          [ngSwitch]="contentId"
+        >
+          <span *ngSwitchCase="'createNewSnippetCollection'"
+            >Create New Snippet Collection</span
+          >
+          <span *ngSwitchCase="'snippetTags'">Manage Tags</span>
+          <span *ngSwitchCase="'sharedSnippet'">Manage Shared Snippets</span>
+          <span *ngSwitchCase="'smgrSettings'">Settings</span>
+          <span *ngSwitchDefault>Error</span>
+        </h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+
+      <!-- contents go here start -->
+      <div class="modal-body" [ngSwitch]="contentId">
+        <div *ngSwitchCase="'createNewSnippetCollection'">
+          <app-new-collection-form></app-new-collection-form>
+        </div>
+        <div *ngSwitchCase="'snippetTags'">
+          <app-tags></app-tags>
+        </div>
+        <div *ngSwitchCase="'sharedSnippet'">
+          <app-shared></app-shared>
+        </div>
+        <div *ngSwitchCase="'smgrSettings'">
+          <app-smgr-settings></app-smgr-settings>
+        </div>
+        <div *ngSwitchDefault>
+          <p class="fs-5">
+            <i class="fa-solid text-danger fa-circle-exclamation"></i> An error
+            occured!
+          </p>
+          <p class="fs-5">Please try again later.</p>
+        </div>
+      </div>
+      <!-- contents go here end -->
+
+      <div class="modal-footer" [ngSwitch]="contentId">
+        <button type="button" class="btn btn-primary">
+          <i class="fa-solid fa-floppy-disk"></i>&nbsp;
+          <span *ngSwitchCase="'createNewSnippetCollection'">Create</span>
+          <span *ngSwitchCase="'snippetTags'">Save</span>
+          <span *ngSwitchCase="'sharedSnippet'">Ok</span>
+          <span *ngSwitchCase="'smgrSettings'">Save</span>
+          <span *ngSwitchDefault>Error</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

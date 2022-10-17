@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { JumbotronComponent } from './components/jumbotron/jumbotron.component';
@@ -30,9 +29,6 @@ import { EditprofileFormComponent } from './components/profile/editprofile-form/
 import { ChangeplanFormComponent } from './components/profile/changeplan-form/changeplan-form.component';
 import { ChangepaymentFormComponent } from './components/profile/changepayment-form/changepayment-form.component';
 import { ScrollToTopComponent } from './components/scroll-to-top/scroll-to-top.component';
-import { TagsComponent } from './components/snippet-mgr/smgr-sidebar/tags/tags.component';
-import { SharedComponent } from './components/snippet-mgr/smgr-sidebar/shared/shared.component';
-import { SnippetMgrSettingsComponent } from './components/snippet-mgr/smgr-sidebar/snippet-mgr-settings/snippet-mgr-settings.component';
 import {
   HttpClientModule,
   HttpClientXsrfModule,
@@ -41,6 +37,10 @@ import {
 import { UserAuthGuard } from './routeguards/userauth.guard';
 import { AjaxhttpInterceptor } from './interceptors/ajaxhttpinterceptor';
 import { AppRoutingModule } from './app-routing.module';
+import { NewCollectionFormComponent } from './components/snippet-mgr/smgr-sidebar/new-collection-form/new-collection-form.component';
+import { TagsComponent } from './components/snippet-mgr/smgr-sidebar/tags/tags.component';
+import { SharedComponent } from './components/snippet-mgr/smgr-sidebar/shared/shared.component';
+import { SmgrSettingsComponent } from './components/snippet-mgr/smgr-sidebar/smgr-settings/smgr-settings.component';
 
 @NgModule({
   declarations: [
@@ -68,9 +68,10 @@ import { AppRoutingModule } from './app-routing.module';
     ChangeplanFormComponent,
     ChangepaymentFormComponent,
     ScrollToTopComponent,
+    NewCollectionFormComponent,
     TagsComponent,
     SharedComponent,
-    SnippetMgrSettingsComponent,
+    SmgrSettingsComponent,
   ],
   imports: [
     BrowserModule,

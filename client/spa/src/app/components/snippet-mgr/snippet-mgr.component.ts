@@ -9,4 +9,11 @@ import { User } from 'src/app/models/user.model';
 export class SnippetMgrComponent implements OnInit {
   constructor() {}
   ngOnInit(): void {}
+
+  contentId: string = 'none';
+
+  // child to parent event emitter receiver
+  getContentIdFromSmgrSidebar(id: string) {
+    this.contentId = id;
+  }
 }
