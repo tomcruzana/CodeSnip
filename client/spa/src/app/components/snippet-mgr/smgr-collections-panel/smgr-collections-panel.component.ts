@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -11,11 +11,23 @@ export class SmgrCollectionsPanelComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  @Output()
+  contendIdEvent = new EventEmitter<string>();
+  contentId: string = 'none';
+
   now = new Date().toLocaleDateString();
 
   tags: string[] = ['java', 'spring boot', 'hibernate', 'custom tag'];
 
   tempTotallist: string[] = new Array(8);
+
+  // load dynamic model content base on contentId
+  loadModalOnClick(id: string): void {
+    this.contentId = id;
+
+    // use event emitter to pass data to pare snippetSmgr component
+    this.contendIdEvent.emit(this.contentId);
+  }
 
   deleteSnippetCollection(): void {
     Swal.fire({
