@@ -56,6 +56,7 @@
       <button
         type="button"
         class="btn btn-sm collections-controls-btn add-snippet-collection-control text-primary"
+        (click)="createNewSnippet()"
       >
         <i class="fa-solid fa-circle-plus"></i>
       </button>
@@ -75,6 +76,7 @@
           <button
             type="button"
             class="btn btn-sm ngx-codejar-control share-control"
+            (click)="editTitle()"
           >
             <i class="fa-solid fa-pen-to-square"></i>
           </button>
@@ -87,29 +89,40 @@
           <button
             type="button"
             class="btn btn-sm ngx-codejar-control share-control"
+            (click)="shareSnippet()"
           >
             <i class="fa-solid fa-share"></i>
           </button>
           <button
             type="button"
             class="btn btn-sm mx-2 ngx-codejar-control copy-control"
+            (click)="copyCode()"
           >
             <i class="fa-solid fa-copy"></i>
           </button>
           <button
             type="button"
             class="btn btn-sm ngx-codejar-control trash-control"
+            (click)="deleteSnippet()"
           >
             <i class="fa-solid fa-trash"></i>
           </button>
         </div>
       </div>
-
       <ngx-codejar
         [highlightMethod]="highlightMethod"
         [(code)]="code"
         [showLineNumbers]="true"
       ></ngx-codejar>
+      <!-- <div class="py-0 ps-1 m-0 save-notification">
+        <button
+          type="button"
+          class="btn btn-sm ngx-codejar-control auto-save-control"
+        >
+          <i class="fa-solid fa-floppy-disk"></i>
+        </button>
+        <span class="saving-text small"> saving changes . . .</span>
+      </div> -->
     </div>
   </div>
   <!-- snippet code editors end-->
