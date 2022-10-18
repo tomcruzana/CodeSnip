@@ -49,6 +49,7 @@
           <span *ngSwitchCase="'snippetTags'">Manage Tags</span>
           <span *ngSwitchCase="'sharedSnippet'">Manage Shared Snippets</span>
           <span *ngSwitchCase="'smgrSettings'">Settings</span>
+          <span *ngSwitchCase="'snipCollectionOptions'">Update Collection Snippet</span>
           <span *ngSwitchDefault>Error</span>
         </h5>
         <button
@@ -74,6 +75,9 @@
         </div>
         <div *ngSwitchCase="'smgrSettings'">
           <app-smgr-settings></app-smgr-settings>
+        </div>
+        <div *ngSwitchCase="'snipCollectionOptions'">
+          <app-collection-options></app-collection-options>
         </div>
         <div *ngSwitchDefault>
           <p class="fs-5">
@@ -102,6 +106,9 @@
           >
           <span *ngSwitchCase="'smgrSettings'"
             ><i class="fa-solid fa-floppy-disk"></i> Save</span
+          >
+          <span *ngSwitchCase="'snipCollectionOptions'"
+            ><i class="fa-solid fa-floppy-disk"></i> Update</span
           >
           <span *ngSwitchDefault
             ><i class="fa-solid fa-circle-exclamation"></i> Error</span

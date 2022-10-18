@@ -80,6 +80,8 @@ export class SnippetMgrComponent implements OnInit {
       this.snippetCollectionModel.programmingLanguage = 'java';
     } else if (this.contentId == 'smgrSettings') {
       alert('smgrSettings');
+    } else if (this.contentId == 'snipCollectionOptions') {
+      alert('snipCollectionOptions');
     } else {
       alert('error');
     }
