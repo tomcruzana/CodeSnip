@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { SnippetCollection } from 'src/app/models/snippet-collection.model';
 import { User } from 'src/app/models/user.model';
 import { DashboardService } from 'src/app/services/dashboard.service';
@@ -12,7 +13,8 @@ import { DashboardService } from 'src/app/services/dashboard.service';
 export class SnippetMgrComponent implements OnInit {
   constructor(
     private dashboardService: DashboardService,
-    private http: HttpClient
+    private http: HttpClient,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -23,7 +25,7 @@ export class SnippetMgrComponent implements OnInit {
   }
 
   //models
-  snippetCollectionModel = new SnippetCollection("adasdasd","lorasdsadas","angular");
+  snippetCollectionModel = new SnippetCollection();
   user = new User();
 
   contentId: string = 'none';
@@ -46,14 +48,20 @@ export class SnippetMgrComponent implements OnInit {
     } else if (this.contentId == 'snippetTags') {
       alert('snippetTags');
     } else if (this.contentId == 'sharedSnippet') {
-      this.dashboardService.createSnippetCollection(this.snippetCollectionModel).subscribe({
-        next: (data) => {
-          console.log(data.body);
-        },
-        error: (error) => {
-          console.log(error);
-        },
-      });
+      this.snippetCollectionModel.title = 'test test test';
+      this.snippetCollectionModel.description = 'asdasdasdasdasd';
+      this.snippetCollectionModel.programmingLanguage = 'java';
+      this.dashboardService
+        .createSnippetCollection(this.snippetCollectionModel)
+        .subscribe({
+          next: (data) => {
+            console.log(data.body);
+            window.location.reload();
+          },
+          error: (error) => {
+            console.log(error);
+          },
+        });
     } else if (this.contentId == 'smgrSettings') {
       alert('smgrSettings');
     } else {
