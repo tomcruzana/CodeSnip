@@ -18,7 +18,7 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private UserRepository userRepository;
-	
+
 	@Autowired
 	private AuthorityRepository authorityRepository;
 
@@ -33,11 +33,9 @@ public class UserServiceImpl implements UserService {
 		// hash the password using bcrypt!
 		String hashedPassword = passwordEncoder.encode(userDto.getPassword());
 		userDto.setPassword(hashedPassword);
-		// log
 
 		// register current date
 		userDto.setDateCreated(new Date(System.currentTimeMillis()));
-		// log
 
 		// transfer customer data
 		newUser.setUsername(userDto.getUsername());
@@ -46,14 +44,12 @@ public class UserServiceImpl implements UserService {
 		newUser.setDateCreated(userDto.getDateCreated());
 		newUser.setEnabled(true);
 		userRepository.save(newUser);
-		// log
 
 		// initialize and save default role
 		Authority authority = new Authority();
 		authority.setName("ROLE_FREE_USER");
 		authority.setUser(newUser);
 		authorityRepository.save(authority);
-		// log
 
 		return userDto;
 	}
@@ -66,7 +62,7 @@ public class UserServiceImpl implements UserService {
 		if (users.size() > 0) {
 			// convert and return customer to customerDto type
 			userDto = new UserDto(users.get(0));
-			// log
+
 			return userDto;
 		}
 

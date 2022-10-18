@@ -5,6 +5,8 @@ import java.util.Set;
 
 import com.codesnip.app.entity.Authority;
 import com.codesnip.app.entity.User;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class UserDto {
 	private int id;
@@ -17,6 +19,7 @@ public class UserDto {
 
 	private String email;
 
+	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	private String password;
 
 	private boolean isEnabled;
@@ -29,6 +32,7 @@ public class UserDto {
 
 	private String image;
 
+	@JsonIgnore
 	private Set<Authority> authorities;
 
 	public UserDto() {

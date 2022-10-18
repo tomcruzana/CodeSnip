@@ -1,8 +1,10 @@
 package com.codesnip.app.entity;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -37,6 +39,7 @@ public class User {
 	@Column(name = "email")
 	private String email;
 
+	// dont include in serialization
 	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	@Column(name = "password")
 	private String password;
@@ -61,6 +64,10 @@ public class User {
 	@JsonIgnore
 	@OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
 	private Set<Authority> authorities;
+
+	@JsonIgnore
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<SnippetCollection> snippetCollection;
 
 	public User() {
 
@@ -160,6 +167,14 @@ public class User {
 
 	public void setAuthorities(Set<Authority> authorities) {
 		this.authorities = authorities;
+	}
+
+	public List<SnippetCollection> getSnippetCollection() {
+		return snippetCollection;
+	}
+
+	public void setSnippetCollection(List<SnippetCollection> snippetCollection) {
+		this.snippetCollection = snippetCollection;
 	}
 
 }
