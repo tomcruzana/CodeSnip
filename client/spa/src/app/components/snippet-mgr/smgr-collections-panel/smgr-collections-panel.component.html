@@ -95,9 +95,11 @@
             </button>
 
             <button
+              #deleteBtn
+              [id]="snippetCollection.id"
               type="button"
               class="btn btn-sm collections-controls-btn control-trash"
-              (click)="deleteSnippetCollection()"
+              (click)="deleteSnippetCollection(deleteBtn.id)"
             >
               <i class="delete-collections-btn fa-solid fa-trash"></i>
             </button>

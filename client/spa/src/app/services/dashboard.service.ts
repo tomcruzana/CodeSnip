@@ -22,7 +22,15 @@ export class DashboardService {
     return this.http.post(
       environment.rooturl + '/snippetcollection',
       snippetCollection,
-      { observe: 'response' }
+      { observe: 'response', withCredentials: true }
     );
+  }
+
+  // DELETE
+  deleteSnippetCollection(id: number) {
+    return this.http.delete(environment.rooturl + '/snippetcollection/' + id, {
+      observe: 'response',
+      withCredentials: true,
+    });
   }
 }

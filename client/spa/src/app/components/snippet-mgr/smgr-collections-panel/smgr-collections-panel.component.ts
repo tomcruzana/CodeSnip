@@ -17,7 +17,7 @@ export class SmgrCollectionsPanelComponent implements OnInit {
     // get all the snippet collections
     this.dashboardService.getAllSnippetCollection().subscribe({
       next: (data) => {
-        this.snippetCollections = <any> data.body;
+        this.snippetCollections = <any>data.body;
       },
       error: (error) => {
         console.log(error);
@@ -39,7 +39,7 @@ export class SmgrCollectionsPanelComponent implements OnInit {
     this.contendIdEvent.emit(this.contentId);
   }
 
-  deleteSnippetCollection(): void {
+  deleteSnippetCollection(id: string): void {
     Swal.fire({
       title: 'Are you sure you want to delete this collection?',
       icon: 'warning',
@@ -47,11 +47,30 @@ export class SmgrCollectionsPanelComponent implements OnInit {
       confirmButtonText: 'Delete',
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire({
-          title: 'Deleted',
-          icon: 'error',
-          showConfirmButton: false,
-          timer: 1000,
+        let res;
+        // delete snippet collection
+        this.dashboardService.deleteSnippetCollection(Number(id)).subscribe({
+          next: (data) => {
+            res = <any>data.body;
+            if (res == 'delete success') {
+              Swal.fire({
+                title: 'Deleted',
+                icon: 'error',
+                showConfirmButton: false,
+                timer: 1000,
+              });
+              window.location.reload();
+            }
+          },
+          error: (error) => {
+            console.log(error);
+            Swal.fire({
+              title: 'Deletion failed',
+              text: "Something went wrong. The resource doesn't exist.",
+              icon: 'error',
+              showConfirmButton: true,
+            });
+          },
         });
       }
     });
