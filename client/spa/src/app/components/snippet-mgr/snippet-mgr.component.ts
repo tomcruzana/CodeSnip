@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { SnippetCollection } from 'src/app/models/snippet-collection.model';
 import { User } from 'src/app/models/user.model';
 import { DashboardService } from 'src/app/services/dashboard.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-snippet-mgr',
@@ -36,32 +37,47 @@ export class SnippetMgrComponent implements OnInit {
     this.contentId = id;
   }
 
-  getsnippetCollectionFormJSON(json: string) {
-    this.snippetCollectionFormJSON = json;
-    console.log('log: from parent component snippet-mgr : ' + json);
+  getsnippetCollectionFormJSON(newSnippetCollection: SnippetCollection) {
+    // this.snippetCollectionFormJSON = json;
+    this.snippetCollectionModel = newSnippetCollection;
+    console.log(
+      'log: from parent component snippet-mgr : ' + newSnippetCollection
+    );
   }
 
   // process request btn
   processRequest(): void {
     if (this.contentId == 'createNewSnippetCollection') {
-      alert('new collection');
+      // POST create a snippet collection
+      this.dashboardService
+        .createSnippetCollection(this.snippetCollectionModel)
+        .subscribe({
+          next: (data) => {
+            if (data.body == 'create success') {
+              Swal.fire({
+                title: 'Snippet collection created',
+                icon: 'success',
+                showConfirmButton: false,
+                timer: 1000,
+              });
+              window.location.reload();
+            }
+          },
+          error: (error) => {
+            Swal.fire({
+              title: 'Oops... something went wrong',
+              icon: 'error',
+              showConfirmButton: false,
+              timer: 1000,
+            });
+          },
+        });
     } else if (this.contentId == 'snippetTags') {
       alert('snippetTags');
     } else if (this.contentId == 'sharedSnippet') {
       this.snippetCollectionModel.title = 'test test test';
       this.snippetCollectionModel.description = 'asdasdasdasdasd';
       this.snippetCollectionModel.programmingLanguage = 'java';
-      this.dashboardService
-        .createSnippetCollection(this.snippetCollectionModel)
-        .subscribe({
-          next: (data) => {
-            console.log(data.body);
-            window.location.reload();
-          },
-          error: (error) => {
-            console.log(error);
-          },
-        });
     } else if (this.contentId == 'smgrSettings') {
       alert('smgrSettings');
     } else {
