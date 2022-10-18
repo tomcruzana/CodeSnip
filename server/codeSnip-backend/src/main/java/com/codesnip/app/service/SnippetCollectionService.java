@@ -11,6 +11,9 @@ public interface SnippetCollectionService {
 	public List<SnippetCollectionDto> readAll() throws CodeSnipException;
 
 	public void createSnippetCollection(SnippetCollectionDto snippetCollectionDto) throws CodeSnipException;
-	
+
 	public void deleteById(int id) throws CodeSnipException;
+
+	public void updateById(int id, String title, String description, String programmingLanguage)
+			throws CodeSnipException;
 }

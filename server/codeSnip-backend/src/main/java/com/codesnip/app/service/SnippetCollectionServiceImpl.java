@@ -74,6 +74,27 @@ public class SnippetCollectionServiceImpl implements SnippetCollectionService {
 	@Override
 	public void deleteById(int id) throws CodeSnipException {
 		snippetCollectionRepository.deleteById(id);
+
+	}
+
+	@Override
+	public void updateById(int id, String title, String description, String programmingLanguage)
+			throws CodeSnipException {
+		
+		
+		// find the snippet collection using its id
+		Optional<SnippetCollection> snippetCollectionOptional = snippetCollectionRepository.findById(id);
+
+		// return result set
+		SnippetCollection snippetCollection = snippetCollectionOptional
+				.orElseThrow(() -> new CodeSnipException(environment.getProperty("error.generic")));
+
+		// update fields
+		snippetCollection.setTitle(title);
+		snippetCollection.setDescription(description);
+		snippetCollection.setProgrammingLanguage(programmingLanguage);
+		
+		snippetCollectionRepository.save(snippetCollection);
 	}
 
 }

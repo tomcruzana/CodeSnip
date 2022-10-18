@@ -8,9 +8,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.codesnip.app.dto.SnippetCollectionDto;
@@ -25,10 +27,13 @@ public class SnippetCollectionController {
 	@Autowired
 	private SnippetCollectionService snippetCollectionService;
 
-	@GetMapping("/snippetcollection/{id}")
-	public ResponseEntity<SnippetCollectionDto> getSnippetCollections(@PathVariable int id) throws Exception {
-		SnippetCollectionDto snippetCollectionDto = snippetCollectionService.readById(id);
-		return new ResponseEntity<>(snippetCollectionDto, HttpStatus.OK);
+	@PatchMapping("/snippetcollection")
+	public ResponseEntity<String> updateSnippetCollection(@RequestParam int id, @RequestParam String title,
+			@RequestParam String description, @RequestParam String programmingLanguage) throws Exception {
+		// update entity
+		snippetCollectionService.updateById(id, title, description, programmingLanguage);
+		String updateSuccessMessage = environment.getProperty("api.update.success");
+		return new ResponseEntity<>(updateSuccessMessage, HttpStatus.OK);
 	}
 
 	@GetMapping("/snippetcollection")
@@ -44,7 +49,7 @@ public class SnippetCollectionController {
 		String createSuccessMessage = environment.getProperty("api.create.success");
 		return new ResponseEntity<>(createSuccessMessage, HttpStatus.CREATED);
 	}
-	
+
 	@DeleteMapping("/snippetcollection/{id}")
 	public ResponseEntity<String> daletSnippetCollection(@PathVariable int id) throws Exception {
 		snippetCollectionService.deleteById(id);
