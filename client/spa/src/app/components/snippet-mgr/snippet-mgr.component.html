@@ -64,7 +64,7 @@
       <div class="modal-body" [ngSwitch]="contentId">
         <div *ngSwitchCase="'createNewSnippetCollection'">
           <app-new-collection-form
-            (snippetCollectionEvent)="getsnippetCollectionFormJSON($event)"
+            (snippetCollectionEvent)="getsnippetCollectionForm($event)"
           ></app-new-collection-form>
         </div>
         <div *ngSwitchCase="'snippetTags'">

@@ -30,15 +30,14 @@ export class SnippetMgrComponent implements OnInit {
   user = new User();
 
   contentId: string = 'none';
-  snippetCollectionFormJSON: String = '';
 
   // children to parent event emitter receivers
   getContentIdFromSmgrSidebar(id: string) {
     this.contentId = id;
   }
 
-  getsnippetCollectionFormJSON(newSnippetCollection: SnippetCollection) {
-    // this.snippetCollectionFormJSON = json;
+  // event handler. updates the values of the snippetCollection modal in real-time
+  getsnippetCollectionForm(newSnippetCollection: SnippetCollection) {
     this.snippetCollectionModel = newSnippetCollection;
     console.log(
       'log: from parent component snippet-mgr : ' + newSnippetCollection

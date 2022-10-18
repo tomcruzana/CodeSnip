@@ -26,6 +26,29 @@ export class DashboardService {
     );
   }
 
+  // POST
+  updateSnippetCollection(
+    id: number,
+    title: string,
+    description: string,
+    programmingLanguage: string
+  ) {
+    return this.http.post(
+      environment.rooturl +
+        '/snippetcollection' +
+        '?id=' +
+        id +
+        '&description=' +
+        description +
+        '&programmingLanguage=' +
+        programmingLanguage,
+      {
+        observe: 'response',
+        withCredentials: true,
+      }
+    );
+  }
+
   // DELETE
   deleteSnippetCollection(id: number) {
     return this.http.delete(environment.rooturl + '/snippetcollection/' + id, {
