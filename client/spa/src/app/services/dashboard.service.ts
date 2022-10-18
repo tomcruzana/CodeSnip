@@ -9,6 +9,15 @@ import { SnippetCollection } from '../models/snippet-collection.model';
 export class DashboardService {
   constructor(private http: HttpClient) {}
 
+  // GET
+  getAllSnippetCollection() {
+    return this.http.get(environment.rooturl + '/snippetcollection', {
+      observe: 'response',
+      withCredentials: true,
+    });
+  }
+
+  // POST
   createSnippetCollection(snippetCollection: SnippetCollection) {
     return this.http.post(
       environment.rooturl + '/snippetcollection',

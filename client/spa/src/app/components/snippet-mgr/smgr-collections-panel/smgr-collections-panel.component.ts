@@ -1,4 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { SnippetCollection } from 'src/app/models/snippet-collection.model';
+import { DashboardService } from 'src/app/services/dashboard.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -7,19 +9,27 @@ import Swal from 'sweetalert2';
   styleUrls: ['./smgr-collections-panel.component.css'],
 })
 export class SmgrCollectionsPanelComponent implements OnInit {
-  constructor() {}
+  snippetCollections = new Array<SnippetCollection>();
 
-  ngOnInit(): void {}
+  constructor(private dashboardService: DashboardService) {}
+
+  ngOnInit(): void {
+    // get all the snippet collections
+    this.dashboardService.getAllSnippetCollection().subscribe({
+      next: (data) => {
+        this.snippetCollections = <any> data.body;
+      },
+      error: (error) => {
+        console.log(error);
+      },
+    });
+  }
 
   @Output()
   contendIdEvent = new EventEmitter<string>();
   contentId: string = 'none';
 
-  now = new Date().toLocaleDateString();
-
   tags: string[] = ['java', 'spring boot', 'hibernate', 'custom tag'];
-
-  tempTotallist: string[] = new Array(8);
 
   // load dynamic model content base on contentId
   loadModalOnClick(id: string): void {
