@@ -1,9 +1,12 @@
 package com.codesnip.app.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,12 +31,24 @@ public class SnippetCollectionController {
 		return new ResponseEntity<>(snippetCollectionDto, HttpStatus.OK);
 	}
 
+	@GetMapping("/snippetcollection")
+	public ResponseEntity<List<SnippetCollectionDto>> getAllSnippetCollections() throws Exception {
+		List<SnippetCollectionDto> snippetCollectionDtos = snippetCollectionService.readAll();
+		return new ResponseEntity<>(snippetCollectionDtos, HttpStatus.OK);
+	}
+
 	@PostMapping("/snippetcollection")
 	public ResponseEntity<String> createSnippetCollection(@RequestBody SnippetCollectionDto snippetCollectionDto)
 			throws Exception {
 		snippetCollectionService.createSnippetCollection(snippetCollectionDto);
-		String successMessage = environment.getProperty("api.create.success");
-		return new ResponseEntity<>(successMessage, HttpStatus.CREATED);
+		String createSuccessMessage = environment.getProperty("api.create.success");
+		return new ResponseEntity<>(createSuccessMessage, HttpStatus.CREATED);
 	}
-
+	
+	@DeleteMapping("/snippetcollection/{id}")
+	public ResponseEntity<String> daletSnippetCollection(@PathVariable int id) throws Exception {
+		snippetCollectionService.deleteById(id);
+		String deleteSuccessMessage = environment.getProperty("api.delete.success");
+		return new ResponseEntity<>(deleteSuccessMessage, HttpStatus.OK);
+	}
 }

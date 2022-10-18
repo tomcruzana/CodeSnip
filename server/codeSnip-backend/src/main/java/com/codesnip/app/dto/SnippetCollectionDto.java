@@ -23,6 +23,8 @@ public class SnippetCollectionDto {
 
 	private Date dateCreated;
 
+	private String link;
+
 	@JsonIgnore
 	private User user;
 
@@ -39,6 +41,7 @@ public class SnippetCollectionDto {
 		this.description = snippetCollection.getDescription();
 		this.programmingLanguage = snippetCollection.getProgrammingLanguage();
 		this.dateCreated = snippetCollection.getDateCreated();
+		this.link = snippetCollection.getLink();
 		this.user = snippetCollection.getUser();
 		this.snippets = snippetCollection.getSnippets();
 	}
@@ -89,6 +92,14 @@ public class SnippetCollectionDto {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public String getLink() {
+		return link;
+	}
+
+	public void setLink(String link) {
+		this.link = link;
 	}
 
 	public List<Snippet> getSnippets() {

@@ -38,10 +38,10 @@ public class SecurityConfig {
 				return config;
 			}
 
-		}).and().csrf().ignoringAntMatchers("/register", "/snippetcollection")
+		}).and().csrf().ignoringAntMatchers("/register", "/snippetcollection/**")
 				.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
 				.and().authorizeRequests()
-				.antMatchers("/snippetcollection").hasAnyRole(Role.FREE_USER.name(), Role.PRO_USER.name())
+				.antMatchers("/snippetcollection/**").hasAnyRole(Role.FREE_USER.name(), Role.PRO_USER.name())
 				.antMatchers("/profile").hasAnyRole(Role.FREE_USER.name(), Role.PRO_USER.name())
 				.antMatchers("/tags").hasAnyRole(Role.FREE_USER.name(), Role.PRO_USER.name())
 				.antMatchers("/shared").hasRole(Role.PRO_USER.name())

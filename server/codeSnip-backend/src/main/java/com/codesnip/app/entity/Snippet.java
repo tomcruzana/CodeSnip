@@ -34,8 +34,6 @@ public class Snippet {
 	@Column(name = "date_created")
 	private Date dateCreated;
 
-	private String link;
-
 	@Lob
 	private String code;
 
@@ -92,14 +90,6 @@ public class Snippet {
 
 	public void setCode(String code) {
 		this.code = code;
-	}
-
-	public String getLink() {
-		return link;
-	}
-
-	public void setLink(String link) {
-		this.link = link;
 	}
 
 	public SnippetCollection getSnippetCollection() {

@@ -1,6 +1,8 @@
 package com.codesnip.app.service;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,10 +48,32 @@ public class SnippetCollectionServiceImpl implements SnippetCollectionService {
 
 //		snippetCollection.setSnippets(List<Snippet>);
 		User user = new User();
-		user.setId(1);
+		user.setId(1); // get from session
 		snippetCollection.setUser(user); // must be same as user id
 
 		snippetCollectionRepository.save(snippetCollection);
+	}
+
+	@Override
+	public List<SnippetCollectionDto> readAll() throws CodeSnipException {
+		List<SnippetCollection> snippetCollectionList = snippetCollectionRepository.findAll();
+		if (snippetCollectionList.isEmpty()) {
+			throw new CodeSnipException(environment.getProperty("info.warn.empty"));
+		}
+
+		// convert to dto
+		List<SnippetCollectionDto> snippetCollectionDtoList = new ArrayList<>();
+		snippetCollectionList.forEach(snippetCollection -> {
+			SnippetCollectionDto snippetCollectionDto = new SnippetCollectionDto(snippetCollection);
+			snippetCollectionDtoList.add(snippetCollectionDto);
+		});
+
+		return snippetCollectionDtoList;
+	}
+
+	@Override
+	public void deleteById(int id) throws CodeSnipException {
+		snippetCollectionRepository.deleteById(id);
 	}
 
 }

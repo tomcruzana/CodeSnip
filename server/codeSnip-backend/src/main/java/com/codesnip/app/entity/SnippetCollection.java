@@ -37,6 +37,8 @@ public class SnippetCollection {
 	@Column(name = "date_created")
 	private Date dateCreated;
 
+	private String link;
+
 	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "user_id")
@@ -87,6 +89,14 @@ public class SnippetCollection {
 
 	public void setDateCreated(Date dateCreated) {
 		this.dateCreated = dateCreated;
+	}
+
+	public String getLink() {
+		return link;
+	}
+
+	public void setLink(String link) {
+		this.link = link;
 	}
 
 	public User getUser() {
