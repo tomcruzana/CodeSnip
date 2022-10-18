@@ -4,7 +4,7 @@
     <!-- side bar start -->
     <div class="col-2 p-0">
       <app-smgr-sidebar
-        (contendIdEvent)="getContentIdFromSmgrSidebar($event)"
+        (contendIdEvent)="getContentId($event)"
       ></app-smgr-sidebar>
     </div>
     <!-- side bar end -->
@@ -12,7 +12,7 @@
     <!-- category list group start -->
     <div class="col-4 p-0">
       <app-smgr-collections-panel
-        (contendIdEvent)="getContentIdFromSmgrSidebar($event)"
+        (contendIdEvent)="getContentId($event)"
       ></app-smgr-collections-panel>
     </div>
     <!-- category list group  end -->
@@ -49,7 +49,6 @@
           <span *ngSwitchCase="'snippetTags'">Manage Tags</span>
           <span *ngSwitchCase="'sharedSnippet'">Manage Shared Snippets</span>
           <span *ngSwitchCase="'smgrSettings'">Settings</span>
-          <span *ngSwitchCase="'snipCollectionOptions'">Update Collection Snippet</span>
           <span *ngSwitchDefault>Error</span>
         </h5>
         <button
@@ -75,9 +74,6 @@
         </div>
         <div *ngSwitchCase="'smgrSettings'">
           <app-smgr-settings></app-smgr-settings>
-        </div>
-        <div *ngSwitchCase="'snipCollectionOptions'">
-          <app-collection-options></app-collection-options>
         </div>
         <div *ngSwitchDefault>
           <p class="fs-5">
@@ -106,9 +102,6 @@
           >
           <span *ngSwitchCase="'smgrSettings'"
             ><i class="fa-solid fa-floppy-disk"></i> Save</span
-          >
-          <span *ngSwitchCase="'snipCollectionOptions'"
-            ><i class="fa-solid fa-floppy-disk"></i> Update</span
           >
           <span *ngSwitchDefault
             ><i class="fa-solid fa-circle-exclamation"></i> Error</span

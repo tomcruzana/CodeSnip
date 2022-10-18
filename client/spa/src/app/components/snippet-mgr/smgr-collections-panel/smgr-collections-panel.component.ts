@@ -34,7 +34,6 @@ export class SmgrCollectionsPanelComponent implements OnInit {
   // load dynamic model content base on contentId
   loadModalOnClick(id: string): void {
     this.contentId = id;
-
     // use event emitter to pass data to pare snippetSmgr component
     this.contendIdEvent.emit(this.contentId);
   }

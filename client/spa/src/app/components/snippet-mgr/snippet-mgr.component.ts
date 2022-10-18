@@ -14,8 +14,6 @@ import Swal from 'sweetalert2';
 export class SnippetMgrComponent implements OnInit {
   constructor(
     private dashboardService: DashboardService,
-    private http: HttpClient,
-    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -32,7 +30,7 @@ export class SnippetMgrComponent implements OnInit {
   contentId: string = 'none';
 
   // children to parent event emitter receivers
-  getContentIdFromSmgrSidebar(id: string) {
+  getContentId(id: string) {
     this.contentId = id;
   }
 
@@ -74,13 +72,9 @@ export class SnippetMgrComponent implements OnInit {
     } else if (this.contentId == 'snippetTags') {
       alert('snippetTags');
     } else if (this.contentId == 'sharedSnippet') {
-      this.snippetCollectionModel.title = 'test test test';
-      this.snippetCollectionModel.description = 'asdasdasdasdasd';
-      this.snippetCollectionModel.programmingLanguage = 'java';
+      alert('sharedSnippet');
     } else if (this.contentId == 'smgrSettings') {
       alert('smgrSettings');
-    } else if (this.contentId == 'snipCollectionOptions') {
-      alert('snipCollectionOptions');
     } else {
       alert('error');
     }
