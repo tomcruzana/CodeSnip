@@ -32,7 +32,7 @@ public class SnippetCollectionController {
 	public ResponseEntity<String> createSnippetCollection(@RequestBody SnippetCollectionDto snippetCollectionDto)
 			throws Exception {
 		snippetCollectionService.createSnippetCollection(snippetCollectionDto);
-		String successMessage = environment.getProperty("API.INSERT_SUCCESS");
+		String successMessage = environment.getProperty("api.create.success");
 		return new ResponseEntity<>(successMessage, HttpStatus.CREATED);
 	}
 

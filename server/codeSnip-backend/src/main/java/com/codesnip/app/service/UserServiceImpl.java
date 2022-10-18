@@ -62,6 +62,7 @@ public class UserServiceImpl implements UserService {
 		if (users.size() > 0) {
 			// convert and return customer to customerDto type
 			userDto = new UserDto(users.get(0));
+			userDto.setPassword("password123");
 
 			return userDto;
 		}
