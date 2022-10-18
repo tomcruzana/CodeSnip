@@ -6,6 +6,6 @@ export class SnippetCollection {
   constructor(title?: string, description?: string, programmingLanguage?: string) {
     this.title = title || '';
     this.description = description || '';
-    this.programmingLanguage = description || '';
+    this.programmingLanguage = programmingLanguage || '';
   }
 }

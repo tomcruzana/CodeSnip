@@ -9,10 +9,10 @@ import { SnippetCollection } from '../models/snippet-collection.model';
 export class DashboardService {
   constructor(private http: HttpClient) {}
 
-  createSnippetCollection(snippetcollection: SnippetCollection) {
+  createSnippetCollection(snippetCollection: SnippetCollection) {
     return this.http.post(
       environment.rooturl + '/snippetcollection',
-      snippetcollection,
+      snippetCollection,
       { observe: 'response' }
     );
   }
