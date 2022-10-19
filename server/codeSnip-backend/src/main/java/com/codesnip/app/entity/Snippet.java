@@ -14,6 +14,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "snippet")
 public class Snippet {
@@ -36,7 +38,8 @@ public class Snippet {
 
 	@Lob
 	private String code;
-
+	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "snippet_collection_id")
 	private SnippetCollection snippetCollection;

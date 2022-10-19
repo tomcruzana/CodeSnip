@@ -9,5 +9,5 @@ import com.codesnip.app.entity.User;
 
 @Repository
 public interface UserRepository extends CrudRepository<User, Integer> {
-	List<User> findByEmail(String email);
+	public List<User> findByEmail(String email);
 }
