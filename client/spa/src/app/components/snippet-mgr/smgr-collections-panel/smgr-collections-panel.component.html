@@ -86,7 +86,7 @@
           </div>
           <span class="collection-controls">
             <button
-              [id]="'update'+snippetCollection.id"
+              [id]="'update' + snippetCollection.id"
               type="button"
               class="btn btn-sm collections-controls-btn control-options"
               data-bs-toggle="modal"
@@ -225,7 +225,7 @@
               id="programmingLanguage"
               required
             >
-              <option value="java" selected>Java</option>
+              <option value="java">Java</option>
               <option value="JavaScript">JavaScript</option>
               <option value="Csharp">C#</option>
             </select>
@@ -246,7 +246,7 @@
 
       <div class="modal-footer">
         <button
-        id="1123"
+          id="1123"
           type="button"
           class="btn btn-primary"
           (click)="updateSnippetCollection()"

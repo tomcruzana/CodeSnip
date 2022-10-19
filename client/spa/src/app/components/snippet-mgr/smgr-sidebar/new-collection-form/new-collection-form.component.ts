@@ -30,11 +30,11 @@ export class NewCollectionFormComponent implements OnInit {
         validators: [Validators.required, Validators.maxLength(34)],
         updateOn: 'change',
       }),
-      description: new FormControl('', {
+      description: new FormControl('java', {
         validators: [Validators.required, Validators.maxLength(125)],
         updateOn: 'change',
       }),
-      programmingLanguage: new FormControl('java', {
+      programmingLanguage: new FormControl( {
         validators: [Validators.required],
         updateOn: 'change',
       }),

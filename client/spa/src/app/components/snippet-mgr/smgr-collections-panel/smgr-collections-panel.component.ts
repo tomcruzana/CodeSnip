@@ -44,7 +44,7 @@ export class SmgrCollectionsPanelComponent implements OnInit {
         validators: [Validators.required, Validators.maxLength(125)],
         updateOn: 'change',
       }),
-      programmingLanguage: new FormControl('java', {
+      programmingLanguage: new FormControl('', {
         validators: [Validators.required],
         updateOn: 'change',
       }),
@@ -140,11 +140,20 @@ export class SmgrCollectionsPanelComponent implements OnInit {
         next: (data) => {
           let res = <any>data;
           console.log(res);
-          alert('success');
+          if (res == 'update success') {
+            this.alertService.timedSuccessAlert('Updated', '', 1000, false);
+            setTimeout(() => {
+              window.location.reload();
+            }, 1050);
+          }
         },
         error: (error) => {
           console.log(error);
-          alert(error);
+          this.alertService.staticErrorAlert(
+            'Update failed',
+            "Something went wrong. The resource doesn't exist,\n or the server is down.",
+            true
+          );
         },
       });
   }
