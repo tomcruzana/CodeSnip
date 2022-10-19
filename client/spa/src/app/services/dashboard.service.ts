@@ -79,4 +79,15 @@ export class DashboardService {
       withCredentials: true,
     });
   }
+
+  // PATCH
+  updateSnippetTitle(id: number, title: string) {
+    return this.http.patch(
+      environment.rooturl + '/snippet' + '?id=' + id + '&title=' + title,
+      {
+        observe: 'response',
+        withCredentials: true,
+      }
+    );
+  }
 }

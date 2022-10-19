@@ -52,12 +52,46 @@ export class SmgrEditorPanelComponent implements OnInit {
     alert('log: snippet created');
   }
 
-  editTitle(): void {
+  updateTitle(updateId: string): void {
+    // extract id
+    let id = updateId.replace('updateTitle', '');
+    console.log('log: Snippet id extracted from updateTitle btn ' + id);
+
     Swal.fire({
       title: 'Edit Title',
       input: 'text',
       showConfirmButton: true,
       confirmButtonText: 'Save',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // delete snippet collection
+        this.dashboardService
+          .updateSnippetTitle(Number(id), String(result.value))
+          .subscribe({
+            next: (data) => {
+              let res = <any>data;
+              if (res == 'update success') {
+                this.alertService.timedSuccessAlert(
+                  'Updated title',
+                  '',
+                  1000,
+                  false
+                );
+                setTimeout(() => {
+                  window.location.reload();
+                }, 1050);
+              }
+            },
+            error: (error) => {
+              console.log(error);
+              this.alertService.staticErrorAlert(
+                'Update failed',
+                "Something went wrong. The resource doesn't exist,\n or the server is down.",
+                true
+              );
+            },
+          });
+      }
     });
   }
 

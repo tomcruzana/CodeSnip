@@ -70,10 +70,11 @@
       >
         <div class="ngx-codejar-title">
           <button
-            [id]="'editTitle' + snippet.id"
+            #updateTitleBtn
+            [id]="'updateTitle' + snippet.id"
             type="button"
             class="btn btn-sm ngx-codejar-control share-control"
-            (click)="editTitle()"
+            (click)="updateTitle(updateTitleBtn.id)"
           >
             <i class="fa-solid fa-pen-to-square"></i>
           </button>
