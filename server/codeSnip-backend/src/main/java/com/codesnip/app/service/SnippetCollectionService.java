@@ -3,6 +3,7 @@ package com.codesnip.app.service;
 import java.util.List;
 
 import com.codesnip.app.dto.SnippetCollectionDto;
+import com.codesnip.app.dto.SnippetDto;
 import com.codesnip.app.exception.CodeSnipException;
 
 public interface SnippetCollectionService {
@@ -16,4 +17,6 @@ public interface SnippetCollectionService {
 
 	public void updateById(int id, String title, String description, String programmingLanguage)
 			throws CodeSnipException;
+
+	public List<SnippetDto> readAllSnippetsBySnippetCollectionId(int id) throws CodeSnipException;
 }

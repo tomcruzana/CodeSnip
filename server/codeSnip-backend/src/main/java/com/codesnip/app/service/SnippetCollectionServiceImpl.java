@@ -10,6 +10,8 @@ import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 
 import com.codesnip.app.dto.SnippetCollectionDto;
+import com.codesnip.app.dto.SnippetDto;
+import com.codesnip.app.entity.Snippet;
 import com.codesnip.app.entity.SnippetCollection;
 import com.codesnip.app.entity.User;
 import com.codesnip.app.exception.CodeSnipException;
@@ -80,8 +82,7 @@ public class SnippetCollectionServiceImpl implements SnippetCollectionService {
 	@Override
 	public void updateById(int id, String title, String description, String programmingLanguage)
 			throws CodeSnipException {
-		
-		
+
 		// find the snippet collection using its id
 		Optional<SnippetCollection> snippetCollectionOptional = snippetCollectionRepository.findById(id);
 
@@ -93,8 +94,25 @@ public class SnippetCollectionServiceImpl implements SnippetCollectionService {
 		snippetCollection.setTitle(title);
 		snippetCollection.setDescription(description);
 		snippetCollection.setProgrammingLanguage(programmingLanguage);
-		
+
 		snippetCollectionRepository.save(snippetCollection);
+	}
+
+	@Override
+	public List<SnippetDto> readAllSnippetsBySnippetCollectionId(int id) throws CodeSnipException {
+		List<Snippet> snippets = snippetCollectionRepository.findSnippetCollectionBySnippetId(id);
+		if (snippets.isEmpty()) {
+			throw new CodeSnipException(environment.getProperty("info.warn.empty"));
+		}
+		
+		// convert to dto list
+		List<SnippetDto> SnippetDtos = new ArrayList<>();
+		snippets.forEach((snippet)->{
+			SnippetDto snippetDto = new SnippetDto(snippet);
+			SnippetDtos.add(snippetDto);
+		});
+		
+		return SnippetDtos;
 	}
 
 }

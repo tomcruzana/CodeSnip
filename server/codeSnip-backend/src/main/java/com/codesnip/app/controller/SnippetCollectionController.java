@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.codesnip.app.dto.SnippetCollectionDto;
+import com.codesnip.app.dto.SnippetDto;
 import com.codesnip.app.service.SnippetCollectionService;
 
 @RestController
@@ -55,5 +56,11 @@ public class SnippetCollectionController {
 		snippetCollectionService.deleteById(id);
 		String deleteSuccessMessage = environment.getProperty("api.delete.success");
 		return new ResponseEntity<>(deleteSuccessMessage, HttpStatus.OK);
+	}
+	
+	@GetMapping("/snippetcollection/snippet")
+	public ResponseEntity<List<SnippetDto>> getAllSnippetsBySnippetCollectionId(@RequestParam int id) throws Exception {
+		List<SnippetDto> snippetDtos = snippetCollectionService.readAllSnippetsBySnippetCollectionId(id);
+		return new ResponseEntity<>(snippetDtos, HttpStatus.OK);
 	}
 }

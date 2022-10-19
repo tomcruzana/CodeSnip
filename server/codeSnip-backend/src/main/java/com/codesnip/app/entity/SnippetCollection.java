@@ -44,6 +44,7 @@ public class SnippetCollection {
 	@JoinColumn(name = "user_id")
 	private User user;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "snippetCollection", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Snippet> snippets;
 
