@@ -38,4 +38,9 @@ public class SnippetServiceImpl implements SnippetService {
 		return snippetDtoList;
 	}
 
+	@Override
+	public void deleteById(int id) throws CodeSnipException {
+		snippetRepository.deleteById(id);
+	}
+
 }
