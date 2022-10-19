@@ -9,6 +9,7 @@ import { SnippetCollection } from '../models/snippet-collection.model';
 export class DashboardService {
   constructor(private http: HttpClient) {}
 
+  /**** Snippet Collection endpoints ****/
   // GET
   getAllSnippetCollection() {
     return this.http.get(environment.rooturl + '/snippetcollection', {
@@ -57,5 +58,17 @@ export class DashboardService {
       observe: 'response',
       withCredentials: true,
     });
+  }
+
+  /**** Snippet Collection endpoints ****/
+  // GET
+  getAllSnippetsBySnippetCollectionId(id: number) {
+    return this.http.get(
+      environment.rooturl + '/snippetcollection/snippet' + '?id=' + id,
+      {
+        observe: 'response',
+        withCredentials: true,
+      }
+    );
   }
 }

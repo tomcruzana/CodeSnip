@@ -157,4 +157,18 @@ export class SmgrCollectionsPanelComponent implements OnInit {
         },
       });
   }
+
+  // GET snippet by SnipCollection id
+  loadSnippets(id: number): void {
+    alert('log: loading snippets of snipCollectionId' + id);
+    this.dashboardService.getAllSnippetsBySnippetCollectionId(id).subscribe({
+      next: (data) => {
+        let res = <any>data.body;
+        console.log(res);
+      },
+      error: (error) => {
+        console.log(error);
+      },
+    });
+  }
 }
