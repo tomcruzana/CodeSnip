@@ -86,10 +86,12 @@
           </div>
           <span class="collection-controls">
             <button
-              #optionsBtn
-              [id]="snippetCollection.id"
+              [id]="'update'+snippetCollection.id"
               type="button"
               class="btn btn-sm collections-controls-btn control-options"
+              data-bs-toggle="modal"
+              data-bs-target="#staticBackdropModalForSnipCollectionUpdate"
+              (mouseover)="getElementId($event)"
             >
               <i class="edit-collections-btn fa-solid fa-gear me-2"></i>
             </button>
@@ -111,3 +113,147 @@
     </div>
   </div>
 </aside>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="staticBackdropModalForSnipCollectionUpdate"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="staticBackdropModalForSnipCollectionUpdateLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5
+          class="modal-title"
+          id="staticBackdropModalForSnipCollectionUpdateLabel"
+        >
+          Update Snippet Collection
+        </h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+
+      <!-- contents go here start -->
+      <div class="modal-body">
+        <form [formGroup]="updateSnippetCollectionForm">
+          <input
+            #inputTxtId
+            formControlName="title"
+            type="text"
+            class="form-control"
+            name="title"
+            required
+            [value]=""
+            maxlength="34"
+            [hidden]="true"
+          />
+          <div class="mb-3">
+            <label for="title" class="form-label">Title</label>
+            <input
+              formControlName="title"
+              id="title"
+              type="text"
+              class="form-control"
+              name="title"
+              required
+              maxlength="34"
+            />
+            <span
+              class="form-text input-error text-danger"
+              *ngIf="
+                updateSnippetCollectionForm.controls.title.hasError('required')
+              "
+            >
+              A title is required (max of 34 characters).
+            </span>
+            <span
+              class="form-text input-error text-danger"
+              *ngIf="
+                updateSnippetCollectionForm.controls.title.hasError('maxlength')
+              "
+            >
+              Tile is maximum of 34 characters only.
+            </span>
+          </div>
+
+          <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea
+              formControlName="description"
+              id="description"
+              class="form-control"
+              required
+              maxlength="125"
+            ></textarea>
+            <span
+              class="form-text input-error text-danger"
+              *ngIf="
+                updateSnippetCollectionForm.controls.description.hasError(
+                  'required'
+                )
+              "
+            >
+              A description is required (max of 125 characters).
+            </span>
+            <span
+              class="form-text input-error text-danger"
+              *ngIf="
+                updateSnippetCollectionForm.controls.description.hasError(
+                  'maxlength'
+                )
+              "
+            >
+              Description is maximum of 125 characters only.
+            </span>
+          </div>
+
+          <div class="mb-3">
+            <label for="programmingLanguage" class="form-label"
+              >Programming Language</label
+            >
+            <select
+              class="form-select"
+              formControlName="programmingLanguage"
+              id="programmingLanguage"
+              required
+            >
+              <option value="java" selected>Java</option>
+              <option value="JavaScript">JavaScript</option>
+              <option value="Csharp">C#</option>
+            </select>
+            <span
+              class="form-text input-error text-danger"
+              *ngIf="
+                updateSnippetCollectionForm.controls.programmingLanguage.hasError(
+                  'required'
+                )
+              "
+            >
+              A language is required.
+            </span>
+          </div>
+        </form>
+      </div>
+      <!-- contents go here end -->
+
+      <div class="modal-footer">
+        <button
+        id="1123"
+          type="button"
+          class="btn btn-primary"
+          (click)="updateSnippetCollection()"
+        >
+          <span><i class="fa-solid fa-floppy-disk"></i> Update</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

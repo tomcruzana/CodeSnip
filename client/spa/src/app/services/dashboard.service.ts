@@ -26,18 +26,20 @@ export class DashboardService {
     );
   }
 
-  // POST
+  // PATCH
   updateSnippetCollection(
     id: number,
     title: string,
     description: string,
     programmingLanguage: string
   ) {
-    return this.http.post(
+    return this.http.patch(
       environment.rooturl +
         '/snippetcollection' +
         '?id=' +
         id +
+        '&title=' +
+        title +
         '&description=' +
         description +
         '&programmingLanguage=' +
