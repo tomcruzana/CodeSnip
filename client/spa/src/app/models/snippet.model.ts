@@ -1,5 +1,6 @@
 import hljs from 'highlight.js';
 import { CodeJarContainer } from 'ngx-codejar';
+import { SnippetCollection } from './snippet-collection.model';
 
 export class Snippet {
   public id: number;
@@ -8,7 +9,7 @@ export class Snippet {
   public dateCreated: string;
   public isPublic: string;
   public title: string;
-  public snippetCollection: string;
+  public snippetCollection: SnippetCollection;
 
   constructor(
     id?: number,
@@ -17,7 +18,7 @@ export class Snippet {
     dateCreated?: string,
     isPublic?: string,
     title?: string,
-    snippetCollection?: string
+    snippetCollection?: SnippetCollection
   ) {
     this.id = id || 0;
     this.code = code || '';
@@ -25,6 +26,6 @@ export class Snippet {
     this.dateCreated = dateCreated || '';
     this.isPublic = isPublic || '';
     this.title = title || '';
-    this.snippetCollection = snippetCollection || '';
+    this.snippetCollection = new SnippetCollection() || '';
   }
 }

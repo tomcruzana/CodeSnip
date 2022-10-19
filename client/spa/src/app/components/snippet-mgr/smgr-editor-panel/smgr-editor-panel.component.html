@@ -56,7 +56,7 @@
       <button
         type="button"
         class="btn btn-sm collections-controls-btn add-snippet-collection-control text-primary"
-        (click)="createNewSnippet()"
+        (click)="createNewSnippet(currentCollectionId)"
       >
         <i class="fa-solid fa-circle-plus"></i>
       </button>
@@ -68,6 +68,9 @@
       <div
         class="ngx-codejar-wrapper p-1 d-flex justify-content-between align-items-end border-top"
       >
+        <p #snippetCollectionId [hidden]="true" [id]="'collectionSnippet' + snippet.id">
+          {{ snippet.snippetCollection.id }}
+        </p>
         <div class="ngx-codejar-title">
           <button
             #updateTitleBtn

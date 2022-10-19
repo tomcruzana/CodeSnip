@@ -98,4 +98,12 @@ export class DashboardService {
       withCredentials: true,
     });
   }
+
+  // POST
+  createSnippet(id: number, title: string) {
+    return this.http.post(
+      environment.rooturl + '/snippet/add' + '?collectionId=' + id + '&title=' + title,
+      { observe: 'response', withCredentials: true }
+    );
+  }
 }

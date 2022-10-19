@@ -3,6 +3,7 @@ import hljs from 'highlight.js';
 import { CodeJarContainer } from 'ngx-codejar';
 import { Subscription } from 'rxjs';
 import { Snippet } from 'src/app/models/snippet.model';
+import { User } from 'src/app/models/user.model';
 import { AlertService } from 'src/app/services/alert.service';
 import { DashboardService } from 'src/app/services/dashboard.service';
 import { SubjectService } from 'src/app/services/subject.service';
@@ -14,7 +15,9 @@ import Swal from 'sweetalert2';
   styleUrls: ['./smgr-editor-panel.component.css'],
 })
 export class SmgrEditorPanelComponent implements OnInit {
+  user = new User();
   snippets = new Array<Snippet>();
+  currentCollectionId: string = '';
 
   // message received from the subject
   private subscriptionName: Subscription; //important to create a subscription
@@ -29,10 +32,19 @@ export class SmgrEditorPanelComponent implements OnInit {
       .getUpdate()
       .subscribe((snippets) => {
         this.snippets = snippets.value;
+
+        // assign the current collection id
+        console.log('log: current collection id: ' + snippets.value[0].id);
+        this.currentCollectionId = snippets.value[0].id;
       });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // if userdetails exists then parse
+    if (sessionStorage.getItem('userdetails')) {
+      this.user = JSON.parse(sessionStorage.getItem('userdetails') || '');
+    }
+  }
 
   ngOnDestroy() {
     // destry subscription to prevent memory leaks
@@ -48,8 +60,64 @@ export class SmgrEditorPanelComponent implements OnInit {
     }
   }
 
-  createNewSnippet(): void {
-    alert('log: snippet created');
+  // create the snippet
+  createNewSnippet(id: string): void {
+    if (id == '') {
+      this.alertService.staticErrorAlert(
+        'Select a Collection',
+        'Please click on a snippet collection before creating a snippet.',
+        true
+      );
+      return;
+    }
+    console.log('log: current Collection Snippet Id ' + id);
+
+    Swal.fire({
+      title: 'Add Title',
+      input: 'text',
+      showConfirmButton: true,
+      confirmButtonText: 'Save',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // validate title length
+        if (String(result.value).length > 34) {
+          this.alertService.staticErrorAlert(
+            'Title is too long',
+            'Please make it less than 34 characters in length.',
+            true
+          );
+          return;
+        }
+
+        // update snippet collection
+        this.dashboardService
+          .createSnippet(Number(id), String(result.value))
+          .subscribe({
+            next: (data) => {
+              let res = <any>data;
+              if (res == 'create success') {
+                this.alertService.timedSuccessAlert(
+                  'Snippet created',
+                  '',
+                  1000,
+                  false
+                );
+                setTimeout(() => {
+                  window.location.reload();
+                }, 1050);
+              }
+            },
+            error: (error) => {
+              console.log(error);
+              this.alertService.staticErrorAlert(
+                'Creation failed',
+                "Something went wrong. The resource doesn't exist,\n or the server is down.",
+                true
+              );
+            },
+          });
+      }
+    });
   }
 
   updateTitle(updateId: string): void {
@@ -68,13 +136,13 @@ export class SmgrEditorPanelComponent implements OnInit {
         if (String(result.value).length > 34) {
           this.alertService.staticErrorAlert(
             'Title is too long',
-            'Please make it less than 30 characters in length.',
+            'Please make it less than 34 characters in length.',
             true
           );
           return;
         }
 
-        // delete snippet collection
+        // update snippet collection
         this.dashboardService
           .updateSnippetTitle(Number(id), String(result.value))
           .subscribe({

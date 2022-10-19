@@ -2,6 +2,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { SnippetCollection } from 'src/app/models/snippet-collection.model';
 import { Tag } from 'src/app/models/tag.model';
+import { User } from 'src/app/models/user.model';
 import { TagService } from 'src/app/services/tag.service';
 
 @Component({
@@ -20,10 +21,14 @@ export class NewCollectionFormComponent implements OnInit {
   @Output()
   snippetCollectionEvent = new EventEmitter<SnippetCollection>();
   newSnippetCollection = new SnippetCollection();
-
+  user = new User();
   constructor(private tagService: TagService) {}
 
   ngOnInit(): void {
+    // if userdetails exists then parse
+    if (sessionStorage.getItem('userdetails')) {
+      this.user = JSON.parse(sessionStorage.getItem('userdetails') || '');
+    }
     // initialize reactive form
     this.createNewSnippetCollectionForm = new FormGroup({
       title: new FormControl('', {
@@ -34,7 +39,7 @@ export class NewCollectionFormComponent implements OnInit {
         validators: [Validators.required, Validators.maxLength(125)],
         updateOn: 'change',
       }),
-      programmingLanguage: new FormControl( {
+      programmingLanguage: new FormControl({
         validators: [Validators.required],
         updateOn: 'change',
       }),

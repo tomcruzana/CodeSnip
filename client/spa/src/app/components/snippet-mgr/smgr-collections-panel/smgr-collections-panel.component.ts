@@ -2,6 +2,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { SnippetCollection } from 'src/app/models/snippet-collection.model';
 import { Snippet } from 'src/app/models/snippet.model';
+import { User } from 'src/app/models/user.model';
 import { AlertService } from 'src/app/services/alert.service';
 import { DashboardService } from 'src/app/services/dashboard.service';
 import { SubjectService } from 'src/app/services/subject.service';
@@ -20,6 +21,7 @@ export class SmgrCollectionsPanelComponent implements OnInit {
 
   elementId: string = '';
   snippets = new Array<Snippet>();
+  user = new User();
 
   constructor(
     private dashboardService: DashboardService,
@@ -28,6 +30,10 @@ export class SmgrCollectionsPanelComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    // if userdetails exists then parse
+    if (sessionStorage.getItem('userdetails')) {
+      this.user = JSON.parse(sessionStorage.getItem('userdetails') || '');
+    }
     // get all the snippet collections
     this.dashboardService.getAllSnippetCollection().subscribe({
       next: (data) => {
