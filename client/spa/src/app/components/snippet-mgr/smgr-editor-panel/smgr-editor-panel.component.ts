@@ -64,6 +64,16 @@ export class SmgrEditorPanelComponent implements OnInit {
       confirmButtonText: 'Save',
     }).then((result) => {
       if (result.isConfirmed) {
+        // validate title length
+        if (String(result.value).length > 34) {
+          this.alertService.staticErrorAlert(
+            'Title is too long',
+            'Please make it less than 30 characters in length.',
+            true
+          );
+          return;
+        }
+
         // delete snippet collection
         this.dashboardService
           .updateSnippetTitle(Number(id), String(result.value))
