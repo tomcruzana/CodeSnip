@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import hljs from 'highlight.js';
 import { CodeJarContainer } from 'ngx-codejar';
+import { Snippet } from 'src/app/models/snippet.model';
 import { AlertService } from 'src/app/services/alert.service';
+import { DashboardService } from 'src/app/services/dashboard.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -10,19 +12,28 @@ import Swal from 'sweetalert2';
   styleUrls: ['./smgr-editor-panel.component.css'],
 })
 export class SmgrEditorPanelComponent implements OnInit {
-  constructor(private alertService: AlertService) {}
+  snippets = new Array<Snippet>();
 
-  ngOnInit(): void {}
+  constructor(
+    private dashboardService: DashboardService,
+    private alertService: AlertService
+  ) {}
+
+  ngOnInit(): void {
+    this.dashboardService.getAllSnippetsBySnippetCollectionId(1).subscribe({
+      next: (data) => {
+        this.snippets = <any>data.body;
+        console.log(data.body);
+      },
+      error: (error) => {
+        console.log(error);
+      },
+    });
+  }
 
   tempNumberOfSnippetEditors: number[] = new Array(12);
 
-  code = `public class Main {
-    public static void main(String[] args) {
-      System.out.println("Hello World");
-    }
-  }`;
-  // ...
-
+  // ngx configuration handler method
   highlightMethod(editor: CodeJarContainer) {
     if (editor.textContent !== null && editor.textContent !== undefined) {
       editor.innerHTML = hljs.highlight(editor.textContent, {

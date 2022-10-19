@@ -5,7 +5,7 @@ import { SnippetCollection } from 'src/app/models/snippet-collection.model';
 import { User } from 'src/app/models/user.model';
 import { AlertService } from 'src/app/services/alert.service';
 import { DashboardService } from 'src/app/services/dashboard.service';
-import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-snippet-mgr',
