@@ -19,7 +19,7 @@
         <span class="collection-name fw-bold"> List group item heading </span>
         <span class="total-snippets small">
           <div class="vr me-1"></div>
-          <small>{{ tempNumberOfSnippetEditors.length }}</small>
+          <small>{{ snippets.length }}</small>
           <span> snippets</span>
         </span>
       </h6>
@@ -62,7 +62,6 @@
       </button>
     </div>
   </div>
-
   <!-- snippet code editors start-->
   <div id="" class="container code-snipet-editor-container my-4">
     <div class="code-snipet-editor px-4" *ngFor="let snippet of snippets">

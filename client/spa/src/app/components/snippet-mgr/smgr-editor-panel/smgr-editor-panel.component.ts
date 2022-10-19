@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import hljs from 'highlight.js';
 import { CodeJarContainer } from 'ngx-codejar';
+import { Subscription } from 'rxjs';
 import { Snippet } from 'src/app/models/snippet.model';
 import { AlertService } from 'src/app/services/alert.service';
 import { DashboardService } from 'src/app/services/dashboard.service';
+import { SubjectService } from 'src/app/services/subject.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -14,24 +16,28 @@ import Swal from 'sweetalert2';
 export class SmgrEditorPanelComponent implements OnInit {
   snippets = new Array<Snippet>();
 
+  // message received from the subject
+  private subscriptionName: Subscription; //important to create a subscription
+
   constructor(
     private dashboardService: DashboardService,
-    private alertService: AlertService
-  ) {}
-
-  ngOnInit(): void {
-    this.dashboardService.getAllSnippetsBySnippetCollectionId(1).subscribe({
-      next: (data) => {
-        this.snippets = <any>data.body;
-        console.log(data.body);
-      },
-      error: (error) => {
-        console.log(error);
-      },
-    });
+    private alertService: AlertService,
+    private subjectService: SubjectService
+  ) {
+    // subscription to the subject
+    this.subscriptionName = this.subjectService
+      .getUpdate()
+      .subscribe((snippets) => {
+        this.snippets = snippets.value;
+      });
   }
 
-  tempNumberOfSnippetEditors: number[] = new Array(12);
+  ngOnInit(): void {}
+
+  ngOnDestroy() {
+    // destry subscription to prevent memory leaks
+    this.subscriptionName.unsubscribe();
+  }
 
   // ngx configuration handler method
   highlightMethod(editor: CodeJarContainer) {

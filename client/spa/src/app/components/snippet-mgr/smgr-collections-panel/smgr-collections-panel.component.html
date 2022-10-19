@@ -65,7 +65,7 @@
         type="button"
         class="list-group-item list-group-item-action py-3 lh-tight collections-item"
         *ngFor="let snippetCollection of snippetCollections"
-        (click)="loadSnippets(snippetCollection.id)"
+        (click)="loadSnippets($event, snippetCollection.id)"
       >
         <div class="d-flex w-100 align-items-center justify-content-between">
           <strong class="mb-1 collection-title">{{
@@ -87,12 +87,13 @@
           </div>
           <span class="collection-controls">
             <button
+              #optionsBtn
               [id]="'update' + snippetCollection.id"
               type="button"
               class="btn btn-sm collections-controls-btn control-options"
               data-bs-toggle="modal"
               data-bs-target="#staticBackdropModalForSnipCollectionUpdate"
-              (mouseover)="getElementId($event)"
+              (mouseover)="getElementId(optionsBtn.id)"
             >
               <i class="edit-collections-btn fa-solid fa-gear me-2"></i>
             </button>

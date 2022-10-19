@@ -1,8 +1,10 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { SnippetCollection } from 'src/app/models/snippet-collection.model';
+import { Snippet } from 'src/app/models/snippet.model';
 import { AlertService } from 'src/app/services/alert.service';
 import { DashboardService } from 'src/app/services/dashboard.service';
+import { SubjectService } from 'src/app/services/subject.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -17,10 +19,12 @@ export class SmgrCollectionsPanelComponent implements OnInit {
   updateSnippetCollectionForm: any;
 
   elementId: string = '';
+  snippets = new Array<Snippet>();
 
   constructor(
     private dashboardService: DashboardService,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private subjectService: SubjectService
   ) {}
 
   ngOnInit(): void {
@@ -120,11 +124,11 @@ export class SmgrCollectionsPanelComponent implements OnInit {
   }
 
   // this extracts the id of the current sniCollection
-  getElementId(event: any): void {
-    let target = event.target || event.srcElement || event.currentTarget;
-    let idAttr = target.attributes.id;
-    let idNode = idAttr.nodeValue;
-    let id = String(idNode);
+  getElementId(id: string): void {
+    // let target = event.target || event.srcElement || event.currentTarget;
+    // let idAttr = target.attributes.id;
+    // let idNode = idAttr.nodeValue;
+    // let id = String(idNode);
     this.elementId = id.replace('update', '');
   }
 
@@ -159,12 +163,14 @@ export class SmgrCollectionsPanelComponent implements OnInit {
   }
 
   // GET snippet by SnipCollection id
-  loadSnippets(id: number): void {
-    alert('log: loading snippets of snipCollectionId' + id);
+  loadSnippets(event: Event, id: number): void {
+    console.log('log: loading snippets of snipCollectionId' + id);
     this.dashboardService.getAllSnippetsBySnippetCollectionId(id).subscribe({
       next: (data) => {
-        let res = <any>data.body;
-        console.log(res);
+        // send Snippets array to the subscriber
+        console.log(data.body);
+        this.snippets = <any>data.body;
+        this.subjectService.sendUpdate(this.snippets);
       },
       error: (error) => {
         console.log(error);
