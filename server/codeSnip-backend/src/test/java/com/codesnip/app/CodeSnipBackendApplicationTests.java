@@ -9,9 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.core.env.Environment;
 
-import com.codesnip.app.entity.SnippetCollection;
-import com.codesnip.app.exception.CodeSnipException;
-import com.codesnip.app.repository.SnippetCollectionRepository;
+import com.thomascruzana.codesnip.entity.SnippetCollection;
+import com.thomascruzana.codesnip.exception.CodeSnipException;
+import com.thomascruzana.codesnip.repository.SnippetCollectionRepository;
 
 @SpringBootTest
 class CodeSnipBackendApplicationTests {
