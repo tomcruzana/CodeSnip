@@ -34,7 +34,10 @@ export class SmgrEditorPanelComponent implements OnInit {
         this.snippets = snippets.value;
 
         // assign the current collection id
-        console.log('log: current collection id: ' + snippets.value[0].snippetCollection.id);
+        console.log(
+          'log: current collection id: ' +
+            snippets.value[0].snippetCollection.id
+        );
         this.currentCollectionId = snippets.value[0].snippetCollection.id;
       });
   }
@@ -173,8 +176,25 @@ export class SmgrEditorPanelComponent implements OnInit {
     });
   }
 
-  copyCode(): void {
-    this.alertService.timedSuccessAlert('Copied to clipboard!', '', 1000, true);
+  copyCode(code: string): void {
+    navigator.clipboard.writeText(code).then(
+      () => {
+        this.alertService.timedSuccessAlert(
+          'Copied to clipboard!',
+          '',
+          1000,
+          true
+        );
+      },
+      (err) => {
+        this.alertService.timedErrorAlert(
+          'Error!',
+          'Something went wrong. Please try again.',
+          1000,
+          true
+        );
+      }
+    );
   }
 
   // delete snippet

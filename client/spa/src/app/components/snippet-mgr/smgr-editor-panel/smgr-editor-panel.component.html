@@ -110,7 +110,7 @@
             [id]="'copy' + snippet.id"
             type="button"
             class="btn btn-sm mx-2 ngx-codejar-control copy-control"
-            (click)="copyCode()"
+            (click)="copyCode(snippet.code)"
           >
             <i class="fa-solid fa-copy"></i>
           </button>
