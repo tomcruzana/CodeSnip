@@ -34,8 +34,8 @@ export class SmgrEditorPanelComponent implements OnInit {
         this.snippets = snippets.value;
 
         // assign the current collection id
-        console.log('log: current collection id: ' + snippets.value[0].id);
-        this.currentCollectionId = snippets.value[0].id;
+        console.log('log: current collection id: ' + snippets.value[0].snippetCollection.id);
+        this.currentCollectionId = snippets.value[0].snippetCollection.id;
       });
   }
 
