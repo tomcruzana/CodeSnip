@@ -71,4 +71,12 @@ export class DashboardService {
       }
     );
   }
+
+  // DELETE
+  deleteSnippetById(id: number) {
+    return this.http.delete(environment.rooturl + '/snippet/' + id, {
+      observe: 'response',
+      withCredentials: true,
+    });
+  }
 }

@@ -65,7 +65,13 @@ export class SmgrEditorPanelComponent implements OnInit {
     this.alertService.timedSuccessAlert('Copied to clipboard!', '', 1000, true);
   }
 
-  deleteSnippet(): void {
+  // delete snippet
+  deleteSnippet(deletId: string): void {
+    // extract id
+    let id = deletId.replace('delete', '');
+    console.log('log: Snippet id extracted from delete btn ' + id);
+
+    // show alert
     Swal.fire({
       title: 'Are you sure you want to delete this snippet?',
       icon: 'warning',
@@ -73,7 +79,26 @@ export class SmgrEditorPanelComponent implements OnInit {
       confirmButtonText: 'Delete',
     }).then((result) => {
       if (result.isConfirmed) {
-        this.alertService.timedErrorAlert('Deleted', '', 1000, false);
+        // delete snippet collection
+        this.dashboardService.deleteSnippetById(Number(id)).subscribe({
+          next: (data) => {
+            let res = <any>data.body;
+            if (res == 'delete success') {
+              this.alertService.timedErrorAlert('Deleted', '', 1000, false);
+              setTimeout(() => {
+                window.location.reload();
+              }, 1050);
+            }
+          },
+          error: (error) => {
+            console.log(error);
+            this.alertService.staticErrorAlert(
+              'Deletion failed',
+              "Something went wrong. The resource doesn't exist,\n or the server is down.",
+              true
+            );
+          },
+        });
       }
     });
   }
