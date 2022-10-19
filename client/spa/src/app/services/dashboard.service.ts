@@ -90,4 +90,12 @@ export class DashboardService {
       }
     );
   }
+
+  // PATCH
+  updateSnippetCode(id: number, code: string) {
+    return this.http.patch(environment.rooturl + '/snippet/save/' + id, code, {
+      observe: 'response',
+      withCredentials: true,
+    });
+  }
 }

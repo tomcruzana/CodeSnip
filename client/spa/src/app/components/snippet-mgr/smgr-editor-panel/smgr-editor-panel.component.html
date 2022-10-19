@@ -85,6 +85,17 @@
 
         <div class="ngx-codejar-controls">
           <button
+            #updateCodeBtn
+            [id]="'save' + snippet.id"
+            [disabled]="false"
+            type="button"
+            class="btn btn-sm ngx-codejar-control"
+            (click)="saveSnippetCode(updateCodeBtn.id, snippet.code)"
+          >
+            <i class="fa-solid fa-floppy-disk text-warning"></i>
+          </button>
+
+          <button
             [id]="'share' + snippet.id"
             type="button"
             class="btn btn-sm ngx-codejar-control share-control"
@@ -105,7 +116,6 @@
             [id]="'delete' + snippet.id"
             type="button"
             class="btn btn-sm ngx-codejar-control trash-control"
-            (click)="deleteSnippet(deleteBtn.id)"
           >
             <i class="fa-solid fa-trash"></i>
           </button>
@@ -121,11 +131,4 @@
   <!-- snippet code editors end-->
 </section>
 
-<!-- <div class="py-0 ps-1 m-0 save-notification">
-        <button
-          type="button"
-          class="btn btn-sm ngx-codejar-control auto-save-control"
-        >
-          <i class="fa-solid fa-floppy-disk"></i>
-        </button>
-      </div> -->
+<!-- (click)="saveSnippetCode(updateCodeBtn.id, snippet.code)" -->

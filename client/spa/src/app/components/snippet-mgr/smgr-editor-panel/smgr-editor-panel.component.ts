@@ -110,9 +110,9 @@ export class SmgrEditorPanelComponent implements OnInit {
   }
 
   // delete snippet
-  deleteSnippet(deletId: string): void {
+  deleteSnippet(deleteId: string): void {
     // extract id
-    let id = deletId.replace('delete', '');
+    let id = deleteId.replace('delete', '');
     console.log('log: Snippet id extracted from delete btn ' + id);
 
     // show alert
@@ -147,6 +147,38 @@ export class SmgrEditorPanelComponent implements OnInit {
     });
   }
 
+  saveSnippetCode(updateId: string, code: string): void {
+    // extract id
+    let id = updateId.replace('save', '');
+    console.log('log: Snippet id extracted from updateCodebtn ' + id);
+
+    // show loading animation on the ui
+
+    this.dashboardService.updateSnippetCode(Number(id), code).subscribe({
+      next: (data) => {
+        let res = <any>data.body;
+        if (res == 'update success') {
+          this.alertService.timedSuccessAlert(
+            'Saved!',
+            'The changes were successfuly saved.',
+            1000,
+            false
+          );
+          console.log(res);
+        }
+      },
+      error: (error) => {
+        console.log(error);
+        this.alertService.staticErrorAlert(
+          'Update failed',
+          "Something went wrong. The resource doesn't exist,\n or the server is down.",
+          true
+        );
+      },
+      complete: () => {},
+    });
+  }
+
   shareSnippet(): void {
     Swal.fire({
       title: 'Share link',
@@ -160,5 +192,9 @@ export class SmgrEditorPanelComponent implements OnInit {
       icon: 'info',
       showConfirmButton: true,
     });
+  }
+
+  display() {
+    alert('ASd');
   }
 }
