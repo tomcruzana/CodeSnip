@@ -11,4 +11,6 @@ public interface SnippetService {
 	public void deleteById(int id) throws CodeSnipException;
 
 	public void updateById(int id, String title) throws CodeSnipException;
+	
+	public void saveById(int id, String code) throws CodeSnipException;
 }

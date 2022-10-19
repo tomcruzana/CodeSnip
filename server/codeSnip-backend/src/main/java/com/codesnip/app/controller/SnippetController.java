@@ -47,4 +47,13 @@ public class SnippetController {
 		return new ResponseEntity<>(updateSuccessMessage, HttpStatus.OK);
 	}
 
+	@PatchMapping("/snippet/save")
+	public ResponseEntity<String> updateSnippetCode(@RequestParam int id, @RequestParam(name = "code") String code)
+			throws Exception {
+		// update entity
+		snippetService.saveById(id, code);
+		String updateSuccessMessage = environment.getProperty("api.update.success");
+		return new ResponseEntity<>(updateSuccessMessage, HttpStatus.OK);
+	}
+
 }

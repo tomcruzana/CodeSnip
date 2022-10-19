@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import com.codesnip.app.dto.SnippetDto;
 import com.codesnip.app.entity.Snippet;
-import com.codesnip.app.entity.SnippetCollection;
 import com.codesnip.app.exception.CodeSnipException;
 import com.codesnip.app.repository.SnippetRepository;
 
@@ -55,10 +54,27 @@ public class SnippetServiceImpl implements SnippetService {
 		Snippet snippet = snippetOptional
 				.orElseThrow(() -> new CodeSnipException(environment.getProperty("error.generic")));
 
-		// update field
+		// update title field
 		snippet.setTitle(title);
 
 		snippetRepository.save(snippet);
+	}
+
+	@Override
+	public void saveById(int id, String code) throws CodeSnipException {
+
+		// find the snippet using its id
+		Optional<Snippet> snippetOptional = snippetRepository.findById(id);
+
+		// return result set
+		Snippet snippet = snippetOptional
+				.orElseThrow(() -> new CodeSnipException(environment.getProperty("error.generic")));
+
+		// update code field
+		snippet.setCode(code);
+
+		snippetRepository.save(snippet);
+
 	}
 
 }
