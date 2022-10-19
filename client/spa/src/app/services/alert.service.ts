@@ -7,33 +7,61 @@ import Swal from 'sweetalert2';
 export class AlertService {
   constructor() {}
 
-  successAlert(title: string, description: string, timer: number): void {
+  timedSuccessAlert(
+    title: string,
+    description: string,
+    timer: number,
+    showButton: boolean
+  ): void {
     Swal.fire({
       title: title,
       text: description,
       icon: 'success',
-      showConfirmButton: false,
+      showConfirmButton: showButton,
       timer: timer,
     });
   }
 
-  infoAlert(title: string, description: string, timer: number): void {
+  timedInfoAlert(
+    title: string,
+    description: string,
+    timer: number,
+    showButton: boolean
+  ): void {
     Swal.fire({
       title: title,
       text: description,
       icon: 'info',
-      showConfirmButton: false,
+      showConfirmButton: showButton,
       timer: timer,
     });
   }
 
-  errorAlert(title: string, description: string, timer: number): void {
+  timedErrorAlert(
+    title: string,
+    description: string,
+    timer: number,
+    showButton: boolean
+  ): void {
     Swal.fire({
       title: title,
       text: description,
       icon: 'error',
-      showConfirmButton: false,
+      showConfirmButton: showButton,
       timer: timer,
+    });
+  }
+
+  staticErrorAlert(
+    title: string,
+    description: string,
+    showButton: boolean
+  ): void {
+    Swal.fire({
+      title: title,
+      text: description,
+      icon: 'error',
+      showConfirmButton: showButton,
     });
   }
 }

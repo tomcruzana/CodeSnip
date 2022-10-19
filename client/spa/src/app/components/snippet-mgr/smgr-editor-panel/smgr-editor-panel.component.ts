@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import hljs from 'highlight.js';
 import { CodeJarContainer } from 'ngx-codejar';
+import { AlertService } from 'src/app/services/alert.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -9,7 +10,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./smgr-editor-panel.component.css'],
 })
 export class SmgrEditorPanelComponent implements OnInit {
-  constructor() {}
+  constructor(private alertService: AlertService) {}
 
   ngOnInit(): void {}
 
@@ -44,12 +45,7 @@ export class SmgrEditorPanelComponent implements OnInit {
   }
 
   copyCode(): void {
-    Swal.fire({
-      title: 'Copied to clipboard!',
-      icon: 'success',
-      showConfirmButton: false,
-      timer: 1000,
-    });
+    this.alertService.timedSuccessAlert('Copied to clipboard!', '', 1000, true);
   }
 
   deleteSnippet(): void {
@@ -60,12 +56,7 @@ export class SmgrEditorPanelComponent implements OnInit {
       confirmButtonText: 'Delete',
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire({
-          title: 'Deleted',
-          icon: 'error',
-          showConfirmButton: false,
-          timer: 1000,
-        });
+        this.alertService.timedErrorAlert('Deleted', '', 1000, false);
       }
     });
   }

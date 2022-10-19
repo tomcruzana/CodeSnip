@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import Swal from 'sweetalert2';
+import { AlertService } from './alert.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TagService {
-  constructor() {}
+  constructor(private alertService: AlertService) {}
 
   // array varaibles that holds the tags from the db
   private _tags = new Array<string>();
@@ -39,28 +40,25 @@ export class TagService {
           this.collectionTagNames.push(tagName);
           this.ctr++;
         } else {
-          Swal.fire({
-            title: 'The tag name already exists',
-            text: 'Please use a different tag name.',
-            icon: 'error',
-            showConfirmButton: true,
-          });
+          this.alertService.staticErrorAlert(
+            'The tag name already exists',
+            'Please use a different tag name.',
+            true
+          );
         }
       } else {
-        Swal.fire({
-          title: 'Invalid tag name',
-          text: 'Must only contain letters or numbers.',
-          icon: 'error',
-          showConfirmButton: true,
-        });
+        this.alertService.staticErrorAlert(
+          'Invalid tag name',
+          'Must only contain letters or numbers.',
+          true
+        );
       }
     } else {
-      Swal.fire({
-        title: 'LIMIT REACHED!',
-        text: 'Only 4 tags are allowed.',
-        icon: 'error',
-        showConfirmButton: true,
-      });
+      this.alertService.staticErrorAlert(
+        'LIMIT REACHED!',
+        'Only 4 tags are allowed.',
+        true
+      );
     }
   }
 }

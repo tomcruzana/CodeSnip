@@ -3,7 +3,6 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { SnippetCollection } from 'src/app/models/snippet-collection.model';
 import { Tag } from 'src/app/models/tag.model';
 import { TagService } from 'src/app/services/tag.service';
-import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-new-collection-form',

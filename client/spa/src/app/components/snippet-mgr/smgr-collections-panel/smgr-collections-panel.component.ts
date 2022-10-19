@@ -100,7 +100,7 @@ export class SmgrCollectionsPanelComponent implements OnInit {
           next: (data) => {
             let res = <any>data.body;
             if (res == 'delete success') {
-              this.alertService.errorAlert('Deleted', '', 1000);
+              this.alertService.timedErrorAlert('Deleted', '', 1000, false);
               setTimeout(() => {
                 window.location.reload();
               }, 1050);
@@ -108,12 +108,11 @@ export class SmgrCollectionsPanelComponent implements OnInit {
           },
           error: (error) => {
             console.log(error);
-            Swal.fire({
-              title: 'Deletion failed',
-              text: "Something went wrong. The resource doesn't exist.",
-              icon: 'error',
-              showConfirmButton: true,
-            });
+            this.alertService.staticErrorAlert(
+              'Deletion failed',
+              "Something went wrong. The resource doesn't exist,\n or the server is down.",
+              true
+            );
           },
         });
       }
