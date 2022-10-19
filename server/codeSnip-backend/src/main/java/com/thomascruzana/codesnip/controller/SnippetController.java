@@ -10,10 +10,12 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.thomascruzana.codesnip.dto.SnippetCollectionDto;
 import com.thomascruzana.codesnip.dto.SnippetDto;
 import com.thomascruzana.codesnip.service.SnippetService;
 
@@ -57,4 +59,11 @@ public class SnippetController {
 		return new ResponseEntity<>(updateSuccessMessage, HttpStatus.OK);
 	}
 
+	@PostMapping("/snippet/add")
+	public ResponseEntity<String> createSnippetCollection(@RequestParam int collectionId, @RequestParam String title)
+			throws Exception {
+		snippetService.createSnippet(collectionId, title);
+		String createSuccessMessage = environment.getProperty("api.create.success");
+		return new ResponseEntity<>(createSuccessMessage, HttpStatus.CREATED);
+	}
 }

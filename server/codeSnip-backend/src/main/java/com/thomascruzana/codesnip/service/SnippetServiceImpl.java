@@ -1,6 +1,7 @@
 package com.thomascruzana.codesnip.service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -10,6 +11,8 @@ import org.springframework.stereotype.Service;
 
 import com.thomascruzana.codesnip.dto.SnippetDto;
 import com.thomascruzana.codesnip.entity.Snippet;
+import com.thomascruzana.codesnip.entity.SnippetCollection;
+import com.thomascruzana.codesnip.entity.User;
 import com.thomascruzana.codesnip.exception.CodeSnipException;
 import com.thomascruzana.codesnip.repository.SnippetRepository;
 
@@ -75,6 +78,27 @@ public class SnippetServiceImpl implements SnippetService {
 
 		snippetRepository.save(snippet);
 
+	}
+
+	@Override
+	public void createSnippet(int collectionId, String title) throws CodeSnipException {
+
+		Snippet snippet = new Snippet();
+
+		// initialize values
+		snippet.setTitle(title);
+		snippet.setProgrammingLanguage("java");
+		snippet.setDateCreated(new Date(System.currentTimeMillis()));
+		snippet.setCode("// start coding here");
+		snippet.setPublic(false);
+		
+		// set foreignkey of SnippetCollection
+		SnippetCollection snippetCollection = new SnippetCollection();
+		snippetCollection.setId(collectionId); // get from session
+
+		snippet.setSnippetCollection(snippetCollection);
+
+		snippetRepository.save(snippet);
 	}
 
 }
