@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { SnippetCollection } from 'src/app/models/snippet-collection.model';
+import { AlertService } from 'src/app/services/alert.service';
 import { DashboardService } from 'src/app/services/dashboard.service';
 import Swal from 'sweetalert2';
 
@@ -17,7 +18,10 @@ export class SmgrCollectionsPanelComponent implements OnInit {
 
   elementId: string = '';
 
-  constructor(private dashboardService: DashboardService) {}
+  constructor(
+    private dashboardService: DashboardService,
+    private alertService: AlertService
+  ) {}
 
   ngOnInit(): void {
     // get all the snippet collections
@@ -96,13 +100,10 @@ export class SmgrCollectionsPanelComponent implements OnInit {
           next: (data) => {
             let res = <any>data.body;
             if (res == 'delete success') {
-              Swal.fire({
-                title: 'Deleted',
-                icon: 'error',
-                showConfirmButton: false,
-                timer: 1000,
-              });
-              window.location.reload();
+              this.alertService.errorAlert('Deleted', '', 1000);
+              setTimeout(() => {
+                window.location.reload();
+              }, 1050);
             }
           },
           error: (error) => {
