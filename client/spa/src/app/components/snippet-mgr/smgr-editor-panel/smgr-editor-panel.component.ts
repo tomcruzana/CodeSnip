@@ -19,6 +19,7 @@ export class SmgrEditorPanelComponent implements OnInit {
   user = new User();
   snippets = new Array<Snippet>();
   currentCollectionId: string = '';
+  currentCollectionTitle: string = '';
 
   // message received from the subject
   private subscriptionName: Subscription; //important to create a subscription
@@ -41,6 +42,7 @@ export class SmgrEditorPanelComponent implements OnInit {
             snippets.value[0].snippetCollection.id
         );
         this.currentCollectionId = snippets.value[0].snippetCollection.id;
+        this.currentCollectionTitle = snippets.value[0].snippetCollection.title;
       });
   }
 
