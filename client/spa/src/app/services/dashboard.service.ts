@@ -11,8 +11,8 @@ export class DashboardService {
 
   /**** Snippet Collection endpoints ****/
   // GET
-  getAllSnippetCollection() {
-    return this.http.get(environment.rooturl + '/snippetcollection', {
+  getAllSnippetCollection(id: number) {
+    return this.http.get(environment.rooturl + '/snippetcollection/user/' + id, {
       observe: 'response',
       withCredentials: true,
     });

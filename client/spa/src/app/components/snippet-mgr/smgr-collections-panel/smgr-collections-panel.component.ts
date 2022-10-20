@@ -37,7 +37,7 @@ export class SmgrCollectionsPanelComponent implements OnInit {
       this.user = JSON.parse(sessionStorage.getItem('userdetails') || '');
     }
     // get all the snippet collections
-    this.dashboardService.getAllSnippetCollection().subscribe({
+    this.dashboardService.getAllSnippetCollection(this.user.id).subscribe({
       next: (data) => {
         this.snippetCollections = <any>data.body;
       },
