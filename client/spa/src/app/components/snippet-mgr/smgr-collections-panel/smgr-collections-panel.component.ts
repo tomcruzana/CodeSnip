@@ -4,9 +4,11 @@ import { SnippetCollection } from 'src/app/models/snippet-collection.model';
 import { Snippet } from 'src/app/models/snippet.model';
 import { User } from 'src/app/models/user.model';
 import { AlertService } from 'src/app/services/alert.service';
+import { ComponentRefreshService } from 'src/app/services/component-refresh.service';
 import { DashboardService } from 'src/app/services/dashboard.service';
 import { SubjectService } from 'src/app/services/subject.service';
 import Swal from 'sweetalert2';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-smgr-collections-panel',
@@ -26,7 +28,9 @@ export class SmgrCollectionsPanelComponent implements OnInit {
   constructor(
     private dashboardService: DashboardService,
     private alertService: AlertService,
-    private subjectService: SubjectService
+    private subjectService: SubjectService,
+    private componentRefresh: ComponentRefreshService,
+    private location: Location
   ) {}
 
   ngOnInit(): void {
@@ -111,9 +115,7 @@ export class SmgrCollectionsPanelComponent implements OnInit {
             let res = <any>data.body;
             if (res == 'delete success') {
               this.alertService.timedErrorAlert('Deleted', '', 1000, false);
-              setTimeout(() => {
-                window.location.reload();
-              }, 1050);
+              this.componentRefresh.resetPage();
             }
           },
           error: (error) => {

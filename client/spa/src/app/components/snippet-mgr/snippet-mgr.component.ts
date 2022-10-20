@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { SnippetCollection } from 'src/app/models/snippet-collection.model';
 import { User } from 'src/app/models/user.model';
 import { AlertService } from 'src/app/services/alert.service';
+import { ComponentRefreshService } from 'src/app/services/component-refresh.service';
 import { DashboardService } from 'src/app/services/dashboard.service';
 
 @Component({
@@ -14,7 +15,8 @@ import { DashboardService } from 'src/app/services/dashboard.service';
 export class SnippetMgrComponent implements OnInit {
   constructor(
     private dashboardService: DashboardService,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private componentRefresh : ComponentRefreshService
   ) {}
 
   ngOnInit(): void {
@@ -68,7 +70,10 @@ export class SnippetMgrComponent implements OnInit {
                 false
               );
 
-              window.location.reload();
+              setTimeout(() => {
+                window.location.reload();
+              }, 1050);
+
             }
           },
           error: (error) => {
