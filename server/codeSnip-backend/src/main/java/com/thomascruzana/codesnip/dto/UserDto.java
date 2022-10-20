@@ -4,7 +4,6 @@ import java.util.Date;
 import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.thomascruzana.codesnip.entity.Authority;
 import com.thomascruzana.codesnip.entity.User;
 
