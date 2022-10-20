@@ -4,6 +4,8 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.thomascruzana.codesnip.entity.Snippet;
@@ -26,7 +28,8 @@ public class SnippetCollectionDto {
 
 	private String link;
 
-	@JsonIgnore
+	@ManyToOne
+	@JoinColumn(name = "user_id")
 	private User user;
 
 	@JsonIgnore

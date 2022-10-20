@@ -2,8 +2,6 @@ package com.thomascruzana.codesnip.controller;
 
 import java.util.List;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
@@ -49,10 +47,11 @@ public class SnippetCollectionController {
 	}
 
 	// creates an new snippet collection based on its fields
-	@PostMapping("/snippetcollection")
-	public ResponseEntity<String> createSnippetCollection(@RequestBody SnippetCollectionDto snippetCollectionDto)
+	@PostMapping("/snippetcollection/add/{id}")
+	public ResponseEntity<String> createSnippetCollection(@PathVariable int id, @RequestBody SnippetCollectionDto snippetCollectionDto)
 			throws Exception {
-		snippetCollectionService.createSnippetCollection(snippetCollectionDto);
+
+		snippetCollectionService.createSnippetCollection(id, snippetCollectionDto);
 		String createSuccessMessage = environment.getProperty("api.create.success");
 		return new ResponseEntity<>(createSuccessMessage, HttpStatus.CREATED);
 	}

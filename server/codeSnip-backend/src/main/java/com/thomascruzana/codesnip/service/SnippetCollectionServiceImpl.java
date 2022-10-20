@@ -43,7 +43,7 @@ public class SnippetCollectionServiceImpl implements SnippetCollectionService {
 
 	// creates a snippet collection and calls its matching repository component
 	@Override
-	public void createSnippetCollection(SnippetCollectionDto snippetCollectionDto) throws CodeSnipException {
+	public void createSnippetCollection(int userId, SnippetCollectionDto snippetCollectionDto) throws CodeSnipException {
 		SnippetCollection snippetCollection = new SnippetCollection();
 
 		snippetCollection.setTitle(snippetCollectionDto.getTitle());
@@ -53,7 +53,7 @@ public class SnippetCollectionServiceImpl implements SnippetCollectionService {
 
 		// snippetCollection.setSnippets(List<Snippet>);
 		User user = new User();
-		user.setId(1); // get from session
+		user.setId(userId); // get from session
 		snippetCollection.setUser(user); // must be same as user id
 
 		snippetCollectionRepository.save(snippetCollection);
@@ -77,7 +77,8 @@ public class SnippetCollectionServiceImpl implements SnippetCollectionService {
 		return snippetCollectionDtoList;
 	}
 
-	// deletes a snippet collection via id and calls its matching repository component
+	// deletes a snippet collection via id and calls its matching repository
+	// component
 	@Override
 	public void deleteById(int id) throws CodeSnipException {
 		snippetCollectionRepository.deleteById(id);
@@ -109,14 +110,14 @@ public class SnippetCollectionServiceImpl implements SnippetCollectionService {
 		if (snippets.isEmpty()) {
 			throw new CodeSnipException(environment.getProperty("info.warn.empty"));
 		}
-		
+
 		// convert to dto list
 		List<SnippetDto> SnippetDtos = new ArrayList<>();
-		snippets.forEach((snippet)->{
+		snippets.forEach((snippet) -> {
 			SnippetDto snippetDto = new SnippetDto(snippet);
 			SnippetDtos.add(snippetDto);
 		});
-		
+
 		return SnippetDtos;
 	}
 

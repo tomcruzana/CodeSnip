@@ -12,7 +12,7 @@ public interface SnippetCollectionService {
 
 	public List<SnippetCollectionDto> readAll() throws CodeSnipException;
 
-	public void createSnippetCollection(SnippetCollectionDto snippetCollectionDto) throws CodeSnipException;
+	public void createSnippetCollection(int userId, SnippetCollectionDto snippetCollectionDto) throws CodeSnipException;
 
 	public void deleteById(int id) throws CodeSnipException;
 
