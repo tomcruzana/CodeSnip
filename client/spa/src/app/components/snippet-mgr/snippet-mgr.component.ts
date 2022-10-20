@@ -6,7 +6,6 @@ import { User } from 'src/app/models/user.model';
 import { AlertService } from 'src/app/services/alert.service';
 import { DashboardService } from 'src/app/services/dashboard.service';
 
-
 @Component({
   selector: 'app-snippet-mgr',
   templateUrl: './snippet-mgr.component.html',
@@ -38,18 +37,27 @@ export class SnippetMgrComponent implements OnInit {
 
   // event handler. updates the values of the snippetCollection modal in real-time
   getsnippetCollectionForm(newSnippetCollection: SnippetCollection) {
+    // assign the user details and current logged-in user id stored in the session
     this.snippetCollectionModel = newSnippetCollection;
+    this.snippetCollectionModel.userId = this.user.id;
+
+    console.log('log: current user id ' + this.user.id);
+
     console.log(
-      'log: from parent component snippet-mgr : ' + newSnippetCollection
+      'log: from parent component snippet-mgr : ' +
+        this.snippetCollectionModel.userId
     );
   }
 
   // process request btn
   processRequest(): void {
     if (this.contentId == 'createNewSnippetCollection') {
+      console.log(
+        'log: to be transmitted: ' + JSON.stringify(this.snippetCollectionModel)
+      );
       // POST create a snippet collection
       this.dashboardService
-        .createSnippetCollection(this.snippetCollectionModel)
+        .createSnippetCollection(this.user.id, this.snippetCollectionModel)
         .subscribe({
           next: (data) => {
             if (data.body == 'create success') {

@@ -1,3 +1,5 @@
+import { User } from './user.model';
+
 export class SnippetCollection {
   public id: number;
   public title: string;
@@ -5,6 +7,7 @@ export class SnippetCollection {
   public programmingLanguage: string;
   public dateCreated: string;
   public link: string;
+  public userId: number;
 
   constructor(
     id?: number,
@@ -12,7 +15,8 @@ export class SnippetCollection {
     description?: string,
     programmingLanguage?: string,
     dateCreated?: string,
-    link?: string
+    link?: string,
+    userId?: number
   ) {
     this.id = id || 0;
     this.title = title || '';
@@ -20,5 +24,6 @@ export class SnippetCollection {
     this.programmingLanguage = programmingLanguage || '';
     this.dateCreated = dateCreated || '';
     this.link = link || '';
+    this.userId = userId || 0;
   }
 }

@@ -19,9 +19,9 @@ export class DashboardService {
   }
 
   // POST
-  createSnippetCollection(snippetCollection: SnippetCollection) {
+  createSnippetCollection(id: number, snippetCollection: SnippetCollection) {
     return this.http.post(
-      environment.rooturl + '/snippetcollection',
+      environment.rooturl + '/snippetcollection/add/' + id,
       snippetCollection,
       { observe: 'response', withCredentials: true }
     );
@@ -60,7 +60,7 @@ export class DashboardService {
     });
   }
 
-  /**** Snippet Collection endpoints ****/
+  /**** Snippet endpoints ****/
   // GET
   getAllSnippetsBySnippetCollectionId(id: number) {
     return this.http.get(
@@ -102,7 +102,12 @@ export class DashboardService {
   // POST
   createSnippet(id: number, title: string) {
     return this.http.post(
-      environment.rooturl + '/snippet/add' + '?collectionId=' + id + '&title=' + title,
+      environment.rooturl +
+        '/snippet/add' +
+        '?collectionId=' +
+        id +
+        '&title=' +
+        title,
       { observe: 'response', withCredentials: true }
     );
   }
