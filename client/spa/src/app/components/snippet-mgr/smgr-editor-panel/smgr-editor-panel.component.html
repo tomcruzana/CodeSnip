@@ -16,7 +16,7 @@
               data-bs-target="#editCategoryModal"
             ></i></button
         ></span>
-        <span class="collection-name fw-bold"> {{ snippets[0].snippetCollection.title }} </span>
+        <span class="collection-name fw-bold"> {{snippets[0].snippetCollection.title}} </span>
         <span class="total-snippets small">
           <div class="vr me-1"></div>
           <small>{{ snippets.length }}</small>
@@ -119,6 +119,7 @@
             [id]="'delete' + snippet.id"
             type="button"
             class="btn btn-sm ngx-codejar-control trash-control"
+            (click)="deleteSnippet(deleteBtn.id)"
           >
             <i class="fa-solid fa-trash"></i>
           </button>
