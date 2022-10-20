@@ -15,6 +15,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
 //model class. uses hibernate as ORM 
 @Entity
 @Table(name = "snippet")
@@ -24,6 +25,7 @@ public class Snippet {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
+	@Column(name = "title", length = 34)
 	private String title;
 
 	@Column(name = "is_public")
@@ -38,7 +40,7 @@ public class Snippet {
 
 	@Lob
 	private String code;
-	
+
 	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "snippet_collection_id")

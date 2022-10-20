@@ -9,4 +9,6 @@ import com.thomascruzana.codesnip.entity.Tag;
 @Repository
 public interface TagRepository extends CrudRepository<Tag, String> {
 	// To be implemented
+	
+	
 }

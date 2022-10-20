@@ -2,6 +2,8 @@ package com.thomascruzana.codesnip.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
@@ -39,7 +41,7 @@ public class SnippetCollectionController {
 		return new ResponseEntity<>(updateSuccessMessage, HttpStatus.OK);
 	}
 
-	// fetches all snippet collections 
+	// fetches all snippet collections
 	@GetMapping("/snippetcollection")
 	public ResponseEntity<List<SnippetCollectionDto>> getAllSnippetCollections() throws Exception {
 		List<SnippetCollectionDto> snippetCollectionDtos = snippetCollectionService.readAll();
@@ -62,7 +64,7 @@ public class SnippetCollectionController {
 		String deleteSuccessMessage = environment.getProperty("api.delete.success");
 		return new ResponseEntity<>(deleteSuccessMessage, HttpStatus.OK);
 	}
-	
+
 	// fetch all snippets based on Snippet collection id
 	@GetMapping("/snippetcollection/snippet")
 	public ResponseEntity<List<SnippetDto>> getAllSnippetsBySnippetCollectionId(@RequestParam int id) throws Exception {

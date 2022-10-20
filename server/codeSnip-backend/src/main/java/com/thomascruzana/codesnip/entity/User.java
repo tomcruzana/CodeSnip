@@ -18,6 +18,7 @@ import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.sun.istack.NotNull;
 //model class. uses hibernate as ORM 
 @Entity
 @Table(name = "user")
@@ -33,17 +34,21 @@ public class User {
 	@Column(name = "lname")
 	private String lastName;
 
-	@Column(name = "username")
+	@NotNull
+	@Column(name = "username", length = 32)
 	private String username;
 
-	@Column(name = "email")
+	@NotNull
+	@Column(name = "email", length = 128)
 	private String email;
 
 	// dont include in serialization
 	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-	@Column(name = "password")
+	@NotNull
+	@Column(name = "password", length = 512)
 	private String password;
 
+	@NotNull
 	@Column(name = "enabled")
 	private boolean isEnabled;
 
@@ -51,6 +56,7 @@ public class User {
 	@Column(name = "date_of_brith")
 	private Date dob;
 
+	@NotNull
 	@Temporal(TemporalType.DATE)
 	@Column(name = "date_created")
 	private Date dateCreated;
@@ -58,7 +64,7 @@ public class User {
 	@Column(name = "bio")
 	private String bio;
 
-	@Column(name = "image")
+	@Column(name = "image", length = 256)
 	private String image;
 
 	@JsonIgnore

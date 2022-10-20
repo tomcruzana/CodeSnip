@@ -6,6 +6,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+// NOTE: THIS ENTITY IS NOT YET IMPLEMENTED
 //model class. uses hibernate as ORM 
 @Entity
 @Table(name = "tag")
