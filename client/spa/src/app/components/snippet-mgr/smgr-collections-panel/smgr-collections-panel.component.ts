@@ -8,7 +8,6 @@ import { ComponentRefreshService } from 'src/app/services/component-refresh.serv
 import { DashboardService } from 'src/app/services/dashboard.service';
 import { SubjectService } from 'src/app/services/subject.service';
 import Swal from 'sweetalert2';
-import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-smgr-collections-panel',
@@ -29,8 +28,7 @@ export class SmgrCollectionsPanelComponent implements OnInit {
     private dashboardService: DashboardService,
     private alertService: AlertService,
     private subjectService: SubjectService,
-    private componentRefresh: ComponentRefreshService,
-    private location: Location
+    private componentRefresh: ComponentRefreshService
   ) {}
 
   ngOnInit(): void {

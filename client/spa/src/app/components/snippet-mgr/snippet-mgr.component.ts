@@ -16,7 +16,7 @@ export class SnippetMgrComponent implements OnInit {
   constructor(
     private dashboardService: DashboardService,
     private alertService: AlertService,
-    private componentRefresh : ComponentRefreshService
+    private componentRefresh: ComponentRefreshService
   ) {}
 
   ngOnInit(): void {
@@ -73,7 +73,6 @@ export class SnippetMgrComponent implements OnInit {
               setTimeout(() => {
                 window.location.reload();
               }, 1050);
-
             }
           },
           error: (error) => {

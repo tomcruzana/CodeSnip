@@ -28,7 +28,7 @@ export class SmgrEditorPanelComponent implements OnInit {
     private dashboardService: DashboardService,
     private alertService: AlertService,
     private subjectService: SubjectService,
-    private componentRefresh: ComponentRefreshService,
+    private componentRefresh: ComponentRefreshService
   ) {
     // subscription to the subject
     this.subscriptionName = this.subjectService
