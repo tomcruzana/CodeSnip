@@ -43,7 +43,7 @@ public class User {
 	private String email;
 
 	// dont include in serialization
-	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+//	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	@NotNull
 	@Column(name = "password", length = 512)
 	private String password;

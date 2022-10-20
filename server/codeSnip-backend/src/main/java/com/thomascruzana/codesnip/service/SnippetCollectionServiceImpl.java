@@ -16,6 +16,7 @@ import com.thomascruzana.codesnip.entity.SnippetCollection;
 import com.thomascruzana.codesnip.entity.User;
 import com.thomascruzana.codesnip.exception.CodeSnipException;
 import com.thomascruzana.codesnip.repository.SnippetCollectionRepository;
+import com.thomascruzana.codesnip.repository.SnippetRepository;
 
 @Service
 public class SnippetCollectionServiceImpl implements SnippetCollectionService {
@@ -24,7 +25,10 @@ public class SnippetCollectionServiceImpl implements SnippetCollectionService {
 	private Environment environment;
 
 	@Autowired
-	SnippetCollectionRepository snippetCollectionRepository;
+	private SnippetCollectionRepository snippetCollectionRepository;
+
+	@Autowired
+	private SnippetRepository snippetRepository;
 
 	// reads snippet collection via id and calls its matching repository component
 	@Override
@@ -42,8 +46,12 @@ public class SnippetCollectionServiceImpl implements SnippetCollectionService {
 	}
 
 	// creates a snippet collection and calls its matching repository component
+	// also create an empty snippet
 	@Override
-	public void createSnippetCollection(int userId, SnippetCollectionDto snippetCollectionDto) throws CodeSnipException {
+	public void createSnippetCollection(int userId, SnippetCollectionDto snippetCollectionDto)
+			throws CodeSnipException {
+
+		// create the snippet collection
 		SnippetCollection snippetCollection = new SnippetCollection();
 
 		snippetCollection.setTitle(snippetCollectionDto.getTitle());
@@ -54,9 +62,26 @@ public class SnippetCollectionServiceImpl implements SnippetCollectionService {
 		// snippetCollection.setSnippets(List<Snippet>);
 		User user = new User();
 		user.setId(userId); // get from session
-		snippetCollection.setUser(user); // must be same as user id
+		snippetCollection.setUser(user); // user id of the user currently in the session
 
-		snippetCollectionRepository.save(snippetCollection);
+		SnippetCollection newlyCreatedSnippetCollection = snippetCollectionRepository.save(snippetCollection);
+
+		System.out.println("LOG>>> Newly Created SnippetCollection id " + newlyCreatedSnippetCollection.getId() + "<<<");
+
+		// create the snippet
+		Snippet newSnippet = new Snippet();
+		newSnippet.setTitle("UNTITLED SNIPPET");
+		newSnippet.setSnippetCollection(newlyCreatedSnippetCollection);
+		newSnippet.setCode("// code goes here");
+		newSnippet.setDateCreated(new Date(System.currentTimeMillis()));
+		newSnippet.setProgrammingLanguage("java");
+		newSnippet.setPublic(false);
+
+		snippetRepository.save(newSnippet);
+
+		System.out.println(
+				"LOG>>> Snippet Merged into the SnippetCollection id" + newlyCreatedSnippetCollection.getId() + "<<<");
+
 	}
 
 	// reads all snippet collections and calls its matching repository component
@@ -104,9 +129,11 @@ public class SnippetCollectionServiceImpl implements SnippetCollectionService {
 		snippetCollectionRepository.save(snippetCollection);
 	}
 
-	@Override
+	@Override // get all snippets based on SnippetCollectionId
 	public List<SnippetDto> readAllSnippetsBySnippetCollectionId(int id) throws CodeSnipException {
 		List<Snippet> snippets = snippetCollectionRepository.findSnippetCollectionBySnippetId(id);
+
+		// if list is empty return blank
 		if (snippets.isEmpty()) {
 			throw new CodeSnipException(environment.getProperty("info.warn.empty"));
 		}

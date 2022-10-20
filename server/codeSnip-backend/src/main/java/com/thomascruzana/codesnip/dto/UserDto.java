@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.thomascruzana.codesnip.entity.Authority;
 import com.thomascruzana.codesnip.entity.User;
 
@@ -19,7 +20,7 @@ public class UserDto {
 
 	private String email;
 
-//	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+	
 	private String password;
 
 	private boolean isEnabled;

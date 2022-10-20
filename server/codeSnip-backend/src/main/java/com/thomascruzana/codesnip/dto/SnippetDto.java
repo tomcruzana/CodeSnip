@@ -34,6 +34,8 @@ public class SnippetDto {
 		this.snippetCollection = snippet.getSnippetCollection();
 		this.title = snippet.getTitle();
 	}
+	
+	
 
 	public int getId() {
 		return id;
