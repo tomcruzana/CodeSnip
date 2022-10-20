@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.thomascruzana.codesnip.dto.SnippetDto;
 import com.thomascruzana.codesnip.exception.CodeSnipException;
-
+//service interface
 public interface SnippetService {
 	List<SnippetDto> readAll() throws CodeSnipException;
 

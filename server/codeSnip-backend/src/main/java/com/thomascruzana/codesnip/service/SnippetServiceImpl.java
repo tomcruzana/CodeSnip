@@ -25,6 +25,7 @@ public class SnippetServiceImpl implements SnippetService {
 	@Autowired
 	SnippetRepository snippetRepository;
 
+	// reads all snippet and calls its matching repository component
 	@Override
 	public List<SnippetDto> readAll() throws CodeSnipException {
 		List<Snippet> snippetList = snippetRepository.findAll();
@@ -42,11 +43,13 @@ public class SnippetServiceImpl implements SnippetService {
 		return snippetDtoList;
 	}
 
+	// deletes a snippet via id and calls its matching repository component
 	@Override
 	public void deleteById(int id) throws CodeSnipException {
 		snippetRepository.deleteById(id);
 	}
 
+	// updates a snippet via id and calls its matching repository component
 	@Override
 	public void updateById(int id, String title) throws CodeSnipException {
 
@@ -63,6 +66,8 @@ public class SnippetServiceImpl implements SnippetService {
 		snippetRepository.save(snippet);
 	}
 
+	// updates a snippet via id and code, then calls its matching repository
+	// component
 	@Override
 	public void saveById(int id, String code) throws CodeSnipException {
 
@@ -91,7 +96,7 @@ public class SnippetServiceImpl implements SnippetService {
 		snippet.setDateCreated(new Date(System.currentTimeMillis()));
 		snippet.setCode("// start coding here");
 		snippet.setPublic(false);
-		
+
 		// set foreignkey of SnippetCollection
 		SnippetCollection snippetCollection = new SnippetCollection();
 		snippetCollection.setId(collectionId); // get from session

@@ -10,12 +10,14 @@ import org.springframework.web.bind.annotation.RestController;
 import com.thomascruzana.codesnip.dto.UserDto;
 import com.thomascruzana.codesnip.service.UserService;
 
+// user login controller
 @RestController
 public class UserLoginController {
 
 	@Autowired
 	private UserService userService;
 
+	// fetches username (email) and validates if the user is registered
 	@GetMapping("/user")
 	public ResponseEntity<UserDto> getUserProfile(Authentication authentication) {
 		UserDto userDto = userService.readByEmail(authentication.getName());

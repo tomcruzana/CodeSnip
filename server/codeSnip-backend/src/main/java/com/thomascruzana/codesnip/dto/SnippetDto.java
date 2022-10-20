@@ -5,6 +5,7 @@ import java.util.Date;
 import com.thomascruzana.codesnip.entity.Snippet;
 import com.thomascruzana.codesnip.entity.SnippetCollection;
 
+//data transfer object for snippet
 public class SnippetDto {
 
 	private int id;

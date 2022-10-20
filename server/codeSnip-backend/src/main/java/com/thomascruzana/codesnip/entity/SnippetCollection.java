@@ -17,7 +17,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
+//model class. uses hibernate as ORM 
 @Entity
 @Table(name = "snippet_collection")
 public class SnippetCollection {

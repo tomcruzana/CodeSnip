@@ -17,6 +17,7 @@ import org.springframework.web.cors.CorsConfigurationSource;
 
 /* NOTE: DO NOT AUTO FORMAT CODE! */
 
+//security configuration and filter for codeSnip
 @Configuration
 public class SecurityConfig {
 
@@ -27,6 +28,7 @@ public class SecurityConfig {
 		// route security w/ role configurations
 		http.cors().configurationSource(new CorsConfigurationSource() {
 
+			// CORS
 			@Override
 			public CorsConfiguration getCorsConfiguration(HttpServletRequest request) {
 				CorsConfiguration config = new CorsConfiguration();
@@ -38,6 +40,7 @@ public class SecurityConfig {
 				return config;
 			}
 
+		//XSRF and antmatchers used for route auth
 		}).and().csrf().ignoringAntMatchers("/register", "/snippetcollection/**","/snippet/**")
 				.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
 				.and().authorizeRequests()

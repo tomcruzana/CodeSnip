@@ -10,6 +10,7 @@ import com.thomascruzana.codesnip.entity.Snippet;
 import com.thomascruzana.codesnip.entity.SnippetCollection;
 import com.thomascruzana.codesnip.entity.User;
 
+//data transfer object for snippet collection
 public class SnippetCollectionDto {
 
 	private int id;

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.thomascruzana.codesnip.dto.UserDto;
 import com.thomascruzana.codesnip.service.UserService;
 
+// Controller class for user registration
 @RestController
 public class RegisterController {
 
@@ -20,6 +21,7 @@ public class RegisterController {
 	@Autowired
 	private UserService userService;
 
+	// endpoint for registering user details
 	@PostMapping("/register")
 	public ResponseEntity<?> registerUser(@RequestBody UserDto userDto) {
 		UserDto newUserDto = null;

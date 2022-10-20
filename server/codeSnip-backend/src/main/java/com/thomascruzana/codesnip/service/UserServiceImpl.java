@@ -13,6 +13,7 @@ import com.thomascruzana.codesnip.entity.User;
 import com.thomascruzana.codesnip.repository.AuthorityRepository;
 import com.thomascruzana.codesnip.repository.UserRepository;
 
+// service implementation for User
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -25,6 +26,7 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
+	// create new user
 	@Override
 	public UserDto createUser(UserDto userDto) {
 		// persist new customer data
@@ -54,6 +56,7 @@ public class UserServiceImpl implements UserService {
 		return userDto;
 	}
 
+	// find user via email
 	@Override
 	public UserDto readByEmail(String email) {
 		UserDto userDto;

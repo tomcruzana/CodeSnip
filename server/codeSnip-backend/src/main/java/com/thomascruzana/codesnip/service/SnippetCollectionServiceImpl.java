@@ -26,6 +26,8 @@ public class SnippetCollectionServiceImpl implements SnippetCollectionService {
 	@Autowired
 	SnippetCollectionRepository snippetCollectionRepository;
 
+	// reads snippet collection via id and calls its matching repository component
+	@Override
 	public SnippetCollectionDto readById(int id) throws CodeSnipException {
 
 		SnippetCollectionDto snippetCollectionDto;
@@ -39,6 +41,7 @@ public class SnippetCollectionServiceImpl implements SnippetCollectionService {
 		return snippetCollectionDto;
 	}
 
+	// creates a snippet collection and calls its matching repository component
 	@Override
 	public void createSnippetCollection(SnippetCollectionDto snippetCollectionDto) throws CodeSnipException {
 		SnippetCollection snippetCollection = new SnippetCollection();
@@ -48,7 +51,7 @@ public class SnippetCollectionServiceImpl implements SnippetCollectionService {
 		snippetCollection.setProgrammingLanguage(snippetCollectionDto.getProgrammingLanguage());
 		snippetCollection.setDateCreated(new Date(System.currentTimeMillis()));
 
-//		snippetCollection.setSnippets(List<Snippet>);
+		// snippetCollection.setSnippets(List<Snippet>);
 		User user = new User();
 		user.setId(1); // get from session
 		snippetCollection.setUser(user); // must be same as user id
@@ -56,6 +59,7 @@ public class SnippetCollectionServiceImpl implements SnippetCollectionService {
 		snippetCollectionRepository.save(snippetCollection);
 	}
 
+	// reads all snippet collections and calls its matching repository component
 	@Override
 	public List<SnippetCollectionDto> readAll() throws CodeSnipException {
 		List<SnippetCollection> snippetCollectionList = snippetCollectionRepository.findAll();
@@ -73,6 +77,7 @@ public class SnippetCollectionServiceImpl implements SnippetCollectionService {
 		return snippetCollectionDtoList;
 	}
 
+	// deletes a snippet collection via id and calls its matching repository component
 	@Override
 	public void deleteById(int id) throws CodeSnipException {
 		snippetCollectionRepository.deleteById(id);

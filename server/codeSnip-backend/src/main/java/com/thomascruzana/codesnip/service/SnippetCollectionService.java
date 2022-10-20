@@ -6,6 +6,7 @@ import com.thomascruzana.codesnip.dto.SnippetCollectionDto;
 import com.thomascruzana.codesnip.dto.SnippetDto;
 import com.thomascruzana.codesnip.exception.CodeSnipException;
 
+// service interface
 public interface SnippetCollectionService {
 	public SnippetCollectionDto readById(int id) throws CodeSnipException;
 

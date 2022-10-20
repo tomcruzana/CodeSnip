@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 
 import com.thomascruzana.codesnip.service.SnippetCollectionServiceImpl;
 
+//AOP class
 @Order(1)
 @Aspect
 @Component

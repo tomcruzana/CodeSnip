@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.thomascruzana.codesnip.entity.Authority;
 import com.thomascruzana.codesnip.entity.User;
 
+//data transfer object for user
 public class UserDto {
 	private int id;
 

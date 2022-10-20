@@ -19,6 +19,7 @@ import com.thomascruzana.codesnip.entity.Authority;
 import com.thomascruzana.codesnip.entity.User;
 import com.thomascruzana.codesnip.repository.UserRepository;
 
+// password auth and bcrypt provider
 @Component
 public class PasswordAuthenticationProvider implements AuthenticationProvider {
 
@@ -28,6 +29,7 @@ public class PasswordAuthenticationProvider implements AuthenticationProvider {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
+	// authentication method that validates user credential
 	@Override
 	public Authentication authenticate(Authentication authentication) throws AuthenticationException {
 		String email = authentication.getName();
@@ -46,6 +48,7 @@ public class PasswordAuthenticationProvider implements AuthenticationProvider {
 		}
 	}
 
+	// authority or role fetcher
 	private List<GrantedAuthority> getGrantedAuthorities(Set<Authority> authorities) {
 		List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
 		for (Authority authority : authorities) {
@@ -54,6 +57,7 @@ public class PasswordAuthenticationProvider implements AuthenticationProvider {
 		return grantedAuthorities;
 	}
 
+	// checks if the provider supports the object
 	@Override
 	public boolean supports(Class<?> authentication) {
 		return (UsernamePasswordAuthenticationToken.class.isAssignableFrom(authentication));

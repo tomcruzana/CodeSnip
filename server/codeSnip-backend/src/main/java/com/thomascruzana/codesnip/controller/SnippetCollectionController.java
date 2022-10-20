@@ -19,6 +19,7 @@ import com.thomascruzana.codesnip.dto.SnippetCollectionDto;
 import com.thomascruzana.codesnip.dto.SnippetDto;
 import com.thomascruzana.codesnip.service.SnippetCollectionService;
 
+//Controller class for user Snippet Collections
 @RestController
 public class SnippetCollectionController {
 
@@ -28,6 +29,7 @@ public class SnippetCollectionController {
 	@Autowired
 	private SnippetCollectionService snippetCollectionService;
 
+	// update snippet collection by id and title
 	@PatchMapping("/snippetcollection")
 	public ResponseEntity<String> updateSnippetCollection(@RequestParam int id, @RequestParam String title,
 			@RequestParam String description, @RequestParam String programmingLanguage) throws Exception {
@@ -37,12 +39,14 @@ public class SnippetCollectionController {
 		return new ResponseEntity<>(updateSuccessMessage, HttpStatus.OK);
 	}
 
+	// fetches all snippet collections 
 	@GetMapping("/snippetcollection")
 	public ResponseEntity<List<SnippetCollectionDto>> getAllSnippetCollections() throws Exception {
 		List<SnippetCollectionDto> snippetCollectionDtos = snippetCollectionService.readAll();
 		return new ResponseEntity<>(snippetCollectionDtos, HttpStatus.OK);
 	}
 
+	// creates an new snippet collection based on its fields
 	@PostMapping("/snippetcollection")
 	public ResponseEntity<String> createSnippetCollection(@RequestBody SnippetCollectionDto snippetCollectionDto)
 			throws Exception {
@@ -51,6 +55,7 @@ public class SnippetCollectionController {
 		return new ResponseEntity<>(createSuccessMessage, HttpStatus.CREATED);
 	}
 
+	// deletes the snippet collection
 	@DeleteMapping("/snippetcollection/{id}")
 	public ResponseEntity<String> daletSnippetCollection(@PathVariable int id) throws Exception {
 		snippetCollectionService.deleteById(id);
@@ -58,6 +63,7 @@ public class SnippetCollectionController {
 		return new ResponseEntity<>(deleteSuccessMessage, HttpStatus.OK);
 	}
 	
+	// fetch all snippets based on Snippet collection id
 	@GetMapping("/snippetcollection/snippet")
 	public ResponseEntity<List<SnippetDto>> getAllSnippetsBySnippetCollectionId(@RequestParam int id) throws Exception {
 		List<SnippetDto> snippetDtos = snippetCollectionService.readAllSnippetsBySnippetCollectionId(id);

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 
 import com.thomascruzana.codesnip.repository.SnippetCollectionRepository;
 
+// AOP class
 @Order(2)
 @Aspect
 @Component

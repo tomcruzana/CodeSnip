@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import com.thomascruzana.codesnip.entity.Snippet;
 import com.thomascruzana.codesnip.entity.SnippetCollection;
 
+//repo class that is responsible for CRUD operations of the entity
 @Repository
 public interface SnippetCollectionRepository extends CrudRepository<SnippetCollection, Integer> {
 

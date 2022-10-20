@@ -18,7 +18,7 @@ import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-
+//model class. uses hibernate as ORM 
 @Entity
 @Table(name = "user")
 public class User {

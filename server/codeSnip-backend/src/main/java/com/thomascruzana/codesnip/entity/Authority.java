@@ -9,6 +9,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+// model class. uses hibernate as ORM 
 @Entity
 @Table(name = "authority")
 public class Authority {

@@ -19,6 +19,7 @@ import com.thomascruzana.codesnip.dto.SnippetCollectionDto;
 import com.thomascruzana.codesnip.dto.SnippetDto;
 import com.thomascruzana.codesnip.service.SnippetService;
 
+// snippet controller endpoint provider
 @RestController
 public class SnippetController {
 
@@ -28,12 +29,14 @@ public class SnippetController {
 	@Autowired
 	private SnippetService snippetService;
 
+	// fetch all snippets
 	@GetMapping("/snippet")
 	public ResponseEntity<List<SnippetDto>> getAllSnippets() throws Exception {
 		List<SnippetDto> snippetDtos = snippetService.readAll();
 		return new ResponseEntity<>(snippetDtos, HttpStatus.OK);
 	}
-
+	
+	// delete a snippet based on id
 	@DeleteMapping("/snippet/{id}")
 	public ResponseEntity<String> daletSnippet(@PathVariable int id) throws Exception {
 		snippetService.deleteById(id);
@@ -41,6 +44,7 @@ public class SnippetController {
 		return new ResponseEntity<>(deleteSuccessMessage, HttpStatus.OK);
 	}
 
+	// update snippet title
 	@PatchMapping("/snippet")
 	public ResponseEntity<String> updateSnippetTitle(@RequestParam int id, @RequestParam String title)
 			throws Exception {
@@ -50,6 +54,7 @@ public class SnippetController {
 		return new ResponseEntity<>(updateSuccessMessage, HttpStatus.OK);
 	}
 
+	// update snippet code
 	@PatchMapping("/snippet/save/{id}")
 	public ResponseEntity<String> updateSnippetCode(@PathVariable int id, @RequestBody() String code)
 			throws Exception {

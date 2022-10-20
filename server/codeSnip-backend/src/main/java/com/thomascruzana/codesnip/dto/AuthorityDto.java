@@ -2,6 +2,7 @@ package com.thomascruzana.codesnip.dto;
 
 import com.thomascruzana.codesnip.entity.User;
 
+// data transfer object for authority
 public class AuthorityDto {
 	private int id;
 
