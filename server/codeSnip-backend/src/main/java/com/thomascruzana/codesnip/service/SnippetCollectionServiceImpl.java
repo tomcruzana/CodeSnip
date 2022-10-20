@@ -86,8 +86,8 @@ public class SnippetCollectionServiceImpl implements SnippetCollectionService {
 
 	// reads all snippet collections and calls its matching repository component
 	@Override
-	public List<SnippetCollectionDto> readAll() throws CodeSnipException {
-		List<SnippetCollection> snippetCollectionList = snippetCollectionRepository.findAll();
+	public List<SnippetCollectionDto> readAll(int id) throws CodeSnipException {
+		List<SnippetCollection> snippetCollectionList = snippetCollectionRepository.findAllByUserId(id);
 		if (snippetCollectionList.isEmpty()) {
 			throw new CodeSnipException(environment.getProperty("info.warn.empty"));
 		}

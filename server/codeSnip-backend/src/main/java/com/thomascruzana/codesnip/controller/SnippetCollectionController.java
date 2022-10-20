@@ -40,9 +40,9 @@ public class SnippetCollectionController {
 	}
 
 	// fetches all snippet collections
-	@GetMapping("/snippetcollection")
-	public ResponseEntity<List<SnippetCollectionDto>> getAllSnippetCollections() throws Exception {
-		List<SnippetCollectionDto> snippetCollectionDtos = snippetCollectionService.readAll();
+	@GetMapping("/snippetcollection/user/{id}")
+	public ResponseEntity<List<SnippetCollectionDto>> getAllSnippetCollections(@PathVariable int id) throws Exception {
+		List<SnippetCollectionDto> snippetCollectionDtos = snippetCollectionService.readAll(id);
 		return new ResponseEntity<>(snippetCollectionDtos, HttpStatus.OK);
 	}
 

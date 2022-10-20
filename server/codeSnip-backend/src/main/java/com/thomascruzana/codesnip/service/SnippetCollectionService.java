@@ -10,7 +10,7 @@ import com.thomascruzana.codesnip.exception.CodeSnipException;
 public interface SnippetCollectionService {
 	public SnippetCollectionDto readById(int id) throws CodeSnipException;
 
-	public List<SnippetCollectionDto> readAll() throws CodeSnipException;
+	public List<SnippetCollectionDto> readAll(int id) throws CodeSnipException;
 
 	public void createSnippetCollection(int userId, SnippetCollectionDto snippetCollectionDto) throws CodeSnipException;
 

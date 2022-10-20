@@ -17,7 +17,7 @@ public interface SnippetCollectionRepository extends CrudRepository<SnippetColle
 
 	public Optional<SnippetCollection> findById(int id);
 
-	public List<SnippetCollection> findAll();
+	public List<SnippetCollection> findAllByUserId(int id);
 
 	@Query("SELECT s FROM Snippet s INNER JOIN s.snippetCollection r WHERE r.id = :id ")
 	List<Snippet> findSnippetCollectionBySnippetId(@Param("id") int id);
