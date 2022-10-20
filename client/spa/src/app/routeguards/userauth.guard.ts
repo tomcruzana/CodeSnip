@@ -14,7 +14,7 @@ import { User } from '../models/user.model';
 })
 export class UserAuthGuard implements CanActivate {
   user = new User();
-
+  // route guard is used to kick out unauthorized users
   constructor(private router: Router) {}
 
   canActivate(
@@ -27,6 +27,8 @@ export class UserAuthGuard implements CanActivate {
     | UrlTree {
     // if userdetails session obj doesn't exist, reroute to loginpge
     if (sessionStorage.getItem('userdetails') === null) {
+
+      // reroute to /login page
       this.router.navigate(['/login']);
       return false;
     }

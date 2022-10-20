@@ -7,6 +7,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class ComponentRefreshService {
   constructor(private router: Router, private route: ActivatedRoute) {}
 
+  // refreshes the component & not allowing query paramg
   resetPage() {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     this.router.navigate(['./dashboard'], {
