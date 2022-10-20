@@ -36,11 +36,13 @@ export class AjaxhttpInterceptor implements HttpInterceptor {
       );
     }
 
+    // XSRF-TOKEN token
     let xsrf = sessionStorage.getItem('XSRF-TOKEN');
     if (xsrf) {
       httpHeaders = httpHeaders.append('X-XSRF-TOKEN', xsrf);
     }
 
+    // clone headers
     httpHeaders = httpHeaders.append('X-Requested-With', 'XMLHttpRequest');
     const xhr = req.clone({
       headers: httpHeaders,
@@ -50,6 +52,7 @@ export class AjaxhttpInterceptor implements HttpInterceptor {
       tap((err: any) => {
         if (err instanceof HttpErrorResponse) {
           if (err.status !== 401) {
+            // return 401 (acks valid authentication credentials)
             return;
           }
           // if success, navigate to user dashboard
