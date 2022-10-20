@@ -64,4 +64,17 @@ export class AlertService {
       showConfirmButton: showButton,
     });
   }
+
+  staticInfoAlert(
+    title: string,
+    description: string,
+    showButton: boolean
+  ): void {
+    Swal.fire({
+      title: title,
+      text: description,
+      icon: 'error',
+      showConfirmButton: showButton,
+    });
+  }
 }

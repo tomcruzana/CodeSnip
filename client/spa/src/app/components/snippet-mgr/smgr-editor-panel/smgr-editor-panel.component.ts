@@ -199,6 +199,16 @@ export class SmgrEditorPanelComponent implements OnInit {
 
   // delete snippet
   deleteSnippet(deleteId: string): void {
+    // validation that checks if there 1 snippet editor left
+    if (this.snippets.length < 2) {
+      this.alertService.staticInfoAlert(
+        'Delete Operation was Denied',
+        'You are not allowed to delete the last snippet editor.',
+        true
+      );
+      return;
+    }
+
     // extract id
     let id = deleteId.replace('delete', '');
     console.log('log: Snippet id extracted from delete btn ' + id);
