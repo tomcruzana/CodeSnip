@@ -1,4 +1,4 @@
-package com.thomascruzana.codesnip.util;
+package com.thomascruzana.codesnip.util.security;
 
 // constants for ROLES
 public enum Role {

@@ -20,7 +20,7 @@ public class UserDto {
 
 	private String email;
 
-	
+	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	private String password;
 
 	private boolean isEnabled;

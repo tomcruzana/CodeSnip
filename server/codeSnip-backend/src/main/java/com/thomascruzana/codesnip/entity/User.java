@@ -19,6 +19,7 @@ import javax.persistence.TemporalType;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.sun.istack.NotNull;
+
 //model class. uses hibernate as ORM 
 @Entity
 @Table(name = "user")
@@ -42,10 +43,9 @@ public class User {
 	@Column(name = "email", length = 128)
 	private String email;
 
-	// dont include in serialization
-//	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	@NotNull
 	@Column(name = "password", length = 512)
+	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	private String password;
 
 	@NotNull

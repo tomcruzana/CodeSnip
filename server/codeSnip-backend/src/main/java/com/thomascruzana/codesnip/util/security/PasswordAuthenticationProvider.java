@@ -1,4 +1,4 @@
-package com.thomascruzana.codesnip.util;
+package com.thomascruzana.codesnip.util.security;
 
 import java.util.ArrayList;
 import java.util.List;

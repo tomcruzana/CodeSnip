@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 import com.thomascruzana.codesnip.dto.SnippetDto;
 import com.thomascruzana.codesnip.entity.Snippet;
 import com.thomascruzana.codesnip.entity.SnippetCollection;
-import com.thomascruzana.codesnip.entity.User;
 import com.thomascruzana.codesnip.exception.CodeSnipException;
 import com.thomascruzana.codesnip.repository.SnippetRepository;
 
