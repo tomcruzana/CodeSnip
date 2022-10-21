@@ -34,6 +34,14 @@ export class AjaxhttpInterceptor implements HttpInterceptor {
         'Authorization',
         'Basic ' + window.btoa(this.user.email + ':' + this.user.password)
       );
+    } else {
+      // read the JWT token from session storage
+      let authorization = sessionStorage.getItem('Authorization');
+
+      // if Authorization session value is found, append it to headers
+      if (authorization) {
+        httpHeaders = httpHeaders.append('Authorization', authorization);
+      }
     }
 
     // XSRF-TOKEN token

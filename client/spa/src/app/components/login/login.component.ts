@@ -24,6 +24,13 @@ export class LoginComponent implements OnInit {
     this.isLoading = true;
     this.loginService.validateLoginDetails(this.model).subscribe({
       next: (responseData) => {
+        //get authorization header if it exists
+        window.sessionStorage.setItem(
+          'Authorization',
+          responseData.headers.get('Authorization')!
+        );
+
+        // get body of the response
         console.log(responseData.body);
         this.model = <any>responseData.body;
 
