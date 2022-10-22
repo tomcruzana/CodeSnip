@@ -7,6 +7,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { PricingComponent } from './components/pricing/pricing.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { RegisterComponent } from './components/register/register.component';
+import { VerifyComponent } from './components/register/verify/verify.component';
 import { ShareComponent } from './components/share/share.component';
 import { SnippetMgrComponent } from './components/snippet-mgr/snippet-mgr.component';
 import { UserAuthGuard } from './routeguards/userauth.guard';
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: 'pricing', component: PricingComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'verify', component: VerifyComponent },
   {
     path: 'dashboard',
     component: SnippetMgrComponent,

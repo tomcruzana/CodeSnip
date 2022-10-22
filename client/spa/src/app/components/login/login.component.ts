@@ -54,7 +54,6 @@ export class LoginComponent implements OnInit {
           });
         } else {
           this.errorMessage = 'Something went wrong. Please try again later.';
-
           // scroll to top of the page
           window.scroll({
             top: 0,

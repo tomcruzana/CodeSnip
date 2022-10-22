@@ -41,6 +41,7 @@ import { NewCollectionFormComponent } from './components/snippet-mgr/smgr-sideba
 import { TagsComponent } from './components/snippet-mgr/smgr-sidebar/tags/tags.component';
 import { SharedComponent } from './components/snippet-mgr/smgr-sidebar/shared/shared.component';
 import { SmgrSettingsComponent } from './components/snippet-mgr/smgr-sidebar/smgr-settings/smgr-settings.component';
+import { VerifyComponent } from './components/register/verify/verify.component';
 
 @NgModule({
   declarations: [
@@ -72,6 +73,7 @@ import { SmgrSettingsComponent } from './components/snippet-mgr/smgr-sidebar/smg
     TagsComponent,
     SharedComponent,
     SmgrSettingsComponent,
+    VerifyComponent,
   ],
   imports: [
     BrowserModule,
