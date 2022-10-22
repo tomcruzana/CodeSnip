@@ -3,3 +3,4 @@
 # ignore all logs
 *.log
 *.gz
+*.properties
