@@ -24,8 +24,9 @@
           name="email"
           aria-describedby="emailHelp"
           required
-          [(ngModel)]="model.email"
+          [(ngModel)]="user.email"
           #email="ngModel"
+          pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
         />
         <!-- email error start -->
         <span
@@ -33,6 +34,12 @@
           *ngIf="(email.touched || loginForm.submitted) &&
           email.errors?.['required']"
           >An email address is required</span
+        >
+        <span
+          class="text-danger"
+          *ngIf="(email.touched || loginForm.submitted) &&
+          email.errors?.['pattern']"
+          >Please provide a valid email address</span
         >
         <!-- email error end -->
       </div>
@@ -44,9 +51,9 @@
           class="form-control"
           id="password"
           name="password"
-          minlength="8"
+          minlength="5"
           required
-          [(ngModel)]="model.password"
+          [(ngModel)]="user.password"
           #password="ngModel"
         />
         <!-- TO-DO add show password -->

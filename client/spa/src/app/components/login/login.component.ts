@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
   isLoading: boolean = false;
   authStatus: string = '';
   errorMessage: string = '';
-  model = new User();
+  user = new User();
 
   constructor(private loginService: LoginService, private router: Router) {}
 
@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
 
   validateUser(loginForm: NgForm) {
     this.isLoading = true;
-    this.loginService.validateLoginDetails(this.model).subscribe({
+    this.loginService.validateLoginDetails(this.user).subscribe({
       next: (responseData) => {
         //get authorization header if it exists
         window.sessionStorage.setItem(
@@ -32,14 +32,11 @@ export class LoginComponent implements OnInit {
 
         // get body of the response
         console.log(responseData.body);
-        this.model = <any>responseData.body;
+        this.user = <any>responseData.body;
 
         // asiign AUTH value once user is logged in!
-        this.model.authStatus = 'AUTH';
-        window.sessionStorage.setItem(
-          'userdetails',
-          JSON.stringify(this.model)
-        );
+        this.user.authStatus = 'AUTH';
+        window.sessionStorage.setItem('userdetails', JSON.stringify(this.user));
         let xsrf = getCookie('XSRF-TOKEN')!;
         window.sessionStorage.setItem('XSRF-TOKEN', xsrf);
         this.router.navigate(['/dashboard']);
@@ -49,6 +46,21 @@ export class LoginComponent implements OnInit {
         // return this error
         if (errorData.status == 401) {
           this.errorMessage = 'The email or password is incorrect.';
+          // scroll to top of the page
+          window.scroll({
+            top: 0,
+            left: 0,
+            behavior: 'smooth',
+          });
+        } else {
+          this.errorMessage = 'Something went wrong. Please try again later.';
+
+          // scroll to top of the page
+          window.scroll({
+            top: 0,
+            left: 0,
+            behavior: 'smooth',
+          });
         }
 
         // delete session item if exist

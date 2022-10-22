@@ -1,27 +1,134 @@
+<app-navbar></app-navbar>
 <section class="login-form bg-dark text-bg-dark">
   <div class="container my-5 col col-md-5 col-lg-3 mx-auto">
-    <form class="w-100">
+    <div
+      class="alert alert-danger error"
+      role="alert"
+      *ngIf="errorMessage.length > 0"
+    >
+      {{ errorMessage }}
+    </div>
+    <form
+      class="w-100"
+      (ngSubmit)="registrationForm.valid && registerUser(registrationForm)"
+      #registrationForm="ngForm"
+    >
       <div class="mb-3">
-        <label for="exampleInputUsername1" class="form-label">Username</label>
-        <input type="text" class="form-control" id="exampleInputUsername1" />
+        <label for="fname" class="form-label">First name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="fname"
+          name="fname"
+          required
+          [(ngModel)]="newUser.firstName"
+          #fname="ngModel"
+        />
+        <!-- fname error start -->
+        <span
+          class="text-danger"
+          *ngIf="(fname.touched || registrationForm.submitted) &&
+          fname.errors?.['required']"
+          >Your first name is required</span
+        >
+        <!-- fname error end -->
       </div>
       <div class="mb-3">
-        <label for="exampleInputEmail1" class="form-label">Email address</label>
+        <label for="lname" class="form-label">Last name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="lname"
+          name="lname"
+          required
+          [(ngModel)]="newUser.lastName"
+          #lname="ngModel"
+        />
+        <!-- lname error start -->
+        <span
+          class="text-danger"
+          *ngIf="(lname.touched || registrationForm.submitted) &&
+        lname.errors?.['required']"
+          >Your last name is required</span
+        >
+        <!-- lname error end -->
+      </div>
+      <div class="mb-3">
+        <label for="username" class="form-label">Username</label>
+        <input
+          type="text"
+          class="form-control"
+          id="username"
+          name="username"
+          required
+          [(ngModel)]="newUser.username"
+          #username="ngModel"
+        />
+        <!-- username error start -->
+        <span
+          class="text-danger"
+          *ngIf="(username.touched || registrationForm.submitted) &&
+          username.errors?.['required']"
+          >a username is required</span
+        >
+        <!-- username error end -->
+      </div>
+      <div class="mb-3">
+        <label for="email" class="form-label">Email address</label>
         <input
           type="email"
           class="form-control"
-          id="exampleInputEmail1"
+          id="email"
+          name="email"
           aria-describedby="emailHelp"
+          required
+          [(ngModel)]="newUser.email"
+          #email="ngModel"
+          pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
         />
+        <!-- email error start -->
+        <span
+          class="text-danger"
+          *ngIf="(email.touched || registrationForm.submitted) &&
+                email.errors?.['required']"
+          >An email address is required</span
+        >
+        <span
+          class="text-danger"
+          *ngIf="(email.touched || registrationForm.submitted) &&
+          email.errors?.['pattern']"
+          >Please provide a valid email address</span
+        >
+        <!-- email error end -->
       </div>
       <div class="mb-3">
-        <label for="exampleInputPassword1" class="form-label">Password</label>
+        <label for="password" class="form-label">Password</label>
         <input
           type="password"
           class="form-control"
-          id="exampleInputPassword1"
+          id="password"
+          name="password"
+          minlength="8"
+          required
+          [(ngModel)]="newUser.password"
+          #password="ngModel"
         />
         <!-- TO-DO add show password -->
+
+        <!-- password error start -->
+        <span
+          class="text-danger"
+          *ngIf="(password.touched || registrationForm.submitted) &&
+         password.errors?.['required']"
+          >A Password is required</span
+        >
+        <span
+          class="text-danger"
+          *ngIf="(password.touched || registrationForm.submitted) &&
+         password.errors?.['minlength']"
+          >The password must be at least 8 in length</span
+        >
+        <!-- password error end -->
       </div>
       <div class="mb-3">
         <label for="exampleInputConfirmPassword" class="form-label"
@@ -55,8 +162,12 @@
       </div>
 
       <div class="d-grid mb-3">
-        <button class="btn btn-primary" type="submit" (click)="register()">
-          Register
+        <button class="btn btn-primary" type="submit">
+          <i
+            class="fa-solid fa-spinner"
+            [ngClass]="isLoading ? 'loader' : 'disable-loader'"
+          ></i
+          >Register
         </button>
       </div>
     </form>

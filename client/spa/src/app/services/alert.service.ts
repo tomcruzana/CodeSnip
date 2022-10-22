@@ -7,15 +7,15 @@ import Swal from 'sweetalert2';
 export class AlertService {
   constructor() {}
 
-// helper methods for alert
+  // helper methods for alert
 
-/**
- *
- * types:
- *  success
- *  info
- *  error
- */
+  /**
+   *
+   * types:
+   *  success
+   *  info
+   *  error
+   */
 
   timedSuccessAlert(
     title: string,
