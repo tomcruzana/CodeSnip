@@ -51,7 +51,7 @@ public class SecurityConfig {
 					}
 
 					// XSRF and antmatchers used for route auth
-				}).and().csrf().ignoringAntMatchers("/register", "/snippetcollection/**", "/snippet/**")
+				}).and().csrf().ignoringAntMatchers("/register", "/snippetcollection/**", "/snippet/**", "/verifyaccount")
 				.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
 				.and()
 				.addFilterAfter(new JWTTokenGeneratorFilter(), BasicAuthenticationFilter.class)
@@ -64,7 +64,7 @@ public class SecurityConfig {
 				.antMatchers("/shared").hasRole(Role.PRO_USER.name())
 				.antMatchers("/settings").hasAnyRole(Role.FREE_USER.name(), Role.PRO_USER.name())
 				.antMatchers("/user").authenticated()
-				.antMatchers("/home", "/documentation", "/pricing", "/register", "/share", "/login").permitAll().and()
+				.antMatchers("/home", "/documentation", "/pricing", "/register", "/share", "/verifyaccount", "/login").permitAll().and()
 				.httpBasic();
 
 		return http.build();
