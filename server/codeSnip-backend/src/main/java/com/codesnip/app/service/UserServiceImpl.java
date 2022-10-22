@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.codesnip.app.config.security.constants.Role;
 import com.codesnip.app.dto.UserDto;
 import com.codesnip.app.entity.Authority;
 import com.codesnip.app.entity.User;
@@ -40,6 +41,8 @@ public class UserServiceImpl implements UserService {
 		userDto.setDateCreated(new Date(System.currentTimeMillis()));
 
 		// transfer customer data
+		newUser.setFirstName(userDto.getFirstName());
+		newUser.setLastName(userDto.getLastName());
 		newUser.setUsername(userDto.getUsername());
 		newUser.setEmail(userDto.getEmail());
 		newUser.setPassword(userDto.getPassword());
@@ -49,7 +52,7 @@ public class UserServiceImpl implements UserService {
 
 		// initialize and save default role
 		Authority authority = new Authority();
-		authority.setName("ROLE_FREE_USER");
+		authority.setName("ROLE_" + Role.FREE_USER.name());
 		authority.setUser(newUser);
 		authorityRepository.save(authority);
 
