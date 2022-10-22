@@ -19,8 +19,15 @@ public class UserLoginController {
 
 	// fetches username (email) and validates if the user is registered
 	@GetMapping("/user")
-	public ResponseEntity<UserDto> getUserProfile(Authentication authentication) {
+	public ResponseEntity<?> getUserProfile(Authentication authentication) {
 		UserDto userDto = userService.readByEmail(authentication.getName());
+
+		// check if user has not verified email or disabled
+		if (!userDto.isEnabled()) {
+			return new ResponseEntity<>("Please verify your email", HttpStatus.FORBIDDEN);
+		}
+
 		return new ResponseEntity<>(userDto, HttpStatus.OK);
+
 	}
 }

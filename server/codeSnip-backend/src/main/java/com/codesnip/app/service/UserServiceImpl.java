@@ -66,10 +66,10 @@ public class UserServiceImpl implements UserService {
 		List<User> users = userRepository.findByEmail(email);
 
 		if (users.size() > 0) {
-			// convert and return customer to customerDto type
+			// convert user to dto
 			userDto = new UserDto(users.get(0));
-
 			return userDto;
+
 		}
 
 		// return null if no customer is found!
