@@ -33,10 +33,9 @@ export class RegisterComponent implements OnInit {
         // get body of the response
         console.log(responseData.body);
         if (responseData.body == 'you have successfully registered.') {
-          setTimeout(() => {
-            // redirect to login page
-            this.router.navigate(['/verify']);
-          }, 3000);
+          // redirect to login page
+          this.router.navigate(['/verify']);
+
           return;
         }
       },
