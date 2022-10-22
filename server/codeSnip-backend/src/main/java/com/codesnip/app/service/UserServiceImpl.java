@@ -47,7 +47,7 @@ public class UserServiceImpl implements UserService {
 		newUser.setEmail(userDto.getEmail());
 		newUser.setPassword(userDto.getPassword());
 		newUser.setDateCreated(userDto.getDateCreated());
-		newUser.setEnabled(true);
+		newUser.setEnabled(false);
 		userRepository.save(newUser);
 
 		// initialize and save default role
