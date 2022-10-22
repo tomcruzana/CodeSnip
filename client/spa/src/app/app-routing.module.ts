@@ -19,6 +19,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'verify', component: VerifyComponent },
+  { path: 'verify', component: VerifyComponent },
   {
     path: 'dashboard',
     component: SnippetMgrComponent,

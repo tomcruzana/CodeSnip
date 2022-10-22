@@ -33,8 +33,10 @@ export class RegisterComponent implements OnInit {
         // get body of the response
         console.log(responseData.body);
         if (responseData.body == 'you have successfully registered.') {
-          // redirect to login page
-          this.router.navigate(['/verify']);
+          // redirect to verify email page
+          this.router.navigate(['/verify'], {
+            queryParams: { email: this.newUser.email },
+          });
 
           return;
         }
