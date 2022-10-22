@@ -46,20 +46,12 @@ export class LoginComponent implements OnInit {
         // return this error
         if (errorData.status == 401) {
           this.errorMessage = 'The email or password is incorrect.';
-          // scroll to top of the page
-          window.scroll({
-            top: 0,
-            left: 0,
-            behavior: 'smooth',
-          });
+        } else if (errorData.status == 403) {
+          // ask user to verify his/her email
+          console.log(errorData.error);
+          this.errorMessage = errorData.error;
         } else {
           this.errorMessage = 'Something went wrong. Please try again later.';
-          // scroll to top of the page
-          window.scroll({
-            top: 0,
-            left: 0,
-            behavior: 'smooth',
-          });
         }
 
         // delete session item if exist
@@ -67,7 +59,15 @@ export class LoginComponent implements OnInit {
           sessionStorage.removeItem('userdetails');
         }
 
+        // end loading
         this.isLoading = false;
+
+        // scroll to top of the page
+        window.scroll({
+          top: 0,
+          left: 0,
+          behavior: 'smooth',
+        });
       },
       complete: () => {
         this.isLoading = false;
