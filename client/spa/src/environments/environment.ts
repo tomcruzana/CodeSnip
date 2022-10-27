@@ -4,7 +4,9 @@
 
 export const environment = {
   production: false,
-  rooturl : 'http://localhost:8082'
+  rooturl: 'http://localhost:8082',
+  stripePublishableKey:
+    'pk_test_51LwLpYEZppYmASNTMeHffnUobWrmj1US5rVg9TG2VawmjNJjuOONiYIfhwWFsuTwAd7mLVnzmCnZBDYwseTzwGG200mqVLmYGX',
 };
 
 /*
