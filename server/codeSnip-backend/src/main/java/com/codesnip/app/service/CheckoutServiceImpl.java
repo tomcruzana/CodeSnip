@@ -10,6 +10,7 @@ import java.util.UUID;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.codesnip.app.dto.PaymentInfoDto;
@@ -19,6 +20,7 @@ import com.codesnip.app.entity.Order;
 import com.codesnip.app.entity.OrderItem;
 import com.codesnip.app.entity.User;
 import com.codesnip.app.repository.UserRepository;
+import com.stripe.Stripe;
 import com.stripe.exception.StripeException;
 import com.stripe.model.PaymentIntent;
 
@@ -28,6 +30,11 @@ public class CheckoutServiceImpl implements CheckoutService {
 	// todo: constructor w/ stripe secret key
 	@Autowired
 	private UserRepository userRepository;
+
+	public CheckoutServiceImpl(@Value("${stripe.key.secret}") String secretKey) {
+		// initialize Stripe API with secret key
+		Stripe.apiKey = secretKey;
+	}
 
 	@Override
 	@Transactional
