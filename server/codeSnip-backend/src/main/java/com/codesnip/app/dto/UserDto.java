@@ -1,11 +1,14 @@
 package com.codesnip.app.dto;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import com.codesnip.app.entity.Authority;
+import com.codesnip.app.entity.Order;
+import com.codesnip.app.entity.SnippetCollection;
 import com.codesnip.app.entity.User;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 //data transfer object for user
@@ -33,8 +36,11 @@ public class UserDto {
 
 	private String image;
 
-	@JsonIgnore
 	private Set<Authority> authorities;
+
+	private List<SnippetCollection> snippetCollections;
+
+	private Set<Order> orders = new HashSet<>();
 
 	public UserDto() {
 
@@ -154,6 +160,22 @@ public class UserDto {
 
 	public void setAuthorities(Set<Authority> authorities) {
 		this.authorities = authorities;
+	}
+
+	public List<SnippetCollection> getSnippetCollections() {
+		return snippetCollections;
+	}
+
+	public void setSnippetCollections(List<SnippetCollection> snippetCollections) {
+		this.snippetCollections = snippetCollections;
+	}
+
+	public Set<Order> getOrders() {
+		return orders;
+	}
+
+	public void setOrders(Set<Order> orders) {
+		this.orders = orders;
 	}
 
 }

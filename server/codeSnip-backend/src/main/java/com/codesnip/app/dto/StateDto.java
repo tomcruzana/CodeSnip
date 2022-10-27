@@ -1,13 +1,17 @@
 package com.codesnip.app.dto;
 
-import com.codesnip.app.entity.User;
+import com.codesnip.app.entity.Country;
 
-public class AuthorityDto {
+public class StateDto {
+
 	private int id;
 
 	private String name;
 
-	private User user;
+	private Country country;
+
+	public StateDto() {
+	}
 
 	public int getId() {
 		return id;
@@ -25,12 +29,12 @@ public class AuthorityDto {
 		this.name = name;
 	}
 
-	public User getUser() {
-		return user;
+	public Country getCountry() {
+		return country;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setCountry(Country country) {
+		this.country = country;
 	}
 
 }

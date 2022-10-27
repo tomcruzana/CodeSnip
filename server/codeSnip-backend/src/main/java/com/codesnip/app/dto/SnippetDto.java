@@ -5,7 +5,6 @@ import java.util.Date;
 import com.codesnip.app.entity.Snippet;
 import com.codesnip.app.entity.SnippetCollection;
 
-//data transfer object for snippet
 public class SnippetDto {
 
 	private int id;
@@ -34,8 +33,6 @@ public class SnippetDto {
 		this.snippetCollection = snippet.getSnippetCollection();
 		this.title = snippet.getTitle();
 	}
-	
-	
 
 	public int getId() {
 		return id;
@@ -92,4 +89,5 @@ public class SnippetDto {
 	public void setSnippetCollection(SnippetCollection snippetCollection) {
 		this.snippetCollection = snippetCollection;
 	}
+
 }

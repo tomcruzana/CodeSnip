@@ -3,16 +3,10 @@ package com.codesnip.app.dto;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-
 import com.codesnip.app.entity.Snippet;
 import com.codesnip.app.entity.SnippetCollection;
 import com.codesnip.app.entity.User;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
-//data transfer object for snippet collection
 public class SnippetCollectionDto {
 
 	private int id;
@@ -21,18 +15,14 @@ public class SnippetCollectionDto {
 
 	private String description;
 
-	@Column(name = "programming_language")
 	private String programmingLanguage;
 
 	private Date dateCreated;
 
 	private String link;
 
-	@ManyToOne
-	@JoinColumn(name = "user_id")
 	private User user;
 
-	@JsonIgnore
 	private List<Snippet> snippets;
 
 	public SnippetCollectionDto() {
@@ -90,20 +80,20 @@ public class SnippetCollectionDto {
 		this.dateCreated = dateCreated;
 	}
 
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-
 	public String getLink() {
 		return link;
 	}
 
 	public void setLink(String link) {
 		this.link = link;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public List<Snippet> getSnippets() {

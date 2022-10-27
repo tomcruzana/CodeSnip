@@ -41,6 +41,7 @@ public class SnippetCollectionServiceImpl implements SnippetCollectionService {
 		SnippetCollection snippetCollection = snippetCollectionOptional
 				.orElseThrow(() -> new CodeSnipException(environment.getProperty("error.generic")));
 
+		// transfer to DTO object
 		snippetCollectionDto = new SnippetCollectionDto(snippetCollection);
 		return snippetCollectionDto;
 	}
@@ -66,7 +67,8 @@ public class SnippetCollectionServiceImpl implements SnippetCollectionService {
 
 		SnippetCollection newlyCreatedSnippetCollection = snippetCollectionRepository.save(snippetCollection);
 
-		System.out.println("LOG>>> Newly Created SnippetCollection id " + newlyCreatedSnippetCollection.getId() + "<<<");
+		System.out
+				.println("LOG>>> Newly Created SnippetCollection id " + newlyCreatedSnippetCollection.getId() + "<<<");
 
 		// create the snippet
 		Snippet newSnippet = new Snippet();
