@@ -4,14 +4,21 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.UUID;
 
+import javax.transaction.Transactional;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.codesnip.app.dto.PaymentInfoDto;
 import com.codesnip.app.dto.PurchaseDto;
 import com.codesnip.app.dto.PurchaseResponseDto;
-import com.codesnip.app.exception.CodeSnipException;
+import com.codesnip.app.entity.Order;
+import com.codesnip.app.entity.OrderItem;
+import com.codesnip.app.entity.User;
+import com.codesnip.app.repository.UserRepository;
 import com.stripe.exception.StripeException;
 import com.stripe.model.PaymentIntent;
 
@@ -19,46 +26,48 @@ import com.stripe.model.PaymentIntent;
 public class CheckoutServiceImpl implements CheckoutService {
 
 	// todo: constructor w/ stripe secret key
+	@Autowired
+	private UserRepository userRepository;
 
 	@Override
+	@Transactional
 	public PurchaseResponseDto placeOrder(PurchaseDto purchaseDto) {
-//		// retrieve the order info from dto
-//		Order order = purchase.getOrder();
-//
-//		// generate tracking number
-//		String orderTrackingNumber = generateOrderTrackingNumber();
-//		order.setOrderTrackingNumber(orderTrackingNumber);
-//
-//		// populate order with orderItems
-//		Set<OrderItem> orderItems = purchase.getOrderItems();
-//		orderItems.forEach(item -> order.add(item));
-//
-//		// populate order with billingAddress and shippingAddress
-//		order.setBillingAddress(purchase.getBillingAddress());
-//		order.setShippingAddress(purchase.getShippingAddress());
-//
-//		// populate customer with order
-//		Customer customer = purchase.getCustomer();
-//
-//		// check if this is an existing customer
-//		String theEmail = customer.getEmail();
-//
-//		Customer customerFromDB = customerRepository.findByEmail(theEmail);
-//
-//		if (customerFromDB != null) {
-//			// we found them ... let's assign them accordingly
-//			customer = customerFromDB;
-//		}
-//
-//		customer.add(order);
-//
-//		// save to the database
-//		customerRepository.save(customer);
-//
-//		// return a response
-//		return new PurchaseResponse(orderTrackingNumber);
+		// retrieve the order info from dto
+		Order order = purchaseDto.getOrder();
 
-		return null;
+		// generate tracking number
+		String generatedOrderTrackingNumber = generateOrderTrackingNumber();
+		order.setOrderTrackingNumber(generatedOrderTrackingNumber);
+
+		// populate order with orderItems
+		Set<OrderItem> orderItems = purchaseDto.getOrderItems();
+		orderItems.forEach(item -> order.add(item));
+
+		// populate order with billingAddress and shippingAddress
+		order.setBillingAddress(purchaseDto.getBillingAddress());
+		order.setShippingAddress(purchaseDto.getShippingAddress());
+
+		// populate user with order
+		User user = purchaseDto.getUser();
+
+		// check if this is an existing user
+		String theEmail = user.getEmail();
+
+		List<User> users = userRepository.findByEmail(theEmail);
+
+		if (users != null) {
+			// we found them ... let's assign them accordingly
+			User userFromDB = users.get(0);
+			user = userFromDB;
+		}
+
+		user.add(order);
+
+		// save to the database
+		userRepository.save(user);
+
+		// return a response
+		return new PurchaseResponseDto(generatedOrderTrackingNumber);
 	}
 
 	@Override
@@ -74,7 +83,7 @@ public class CheckoutServiceImpl implements CheckoutService {
 		return PaymentIntent.create(params);
 	}
 
-	private String generateOrderReceiptNumber() throws CodeSnipException {
+	private String generateOrderTrackingNumber() {
 
 		// generate a random UUID number (UUID version-4)
 		// For details see: https://en.wikipedia.org/wiki/Universally_unique_identifier
