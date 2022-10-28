@@ -1,7 +1,6 @@
 package com.codesnip.app.entity;
 
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -75,10 +74,6 @@ public class User {
 	@JsonIgnore
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<SnippetCollection> snippetCollection;
-
-	@JsonIgnore
-	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-	private Set<Order> orders = new HashSet<>();
 
 	public User() {
 
@@ -186,28 +181,6 @@ public class User {
 
 	public void setSnippetCollection(List<SnippetCollection> snippetCollection) {
 		this.snippetCollection = snippetCollection;
-	}
-
-	public Set<Order> getOrders() {
-		return orders;
-	}
-
-	public void setOrders(Set<Order> orders) {
-		this.orders = orders;
-	}
-
-	// helper method for add orders
-	public void add(Order order) {
-
-		if (order != null) {
-
-			if (orders == null) {
-				orders = new HashSet<>();
-			}
-
-			orders.add(order);
-			order.setUser(this);
-		}
 	}
 
 }

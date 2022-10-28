@@ -42,7 +42,6 @@ import { TagsComponent } from './components/snippet-mgr/smgr-sidebar/tags/tags.c
 import { SharedComponent } from './components/snippet-mgr/smgr-sidebar/shared/shared.component';
 import { SmgrSettingsComponent } from './components/snippet-mgr/smgr-sidebar/smgr-settings/smgr-settings.component';
 import { VerifyComponent } from './components/register/verify/verify.component';
-import { CheckoutComponent } from './components/pricing/checkout/checkout.component';
 
 @NgModule({
   declarations: [
@@ -75,7 +74,6 @@ import { CheckoutComponent } from './components/pricing/checkout/checkout.compon
     SharedComponent,
     SmgrSettingsComponent,
     VerifyComponent,
-    CheckoutComponent,
   ],
   imports: [
     BrowserModule,
