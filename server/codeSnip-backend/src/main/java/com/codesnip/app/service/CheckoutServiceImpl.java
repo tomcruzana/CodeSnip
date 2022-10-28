@@ -27,7 +27,6 @@ import com.stripe.model.PaymentIntent;
 @Service
 public class CheckoutServiceImpl implements CheckoutService {
 
-	// todo: constructor w/ stripe secret key
 	@Autowired
 	private UserRepository userRepository;
 
@@ -36,6 +35,7 @@ public class CheckoutServiceImpl implements CheckoutService {
 		Stripe.apiKey = secretKey;
 	}
 
+	/** PLACE ORDER **/
 	@Override
 	@Transactional
 	public PurchaseResponseDto placeOrder(PurchaseDto purchaseDto) {
@@ -77,6 +77,7 @@ public class CheckoutServiceImpl implements CheckoutService {
 		return new PurchaseResponseDto(generatedOrderTrackingNumber);
 	}
 
+	/** PAYMENT INTENT **/
 	@Override
 	public PaymentIntent createPaymentIntent(PaymentInfoDto paymentInfoDto) throws StripeException {
 		List<String> paymentMethodTypes = new ArrayList<>();
